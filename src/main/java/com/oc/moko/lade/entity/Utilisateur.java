@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -18,6 +19,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.oc.moko.lade.annotation.EmailUnique;
 import com.oc.moko.lade.annotation.FieldMatch;
 
 @Entity
@@ -43,6 +45,7 @@ public class Utilisateur {
 	@Column(name="nom_utilisateur", length=30)
 	private String nomUtilisateur;
 	
+//	@EmailUnique(first="emailUtilisateur")
 	@NotEmpty(message="Veuillez renseigner un email.")
     @Email(message="Veuillez saisir un email valide.")
 	@Column(name="email_utilisateur", length=30)

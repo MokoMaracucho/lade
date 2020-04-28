@@ -35,10 +35,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 //	@Override
 //    @Transactional
-//	public Utilisateur selectionnerUtilisateurParEmail(String emailUtilisateur) {
-//		System.out.println("--------------------------------------------------> utilisateurRepository.findByEmailUtilisateur(emailUtilisateur) : " + utilisateurRepository.findByEmailUtilisateur(emailUtilisateur));
-//		Utilisateur utilisateur = utilisateurRepository.findByEmailUtilisateur(emailUtilisateur);
-//		return utilisateur;
+//	public Boolean existanceEmailUtilisateur(String emailUtilisateur) {
+//		return utilisateurRepository.existsByEmailUtilisateur(emailUtilisateur);
 //	}
 
 	@Override
