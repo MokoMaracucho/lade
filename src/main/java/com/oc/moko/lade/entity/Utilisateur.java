@@ -18,7 +18,10 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.oc.moko.lade.annotation.FieldMatch;
+
 @Entity
+@FieldMatch(first="motDePasseUtilisateur", second = "confirmationMotDePasseUtilisateur", message="Les mots-de-passe doivent être identiques.")
 @Table(name="tb_utilisateur")
 public class Utilisateur {
 	
