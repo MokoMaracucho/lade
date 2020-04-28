@@ -3,6 +3,7 @@ package com.oc.moko.lade.annotation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.oc.moko.lade.service.UtilisateurService;
@@ -16,25 +17,24 @@ public class EmailUniqueValidator implements ConstraintValidator<EmailUnique, St
     private UtilisateurService utilisateurService;
 
 	@Override
-	public void initialize(EmailUnique emailUnique) {
+	public void initialize(final EmailUnique emailUnique) {
         firstFieldName = emailUnique.first();
         message = emailUnique.message();
 	}
 
 	@Override
-	public boolean isValid(String emailTest, ConstraintValidatorContext context) {
+	public boolean isValid(final String value, final ConstraintValidatorContext context) {
 		
 		boolean valid = true;
-		
-		try {
-			
-//			utilisateurService.existanceEmailUtilisateur(emailTest);
-			
-			valid = false;
-		
-		} catch(final Exception ignore) {
-			
-		}
+        try
+        {
+            utilisateurService.existanceEmailUtilisateur(value);
+            
+            valid = false;
+        
+        } catch (final Exception ignore) {
+
+        }
 
         if(!valid) {
             context.buildConstraintViolationWithTemplate(message)

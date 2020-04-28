@@ -178,5 +178,5 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, UUID> 
 //		return null;
 //	}
 	
-    Boolean existsByEmailUtilisateur(String email);
+//    Boolean existsByEmailUtilisateur(String email);
 }
