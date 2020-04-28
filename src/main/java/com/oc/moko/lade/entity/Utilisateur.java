@@ -18,10 +18,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.oc.moko.lade.annotation.EmailUnique;
 import com.oc.moko.lade.annotation.FieldMatch;
 
-//@EmailUnique(first="emailUtilisateur", message="Cette adresse email est déjà utilisée.")
 @Entity
 @FieldMatch(first="motDePasseUtilisateur", second = "confirmationMotDePasseUtilisateur", message="Les mots-de-passe doivent être identiques.")
 @Table(name="tb_utilisateur")
