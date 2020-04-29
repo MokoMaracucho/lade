@@ -10,19 +10,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.oc.moko.lade.annotation.EmailUnique;
-import com.oc.moko.lade.annotation.FieldMatch;
-
 @Entity
-@FieldMatch(motDePasseUtilisateur="motDePasseUtilisateur", confirmationMotDePasseUtilisateur="confirmationMotDePasseUtilisateur", message="Les mots-de-passe doivent être identiques.")
 @Table(name="tb_utilisateur")
 public class Utilisateur {
 	
@@ -31,34 +22,19 @@ public class Utilisateur {
 	@GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
 	@Column(name= "id_utilisateur", updatable=false)
 	private UUID idUtilisateur;
-	
-	@NotEmpty(message="Veuillez renseigner un prénom.")
-    @Size(min=2, max=30, message="Le prénom n'a pas la longueur appropriée.")
-	@Pattern(regexp="^[a-zA-Z -]+$", message="Le prénom n'est pas valide.")
-	@Column(name="prenom_utilisateur", length=30)
+
+	@Column(name="prenom_utilisateur")
 	private String prenomUtilisateur;
 	
-	@NotEmpty(message="Veuillez renseigner un nom.")
-    @Size(min=2, max=30, message="Le nom n'a pas la longueur appropriée.")
-	@Pattern(regexp="^[a-zA-Z -]+$", message="Le nom n'est pas valide.")
-	@Column(name="nom_utilisateur", length=30)
+	@Column(name="nom_utilisateur")
 	private String nomUtilisateur;
 	
-	@NotEmpty(message="Veuillez renseigner un email.")
-    @Email(message="Veuillez saisir un email valide.")
-	@EmailUnique(value="emailUtilisateur")
-	@Column(name="email_utilisateur", length=30)
+	@Column(name="email_utilisateur")
 	private String emailUtilisateur;
 	
-	@NotEmpty(message="Veuillez renseigner un mot-de-passe.")
-	@Pattern(regexp="^[a-zA-Z0-9- @^_!\\\"#$%&'()*+,./:;{}<>=|~?]+$", message="Le mot-de-passe n'est pas valide.")
-	@Column(name="mot_de_passe_utilisateur", length=56)
+	@Column(name="mot_de_passe_utilisateur")
 	private String motDePasseUtilisateur;
 	
-	@NotEmpty(message="Veuillez comfirmer le mot-de-passe.")
-	@Transient
-    private String confirmationMotDePasseUtilisateur;
-
 	@Enumerated(EnumType.STRING)
 	@Column(name="privilege_utilisateur", length=17)
 	private Privilege privilegeUtilisateur;
@@ -108,14 +84,6 @@ public class Utilisateur {
 
 	public void setMotDePasseUtilisateur(String motDePasseUtilisateur) {
 		this.motDePasseUtilisateur = motDePasseUtilisateur;
-	}
-
-	public String getConfirmationMotDePasseUtilisateur() {
-		return confirmationMotDePasseUtilisateur;
-	}
-
-	public void setConfirmationMotDePasseUtilisateur(String confirmationMotDePasseUtilisateur) {
-		this.confirmationMotDePasseUtilisateur = confirmationMotDePasseUtilisateur;
 	}
 
 	public Privilege getPrivilegeUtilisateur() {
