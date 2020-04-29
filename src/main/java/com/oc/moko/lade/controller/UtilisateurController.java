@@ -28,11 +28,8 @@ public class UtilisateurController {
 	public static final String ATT_FORM_INSCRIPTION 						= "formInscription";
 	public static final String ATT_FORM_CONNECTION 							= "formConnection";
 	public static final String ATT_NOUVEL_UTILISATEUR 						= "nouvelUtilisateur";
-	public static final String ATT_UTILISATEUR 								= "utilisateur";
-	public static final String ATT_ECHEC_INSCRIPTION_UTILISATEUR 			= "echecInscriptionUtilisateur";
-	public static final String ATT_ERREURS_INSCRIPTION_UTILISATEUR 			= "erreursInscriptionUtilisateur";
 	public static final String ATT_UTILISATEUR_MAJ				 			= "utilisateurMaj";
-	public static final String ATT_LISTE_UTILISATEURS				 		= "liste_utilisateurs";
+	public static final String ATT_LISTE_UTILISATEURS				 		= "listeUtilisateurs";
 
     @Autowired
     private UtilisateurService utilisateurService;
@@ -84,7 +81,7 @@ public class UtilisateurController {
 //    @GetMapping("/maj_utilisateur")
 //    public String majUtilisateur(@RequestParam("idUtilisateur") UUID idUtilisateur, Model model) throws ResourceNotFoundException {
 //    	Utilisateur utilisateurMaj = utilisateurService.selectionnerUtilisateurParId(idUtilisateur);
-//        model.addAttribute("utilisateur", utilisateurMaj);
+//        model.addAttribute(ATT_UTILISATEUR_MAJ, utilisateurMaj);
 //        return "customer-form";
 //    }
 

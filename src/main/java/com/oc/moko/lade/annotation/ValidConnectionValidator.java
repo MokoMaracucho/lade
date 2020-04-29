@@ -3,13 +3,19 @@ package com.oc.moko.lade.annotation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.oc.moko.lade.entity.Utilisateur;
+import com.oc.moko.lade.service.UtilisateurService;
 
 public class ValidConnectionValidator implements ConstraintValidator<ValidConnection, Object> {
 
     private String emailFormConnection;
     private String motDePasseFormConnection;
     private String message;
+	
+	@Autowired
+	UtilisateurService utilisateurService;
 
     @Override
     public void initialize(final ValidConnection annotation) {
@@ -20,18 +26,19 @@ public class ValidConnectionValidator implements ConstraintValidator<ValidConnec
 
     @Override
     public boolean isValid(final Object value, final ConstraintValidatorContext context) {
+    	
         boolean valid = true;
+        Utilisateur utilisateur = new Utilisateur();
         
-        try
-        {
-            final String emailFormConnectionObj 		= (String) BeanUtils.getProperty(value, emailFormConnection);
-            final String motDePasseFormConnectionObj 	= (String) BeanUtils.getProperty(value, motDePasseFormConnection);
-
-//            valid = motDePasseFormInscriptionObj == null && confirmationMotDePasseFormInscriptionObj == null || motDePasseFormInscriptionObj != null && motDePasseFormInscriptionObj.equals(confirmationMotDePasseFormInscriptionObj);
-        
-        } catch (final Exception ignore) {
-
-        }
+//        try
+//        {
+//            if(utilisateurService.existanceEmail(emailFormConnection)) {
+//            	utilisateur = utilisateurService.selectionUtilisateurParEmail(emailFormConnection);
+//            }
+//        
+//        } catch (final Exception ignore) {
+//
+//        }
 
         if(!valid) {
             context.buildConstraintViolationWithTemplate(message)
