@@ -44,11 +44,11 @@ public class UtilisateurController {
         return "inscription_utilisateur";
     }
     
-    @GetMapping("/connection_utilisateur")
-    public String connectionUtilisateur(Model model) {
-    	model.addAttribute(ATT_UTILISATEUR, new Utilisateur());
-        return "connection_utilisateur";
-    }
+//    @GetMapping("/connection_utilisateur")
+//    public String connectionUtilisateur(Model model) {
+//    	model.addAttribute(ATT_UTILISATEUR, new Utilisateur());
+//        return "connection_utilisateur";
+//    }
 
     @PostMapping("/traitement_inscription_utilisateur")
     public String traitementInscriptionUtilisateur(@Valid @ModelAttribute("nouvelUtilisateur") Utilisateur nouvelUtilisateur, BindingResult bindingResult) {
@@ -60,14 +60,14 @@ public class UtilisateurController {
 		}
     }
 
-    @PostMapping("/traitement_connection_utilisateur")
-    public String traitementConnectionUtilisateur(@Valid @ModelAttribute("utilisateur") Utilisateur utilisateur, BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
-	        return "connection_utilisateur";
-		} else {
-	        return "redirect:/utilisateur/liste_utilisateurs";
-		}	
-    }
+//    @PostMapping("/traitement_connection_utilisateur")
+//    public String traitementConnectionUtilisateur(@Valid @ModelAttribute("utilisateur") Utilisateur utilisateur, BindingResult bindingResult) {
+//		if(bindingResult.hasErrors()) {
+//	        return "connection_utilisateur";
+//		} else {
+//	        return "redirect:/utilisateur/liste_utilisateurs";
+//		}	
+//    }
 
     @GetMapping("/liste_utilisateurs")
     public String listeUtilisateurs(Model model) {

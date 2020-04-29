@@ -16,9 +16,9 @@ public class EmailUniqueValidator implements ConstraintValidator<EmailUnique, St
 	UtilisateurService utilisateurService;
 	
     @Override
-    public void initialize(EmailUnique emailUtilisateur) {
-    	this.emailUtilisateur = emailUtilisateur.value();
-    	this.message = emailUtilisateur.message();
+    public void initialize(EmailUnique annotation) {
+    	this.emailUtilisateur = annotation.value();
+    	this.message = annotation.message();
     }
     
     @Override

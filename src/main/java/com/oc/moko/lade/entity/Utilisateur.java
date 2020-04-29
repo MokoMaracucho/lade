@@ -22,7 +22,7 @@ import com.oc.moko.lade.annotation.EmailUnique;
 import com.oc.moko.lade.annotation.FieldMatch;
 
 @Entity
-@FieldMatch(first="motDePasseUtilisateur", second = "confirmationMotDePasseUtilisateur", message="Les mots-de-passe doivent être identiques.")
+@FieldMatch(motDePasseUtilisateur="motDePasseUtilisateur", confirmationMotDePasseUtilisateur="confirmationMotDePasseUtilisateur", message="Les mots-de-passe doivent être identiques.")
 @Table(name="tb_utilisateur")
 public class Utilisateur {
 	

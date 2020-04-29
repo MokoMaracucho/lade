@@ -14,10 +14,10 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
     private String message;
 
     @Override
-    public void initialize(final FieldMatch constraintAnnotation) {
-    	motDePasseUtilisateur = constraintAnnotation.motDePasseUtilisateur();
-    	confirmationMotDePasseUtilisateur = constraintAnnotation.confirmationMotDePasseUtilisateur();
-        message = constraintAnnotation.message();
+    public void initialize(final FieldMatch annotation) {
+    	this.motDePasseUtilisateur = annotation.motDePasseUtilisateur();
+    	this.confirmationMotDePasseUtilisateur = annotation.confirmationMotDePasseUtilisateur();
+    	this.message = annotation.message();
     }
 
     @Override
