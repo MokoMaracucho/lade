@@ -1,4 +1,4 @@
-package com.oc.moko.lade.entity;
+package com.oc.moko.lade.form;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;

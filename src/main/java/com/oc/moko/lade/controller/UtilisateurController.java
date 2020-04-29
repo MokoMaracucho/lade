@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.oc.moko.lade.entity.FormInscription;
+import com.oc.moko.lade.form.FormConnection;
+import com.oc.moko.lade.form.FormInscription;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.service.UtilisateurService;
 
@@ -25,11 +26,13 @@ import com.oc.moko.lade.service.UtilisateurService;
 public class UtilisateurController {
 	
 	public static final String ATT_FORM_INSCRIPTION 						= "formInscription";
+	public static final String ATT_FORM_CONNECTION 							= "formConnection";
 	public static final String ATT_NOUVEL_UTILISATEUR 						= "nouvelUtilisateur";
 	public static final String ATT_UTILISATEUR 								= "utilisateur";
 	public static final String ATT_ECHEC_INSCRIPTION_UTILISATEUR 			= "echecInscriptionUtilisateur";
 	public static final String ATT_ERREURS_INSCRIPTION_UTILISATEUR 			= "erreursInscriptionUtilisateur";
 	public static final String ATT_UTILISATEUR_MAJ				 			= "utilisateurMaj";
+	public static final String ATT_LISTE_UTILISATEURS				 		= "liste_utilisateurs";
 
     @Autowired
     private UtilisateurService utilisateurService;
@@ -48,7 +51,7 @@ public class UtilisateurController {
     
     @GetMapping("/connection_utilisateur")
     public String connectionUtilisateur(Model model) {
-    	model.addAttribute(ATT_UTILISATEUR, new Utilisateur());
+    	model.addAttribute(ATT_FORM_CONNECTION, new FormConnection());
         return "connection_utilisateur";
     }
 
@@ -62,19 +65,19 @@ public class UtilisateurController {
 		}
     }
 
-//    @PostMapping("/traitement_connection_utilisateur")
-//    public String traitementConnectionUtilisateur(@Valid @ModelAttribute("utilisateur") Utilisateur utilisateur, BindingResult bindingResult) {
-//		if(bindingResult.hasErrors()) {
-//	        return "connection_utilisateur";
-//		} else {
-//	        return "redirect:/utilisateur/liste_utilisateurs";
-//		}	
-//    }
+    @PostMapping("/traitement_formulaire_connection")
+    public String traitementConnectionUtilisateur(@Valid @ModelAttribute("formConnection") FormConnection formConnection, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+	        return "connection_utilisateur";
+		} else {
+	        return "redirect:/utilisateur/liste_utilisateurs";
+		}	
+    }
 
     @GetMapping("/liste_utilisateurs")
     public String listeUtilisateurs(Model model) {
         List<Utilisateur> listeUtilisateurs = utilisateurService.listeUtilisateurs();
-        model.addAttribute("listeUtilisateurs", listeUtilisateurs);
+        model.addAttribute(ATT_LISTE_UTILISATEURS, listeUtilisateurs);
         return "liste_utilisateurs";
     }
 

@@ -3,7 +3,7 @@ package com.oc.moko.lade.service;
 import java.util.List;
 import java.util.UUID;
 
-import com.oc.moko.lade.entity.FormInscription;
+import com.oc.moko.lade.form.FormInscription;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.exception.ResourceNotFoundException;
 

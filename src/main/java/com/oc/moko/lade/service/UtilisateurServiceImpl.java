@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.oc.moko.lade.encoder.PasswordEncoder;
-import com.oc.moko.lade.entity.FormInscription;
+import com.oc.moko.lade.form.FormInscription;
 import com.oc.moko.lade.entity.Privilege;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.exception.ResourceNotFoundException;
