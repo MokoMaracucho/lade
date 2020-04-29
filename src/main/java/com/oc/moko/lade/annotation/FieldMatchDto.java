@@ -4,8 +4,8 @@ import javax.validation.constraints.NotEmpty;
 
 import com.oc.moko.lade.annotation.FieldMatch;
 
-@FieldMatch(first="motDePasseUtilisateur", second="confirmationMotDePasseUtilisateur", message="Les mots-de-passe doivent être identiques.")
-public class PasswordResetDto {
+@FieldMatch(motDePasseUtilisateur="motDePasseUtilisateur", confirmationMotDePasseUtilisateur="confirmationMotDePasseUtilisateur", message="Les mots-de-passe doivent être identiques.")
+public class FieldMatchDto {
 
     @NotEmpty
     private String motDePasseUtilisateur;

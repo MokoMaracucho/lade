@@ -16,11 +16,8 @@ import javax.validation.Payload;
 public @interface EmailUnique {
 	
 	String message() default "Cette adresse email est déjà utilisée." ;
-
 	Class<?>[] groups() default {};
-
 	Class<? extends Payload>[] payload() default {};
-	
 	String value();
 	
     @Target({ElementType.FIELD, ElementType.TYPE})
@@ -30,5 +27,3 @@ public @interface EmailUnique {
         EmailUnique[] value();
     }
 }
-
-//https://www.baeldung.com/spring-mvc-custom-validator

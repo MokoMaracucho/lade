@@ -24,6 +24,7 @@ public class EmailUniqueValidator implements ConstraintValidator<EmailUnique, St
     @Override
     public boolean isValid(String emailUtilisateur, ConstraintValidatorContext context) {
     	boolean valid = true;
+    	
         try
         {
     		valid = !utilisateurService.existanceEmailUtilisateur(emailUtilisateur);

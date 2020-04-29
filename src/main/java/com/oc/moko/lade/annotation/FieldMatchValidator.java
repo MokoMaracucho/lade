@@ -9,26 +9,27 @@ import com.oc.moko.lade.annotation.FieldMatch;
 
 public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Object> {
 
-    private String firstFieldName;
-    private String secondFieldName;
+    private String motDePasseUtilisateur;
+    private String confirmationMotDePasseUtilisateur;
     private String message;
 
     @Override
     public void initialize(final FieldMatch constraintAnnotation) {
-        firstFieldName = constraintAnnotation.first();
-        secondFieldName = constraintAnnotation.second();
+    	motDePasseUtilisateur = constraintAnnotation.motDePasseUtilisateur();
+    	confirmationMotDePasseUtilisateur = constraintAnnotation.confirmationMotDePasseUtilisateur();
         message = constraintAnnotation.message();
     }
 
     @Override
     public boolean isValid(final Object value, final ConstraintValidatorContext context) {
         boolean valid = true;
+        
         try
         {
-            final Object firstObj = BeanUtils.getProperty(value, firstFieldName);
-            final Object secondObj = BeanUtils.getProperty(value, secondFieldName);
+            final Object motDePasseUtilisateurObj 				= BeanUtils.getProperty(value, motDePasseUtilisateur);
+            final Object confirmationMotDePasseUtilisateurObj 	= BeanUtils.getProperty(value, confirmationMotDePasseUtilisateur);
 
-            valid = firstObj == null && secondObj == null || firstObj != null && firstObj.equals(secondObj);
+            valid = motDePasseUtilisateurObj == null && confirmationMotDePasseUtilisateurObj == null || motDePasseUtilisateurObj != null && motDePasseUtilisateurObj.equals(confirmationMotDePasseUtilisateurObj);
         
         } catch (final Exception ignore) {
 
@@ -36,7 +37,7 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
 
         if(!valid) {
             context.buildConstraintViolationWithTemplate(message)
-            	.addPropertyNode(firstFieldName)
+            	.addPropertyNode(motDePasseUtilisateur)
                 .addConstraintViolation()
                 .disableDefaultConstraintViolation();
         }

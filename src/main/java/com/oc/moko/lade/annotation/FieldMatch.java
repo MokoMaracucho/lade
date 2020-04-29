@@ -12,21 +12,17 @@ import javax.validation.Payload;
 
 import com.oc.moko.lade.annotation.FieldMatchValidator;
 
-@Target({ TYPE, ANNOTATION_TYPE })
+@Target({TYPE, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = FieldMatchValidator.class)
+@Constraint(validatedBy=FieldMatchValidator.class)
 @Documented
 public @interface FieldMatch {
 	
 	String message() default "Les mots-de-passe doivent être identiques.";
-
 	Class<?>[] groups() default {};
-
 	Class<? extends Payload>[] payload() default {};
-
-	String first();
-
-	String second();
+	String motDePasseUtilisateur();
+	String confirmationMotDePasseUtilisateur();
 
 	@Target({ TYPE, ANNOTATION_TYPE })
 	@Retention(RUNTIME)
@@ -35,6 +31,3 @@ public @interface FieldMatch {
 		FieldMatch[] value();
 	}
 }
-
-
-//https://memorynotfound.com/field-matching-bean-validation-annotation-example/
