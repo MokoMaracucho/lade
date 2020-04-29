@@ -2,18 +2,19 @@ package com.oc.moko.lade.annotation;
 
 import javax.validation.constraints.NotEmpty;
 
-@EmailUnique(first="emailUtilisateur", message="Cette adresse email est déjà utilisée.")
+import com.oc.moko.lade.annotation.EmailUnique;
+
 public class EmailUniqueDto {
 
-	@NotEmpty
+    @NotEmpty
+    @EmailUnique(value = "emailUtilisateur")
     private String emailUtilisateur;
 
-    public String getEmailUtilisateur() {
+	public String getEmailUtilisateur() {
 		return emailUtilisateur;
 	}
 
 	public void setEmailUtilisateur(String emailUtilisateur) {
 		this.emailUtilisateur = emailUtilisateur;
 	}
-
 }

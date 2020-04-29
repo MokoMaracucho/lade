@@ -12,7 +12,7 @@ public interface UtilisateurService {
 
     public Utilisateur selectionnerUtilisateurParId(UUID idUtilisateur) throws ResourceNotFoundException;
     
-//    public Boolean existanceEmailUtilisateur(String emailUtilisateur);
+    public boolean existanceEmailUtilisateur(String emailUtilisateur);
 
     public List<Utilisateur> listeUtilisateurs();
 

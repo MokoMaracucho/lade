@@ -24,6 +24,7 @@ import com.oc.moko.lade.service.UtilisateurService;
 public class UtilisateurController {
 	
 	public static final String ATT_NOUVEL_UTILISATEUR 						= "nouvelUtilisateur";
+	public static final String ATT_UTILISATEUR 								= "utilisateur";
 	public static final String ATT_ECHEC_INSCRIPTION_UTILISATEUR 			= "echecInscriptionUtilisateur";
 	public static final String ATT_ERREURS_INSCRIPTION_UTILISATEUR 			= "erreursInscriptionUtilisateur";
 	public static final String ATT_UTILISATEUR_MAJ				 			= "utilisateurMaj";
@@ -42,6 +43,12 @@ public class UtilisateurController {
     	model.addAttribute(ATT_NOUVEL_UTILISATEUR, new Utilisateur());
         return "inscription_utilisateur";
     }
+    
+//    @GetMapping("/connection_utilisateur")
+//    public String connectionUtilisateur(Model model) {
+//    	model.addAttribute(ATT_UTILISATEUR, new Utilisateur());
+//        return "connection_utilisateur";
+//    }
 
     @PostMapping("/traitement_inscription_utilisateur")
     public String traitementInscriptionUtilisateur(@Valid @ModelAttribute("nouvelUtilisateur") Utilisateur nouvelUtilisateur, BindingResult bindingResult) {
@@ -52,6 +59,15 @@ public class UtilisateurController {
 	        return "redirect:/utilisateur/liste_utilisateurs";
 		}	
     }
+
+//    @PostMapping("/traitement_connection_utilisateur")
+//    public String traitementConnectionUtilisateur(@Valid @ModelAttribute("utilisateur") Utilisateur utilisateur, BindingResult bindingResult) {
+//		if(bindingResult.hasErrors()) {
+//	        return "connection_utilisateur";
+//		} else {
+//	        return "redirect:/utilisateur/liste_utilisateurs";
+//		}	
+//    }
 
     @GetMapping("/liste_utilisateurs")
     public String listeUtilisateurs(Model model) {

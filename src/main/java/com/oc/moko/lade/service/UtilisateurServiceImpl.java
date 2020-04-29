@@ -33,11 +33,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         return utilisateurRepository.findById(idUtilisateur).orElseThrow(() -> new ResourceNotFoundException(idUtilisateur));
 	}
 
-//	@Override
-//    @Transactional
-//	public Boolean existanceEmailUtilisateur(String emailUtilisateur) {
-//		return utilisateurRepository.existsByEmailUtilisateur(emailUtilisateur);
-//	}
+	@Override
+    @Transactional
+	public boolean existanceEmailUtilisateur(String emailUtilisateur) {
+		return utilisateurRepository.existsByEmailUtilisateur(emailUtilisateur);
+	}
 
 	@Override
     @Transactional
