@@ -9,7 +9,7 @@ import com.oc.moko.lade.service.UtilisateurService;
 
 public class EmailUniqueValidator implements ConstraintValidator<EmailUnique, String> {
 
-	protected String emailUtilisateur;
+	protected String emailFormInscription;
 	protected String message;
 	
 	@Autowired
@@ -17,17 +17,17 @@ public class EmailUniqueValidator implements ConstraintValidator<EmailUnique, St
 	
     @Override
     public void initialize(EmailUnique annotation) {
-    	this.emailUtilisateur = annotation.value();
+    	this.emailFormInscription = annotation.value();
     	this.message = annotation.message();
     }
     
     @Override
-    public boolean isValid(String emailUtilisateur, ConstraintValidatorContext context) {
+    public boolean isValid(String emailFormInscription, ConstraintValidatorContext context) {
     	boolean valid = true;
     	
         try
         {
-    		valid = !utilisateurService.existanceEmailUtilisateur(emailUtilisateur);
+    		valid = !utilisateurService.existanceEmail(emailFormInscription);
 
         } catch (final Exception ignore) {
 

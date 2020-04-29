@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.oc.moko.lade.entity.FormInscription;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.service.UtilisateurService;
 
@@ -23,6 +24,7 @@ import com.oc.moko.lade.service.UtilisateurService;
 @RequestMapping("/utilisateur")
 public class UtilisateurController {
 	
+	public static final String ATT_FORM_INSCRIPTION 						= "formInscription";
 	public static final String ATT_NOUVEL_UTILISATEUR 						= "nouvelUtilisateur";
 	public static final String ATT_UTILISATEUR 								= "utilisateur";
 	public static final String ATT_ECHEC_INSCRIPTION_UTILISATEUR 			= "echecInscriptionUtilisateur";
@@ -40,22 +42,22 @@ public class UtilisateurController {
     
     @GetMapping("/inscription_utilisateur")
     public String inscriptionUtilisateur(Model model) {
-    	model.addAttribute(ATT_NOUVEL_UTILISATEUR, new Utilisateur());
+    	model.addAttribute(ATT_FORM_INSCRIPTION, new FormInscription());
         return "inscription_utilisateur";
     }
     
-//    @GetMapping("/connection_utilisateur")
-//    public String connectionUtilisateur(Model model) {
-//    	model.addAttribute(ATT_UTILISATEUR, new Utilisateur());
-//        return "connection_utilisateur";
-//    }
+    @GetMapping("/connection_utilisateur")
+    public String connectionUtilisateur(Model model) {
+    	model.addAttribute(ATT_UTILISATEUR, new Utilisateur());
+        return "connection_utilisateur";
+    }
 
-    @PostMapping("/traitement_inscription_utilisateur")
-    public String traitementInscriptionUtilisateur(@Valid @ModelAttribute("nouvelUtilisateur") Utilisateur nouvelUtilisateur, BindingResult bindingResult) {
+    @PostMapping("/traitement_formualire_inscription")
+    public String traitementInscriptionUtilisateur(@Valid @ModelAttribute("formInscription") FormInscription formInscription, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 	        return "inscription_utilisateur";
 		} else {
-			utilisateurService.enregistrerUtilisateur(nouvelUtilisateur);
+			utilisateurService.enregistrerUtilisateur(formInscription);
 	        return "redirect:/utilisateur/liste_utilisateurs";
 		}
     }

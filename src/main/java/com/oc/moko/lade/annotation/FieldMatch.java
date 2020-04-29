@@ -21,8 +21,8 @@ public @interface FieldMatch {
 	String message() default "Les mots-de-passe doivent être identiques.";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
-	String motDePasseUtilisateur();
-	String confirmationMotDePasseUtilisateur();
+	String motDePasseFormInscription();
+	String confirmationMotDePasseFormInscription();
 
 	@Target({ TYPE, ANNOTATION_TYPE })
 	@Retention(RUNTIME)

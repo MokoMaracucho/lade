@@ -10,13 +10,13 @@
 	      	</li>
 	      	
 <%-- 	      	<c:if test="${empty sessionScope.sessionUtilisateur}"> --%>
-<!-- 	    		<li class="nav-item"> -->
-<!-- 	        		<a class="nav-link" href="/lade/Inscription">Inscription <span class="sr-only">(current)</span></a> -->
-<!-- 	      		</li> -->
+	    		<li class="nav-item">
+	        		<a class="nav-link" href="/lade/utilisateur/inscription_utilisateur">Inscription <span class="sr-only">(current)</span></a>
+	      		</li>
       		
-<!-- 	    		<li class="nav-item"> -->
-<!-- 	        		<a class="nav-link" href="/lade/Connection">Connection <span class="sr-only">(current)</span></a> -->
-<!-- 	      		</li> -->
+	    		<li class="nav-item">
+	        		<a class="nav-link" href="/lade/utilisateur/connection_utilisateur">Connection <span class="sr-only">(current)</span></a>
+	      		</li>
 <!-- 	      	</c:if> -->
 	      	
 <%-- 	      	<c:if test="${!empty sessionScope.sessionUtilisateur}"> --%>

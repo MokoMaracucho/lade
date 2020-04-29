@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.oc.moko.lade.encoder.PasswordEncoder;
+import com.oc.moko.lade.entity.FormInscription;
 import com.oc.moko.lade.entity.Privilege;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.exception.ResourceNotFoundException;
@@ -19,9 +21,17 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@Autowired
     private UtilisateurRepository utilisateurRepository;
 	
+	@Autowired
+    private PasswordEncoder passwordEncoder;
+	
 	@Override
     @Transactional
-	public void enregistrerUtilisateur(Utilisateur utilisateur) {
+	public void enregistrerUtilisateur(FormInscription formInscription) {
+		Utilisateur utilisateur = new Utilisateur();
+		utilisateur.setPrenomUtilisateur(formInscription.getPrenomFormInscription());
+		utilisateur.setNomUtilisateur(formInscription.getNomFormInscription());
+		utilisateur.setEmailUtilisateur(formInscription.getEmailFormInscription());
+		utilisateur.setMotDePasseUtilisateur(passwordEncoder.passwordEncoder(formInscription.getEmailFormInscription()));
 		utilisateur.setPrivilegeUtilisateur(Privilege.UTILISATEUR);
 		utilisateur.setDateInscriptionUtilisateur(new Timestamp(System.currentTimeMillis()));
 		utilisateurRepository.save(utilisateur);
@@ -35,7 +45,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
     @Transactional
-	public boolean existanceEmailUtilisateur(String emailUtilisateur) {
+	public boolean existanceEmail(String emailUtilisateur) {
 		return utilisateurRepository.existsByEmailUtilisateur(emailUtilisateur);
 	}
 

@@ -4,28 +4,28 @@ import javax.validation.constraints.NotEmpty;
 
 import com.oc.moko.lade.annotation.FieldMatch;
 
-@FieldMatch(motDePasseUtilisateur="motDePasseUtilisateur", confirmationMotDePasseUtilisateur="confirmationMotDePasseUtilisateur", message="Les mots-de-passe doivent être identiques.")
+@FieldMatch(motDePasseFormInscription="motDePasseFormInscription", confirmationMotDePasseFormInscription="confirmationMotDePasseFormInscription", message="Les mots-de-passe doivent être identiques.")
 public class FieldMatchDto {
 
     @NotEmpty
-    private String motDePasseUtilisateur;
+    private String motDePasseFormInscription;
 
     @NotEmpty
-    private String confirmationMotDePasseUtilisateur;
+    private String confirmationMotDePasseFormInscription;
 
-	public String getMotDePasseUtilisateur() {
-		return motDePasseUtilisateur;
+	public String getMotDePasseFormInscription() {
+		return motDePasseFormInscription;
 	}
 
-	public void setMotDePasseUtilisateur(String motDePasseUtilisateur) {
-		this.motDePasseUtilisateur = motDePasseUtilisateur;
+	public void setMotDePasseFormInscription(String motDePasseFormInscription) {
+		this.motDePasseFormInscription = motDePasseFormInscription;
 	}
 
-	public String getConfirmationMotDePasseUtilisateur() {
-		return confirmationMotDePasseUtilisateur;
+	public String getConfirmationMotDePasseFormInscription() {
+		return confirmationMotDePasseFormInscription;
 	}
 
-	public void setConfirmationMotDePasseUtilisateur(String confirmationMotDePasseUtilisateur) {
-		this.confirmationMotDePasseUtilisateur = confirmationMotDePasseUtilisateur;
+	public void setConfirmationMotDePasseFormInscription(String confirmationMotDePasseFormInscription) {
+		this.confirmationMotDePasseFormInscription = confirmationMotDePasseFormInscription;
 	}
 }

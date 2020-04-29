@@ -9,14 +9,14 @@ import com.oc.moko.lade.annotation.FieldMatch;
 
 public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Object> {
 
-    private String motDePasseUtilisateur;
-    private String confirmationMotDePasseUtilisateur;
+    private String motDePasseFormInscription;
+    private String confirmationMotDePasseFormInscription;
     private String message;
 
     @Override
     public void initialize(final FieldMatch annotation) {
-    	this.motDePasseUtilisateur = annotation.motDePasseUtilisateur();
-    	this.confirmationMotDePasseUtilisateur = annotation.confirmationMotDePasseUtilisateur();
+    	this.motDePasseFormInscription = annotation.motDePasseFormInscription();
+    	this.confirmationMotDePasseFormInscription = annotation.confirmationMotDePasseFormInscription();
     	this.message = annotation.message();
     }
 
@@ -26,10 +26,10 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
         
         try
         {
-            final Object motDePasseUtilisateurObj 				= BeanUtils.getProperty(value, motDePasseUtilisateur);
-            final Object confirmationMotDePasseUtilisateurObj 	= BeanUtils.getProperty(value, confirmationMotDePasseUtilisateur);
+            final Object motDePasseFormInscriptionObj 				= BeanUtils.getProperty(value, motDePasseFormInscription);
+            final Object confirmationMotDePasseFormInscriptionObj 	= BeanUtils.getProperty(value, confirmationMotDePasseFormInscription);
 
-            valid = motDePasseUtilisateurObj == null && confirmationMotDePasseUtilisateurObj == null || motDePasseUtilisateurObj != null && motDePasseUtilisateurObj.equals(confirmationMotDePasseUtilisateurObj);
+            valid = motDePasseFormInscriptionObj == null && confirmationMotDePasseFormInscriptionObj == null || motDePasseFormInscriptionObj != null && motDePasseFormInscriptionObj.equals(confirmationMotDePasseFormInscriptionObj);
         
         } catch (final Exception ignore) {
 
@@ -37,7 +37,7 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
 
         if(!valid) {
             context.buildConstraintViolationWithTemplate(message)
-            	.addPropertyNode(motDePasseUtilisateur)
+            	.addPropertyNode(motDePasseFormInscription)
                 .addConstraintViolation()
                 .disableDefaultConstraintViolation();
         }

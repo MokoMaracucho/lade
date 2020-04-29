@@ -1,6 +1,5 @@
 package com.oc.moko.lade.entity;
 
-import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -9,10 +8,9 @@ import javax.validation.constraints.Size;
 import com.oc.moko.lade.annotation.EmailUnique;
 import com.oc.moko.lade.annotation.FieldMatch;
 
-@Entity
-@FieldMatch(motDePasseUtilisateur="motDePasseUtilisateur", confirmationMotDePasseUtilisateur="confirmationMotDePasseUtilisateur", message="Les mots-de-passe doivent être identiques.")
+@FieldMatch(motDePasseFormInscription="motDePasseFormInscription", confirmationMotDePasseFormInscription="confirmationMotDePasseFormInscription", message="Les mots-de-passe doivent être identiques.")
 public class FormInscription {
-
+	
 	@NotEmpty(message="Veuillez renseigner un prénom.")
     @Size(min=2, max=30, message="Le prénom n'a pas la longueur appropriée.")
 	@Pattern(regexp="^[a-zA-Z -]+$", message="Le prénom n'est pas valide.")
@@ -25,7 +23,7 @@ public class FormInscription {
 
 	@NotEmpty(message="Veuillez renseigner un email.")
     @Email(message="Veuillez saisir un email valide.")
-	@EmailUnique(value="emailUtilisateur")
+	@EmailUnique(value="emailFormInscription")
 	private String emailFormInscription;
 
 	@NotEmpty(message="Veuillez renseigner un mot-de-passe.")

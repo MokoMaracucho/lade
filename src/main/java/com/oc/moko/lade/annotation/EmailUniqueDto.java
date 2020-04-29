@@ -7,14 +7,14 @@ import com.oc.moko.lade.annotation.EmailUnique;
 public class EmailUniqueDto {
 
     @NotEmpty
-    @EmailUnique(value = "emailUtilisateur")
-    private String emailUtilisateur;
+    @EmailUnique(value="emailFormInscription")
+    private String emailFormInscription;
 
-	public String getEmailUtilisateur() {
-		return emailUtilisateur;
+	public String getEmailFormInscription() {
+		return emailFormInscription;
 	}
 
-	public void setEmailUtilisateur(String emailUtilisateur) {
-		this.emailUtilisateur = emailUtilisateur;
+	public void setEmailFormInscription(String emailFormInscription) {
+		this.emailFormInscription = emailFormInscription;
 	}
 }
