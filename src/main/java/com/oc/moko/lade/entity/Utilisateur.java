@@ -46,7 +46,7 @@ public class Utilisateur {
 	
 	@NotEmpty(message="Veuillez renseigner un email.")
     @Email(message="Veuillez saisir un email valide.")
-	@EmailUnique(value = "emailUtilisateur")
+	@EmailUnique(value="emailUtilisateur")
 	@Column(name="email_utilisateur", length=30)
 	private String emailUtilisateur;
 	

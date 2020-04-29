@@ -15,10 +15,10 @@ import com.oc.moko.lade.repository.UtilisateurRepository;
 
 @Service
 public class UtilisateurServiceImpl implements UtilisateurService {
-
+	
 	@Autowired
     private UtilisateurRepository utilisateurRepository;
-
+	
 	@Override
     @Transactional
 	public void enregistrerUtilisateur(Utilisateur utilisateur) {

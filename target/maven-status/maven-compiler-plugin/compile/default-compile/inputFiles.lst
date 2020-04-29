@@ -2,6 +2,7 @@
 /Users/moko/spring-workspace/lade/src/main/java/com/oc/moko/lade/service/UtilisateurServiceImpl.java
 /Users/moko/spring-workspace/lade/src/main/java/com/oc/moko/lade/config/WebAppInitializerConfig.java
 /Users/moko/spring-workspace/lade/src/main/java/com/oc/moko/lade/exception/ResourceNotFoundException.java
+/Users/moko/spring-workspace/lade/src/main/java/com/oc/moko/lade/encoder/PasswordEncoder.java
 /Users/moko/spring-workspace/lade/src/main/java/com/oc/moko/lade/annotation/FieldMatch.java
 /Users/moko/spring-workspace/lade/src/main/java/com/oc/moko/lade/controller/UtilisateurController.java
 /Users/moko/spring-workspace/lade/src/main/java/com/oc/moko/lade/annotation/FieldMatchValidator.java
@@ -10,6 +11,7 @@
 /Users/moko/spring-workspace/lade/src/main/java/com/oc/moko/lade/service/UtilisateurService.java
 /Users/moko/spring-workspace/lade/src/main/java/com/oc/moko/lade/entity/Utilisateur.java
 /Users/moko/spring-workspace/lade/src/main/java/com/oc/moko/lade/repository/UtilisateurRepository.java
+/Users/moko/spring-workspace/lade/src/main/java/com/oc/moko/lade/annotation/EmailUniqueDto.java
 /Users/moko/spring-workspace/lade/src/main/java/com/oc/moko/lade/config/WebMvcConfig.java
 /Users/moko/spring-workspace/lade/src/main/java/com/oc/moko/lade/annotation/EmailUniqueValidator.java
 /Users/moko/spring-workspace/lade/src/main/java/com/oc/moko/lade/config/PersistenceJpaConfig.java
