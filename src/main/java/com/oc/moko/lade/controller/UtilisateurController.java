@@ -2,6 +2,7 @@ package com.oc.moko.lade.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class UtilisateurController {
 	public static final String ATT_FORM_INSCRIPTION 						= "formInscription";
 	public static final String ATT_FORM_CONNECTION 							= "formConnection";
 	public static final String ATT_NOUVEL_UTILISATEUR 						= "nouvelUtilisateur";
-	public static final String ATT_UTILISATEUR 								= "utilisateur";
+ 	public static final String ATT_SESSION_UTILISATEUR						= "sessionUtilisateur";
 	public static final String ATT_ECHEC_INSCRIPTION_UTILISATEUR 			= "echecInscriptionUtilisateur";
 	public static final String ATT_ERREURS_INSCRIPTION_UTILISATEUR 			= "erreursInscriptionUtilisateur";
 	public static final String ATT_UTILISATEUR_MAJ				 			= "utilisateurMaj";
@@ -56,20 +57,24 @@ public class UtilisateurController {
     }
 
     @PostMapping("/traitement_formualire_inscription")
-    public String traitementInscriptionUtilisateur(@Valid @ModelAttribute("formInscription") FormInscription formInscription, BindingResult bindingResult) {
+    public String traitementInscriptionUtilisateur(@Valid @ModelAttribute("formInscription") FormInscription formInscription, BindingResult bindingResult, HttpSession session) {
 		if(bindingResult.hasErrors()) {
 	        return "inscription_utilisateur";
 		} else {
 			utilisateurService.enregistrerUtilisateur(formInscription);
+			Utilisateur utilisateur = utilisateurService.selectionUtilisateurParEmail(formInscription.getEmailFormInscription());
+			session.setAttribute(ATT_SESSION_UTILISATEUR, utilisateur);
 	        return "redirect:/utilisateur/liste_utilisateurs";
 		}
     }
 
     @PostMapping("/traitement_formulaire_connection")
-    public String traitementConnectionUtilisateur(@Valid @ModelAttribute("formConnection") FormConnection formConnection, BindingResult bindingResult) {
+    public String traitementConnectionUtilisateur(@Valid @ModelAttribute("formConnection") FormConnection formConnection, BindingResult bindingResult, HttpSession session) {
 		if(bindingResult.hasErrors()) {
 	        return "connection_utilisateur";
 		} else {
+			Utilisateur utilisateur = utilisateurService.selectionUtilisateurParEmail(formConnection.getEmailFormConnection());
+			session.setAttribute(ATT_SESSION_UTILISATEUR, utilisateur);
 	        return "redirect:/utilisateur/liste_utilisateurs";
 		}	
     }
