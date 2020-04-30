@@ -7,10 +7,10 @@
   	<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     	<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 	      	<li class="nav-item active">
-	        	<a class="nav-link" href="/lade/Accueil">Accueil <span class="sr-only">(current)</span></a>
+	        	<a class="nav-link" href="/lade/Accueil">Accueil<span class="sr-only">(current)</span></a>
 	      	</li>
 	      	
-	      	<c:if test="${sessionUtilisateur}">
+	      	<c:if test="${!empty sessionScope.sessionUtilisateur}">
 	    		<li class="nav-item">
 	        		<a class="nav-link" href="/lade/utilisateur/inscription_utilisateur">Inscription <span class="sr-only">(current)</span></a>
 	      		</li>
