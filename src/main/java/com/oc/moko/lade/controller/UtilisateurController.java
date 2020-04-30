@@ -32,7 +32,7 @@ public class UtilisateurController {
 	public static final String ATT_ECHEC_INSCRIPTION_UTILISATEUR 			= "echecInscriptionUtilisateur";
 	public static final String ATT_ERREURS_INSCRIPTION_UTILISATEUR 			= "erreursInscriptionUtilisateur";
 	public static final String ATT_UTILISATEUR_MAJ				 			= "utilisateurMaj";
-	public static final String ATT_LISTE_UTILISATEURS				 		= "liste_utilisateurs";
+	public static final String ATT_LISTE_UTILISATEURS				 		= "listeUtilisateurs";
 
     @Autowired
     private UtilisateurService utilisateurService;

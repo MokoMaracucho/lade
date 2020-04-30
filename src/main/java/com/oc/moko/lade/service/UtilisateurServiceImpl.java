@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.oc.moko.lade.encoder.PasswordEncoder;
 import com.oc.moko.lade.form.FormInscription;
 import com.oc.moko.lade.entity.Privilege;
 import com.oc.moko.lade.entity.Utilisateur;
@@ -23,9 +22,6 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	
 	@Autowired
     private UtilisateurRepository utilisateurRepository;
-	
-	@Autowired
-    private PasswordEncoder passwordEncoder;
 	
 	@Override
     @Transactional
@@ -49,6 +45,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     @Transactional
 	public Utilisateur selectionnerUtilisateurParId(UUID idUtilisateur) throws ResourceNotFoundException {
         return utilisateurRepository.findById(idUtilisateur).orElseThrow(() -> new ResourceNotFoundException(idUtilisateur));
+	}
+
+	@Override
+    @Transactional
+    public Utilisateur selectionUtilisateurParEmail(String emailUtilisateur) {
+		return utilisateurRepository.getByEmailUtilisateur(emailUtilisateur);
 	}
 
 	@Override
