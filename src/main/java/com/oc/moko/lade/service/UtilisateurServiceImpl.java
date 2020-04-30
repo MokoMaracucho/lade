@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
+import org.jasypt.util.password.ConfigurablePasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,8 @@ import com.oc.moko.lade.repository.UtilisateurRepository;
 @Service
 public class UtilisateurServiceImpl implements UtilisateurService {
 	
+	private static final String ALGORYTHME_CHIFFREMENT 		= "SHA-256";
+	
 	@Autowired
     private UtilisateurRepository utilisateurRepository;
 	
@@ -31,7 +34,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		utilisateur.setPrenomUtilisateur(formInscription.getPrenomFormInscription());
 		utilisateur.setNomUtilisateur(formInscription.getNomFormInscription());
 		utilisateur.setEmailUtilisateur(formInscription.getEmailFormInscription());
-		utilisateur.setMotDePasseUtilisateur(passwordEncoder.passwordEncoder(formInscription.getEmailFormInscription()));
+		String motDePasseFormInscription = formInscription.getEmailFormInscription();
+		ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
+        passwordEncryptor.setAlgorithm(ALGORYTHME_CHIFFREMENT);
+        passwordEncryptor.setPlainDigest(false);
+        String motDePasseChiffre = passwordEncryptor.encryptPassword(motDePasseFormInscription);
+		utilisateur.setMotDePasseUtilisateur(motDePasseChiffre);
 		utilisateur.setPrivilegeUtilisateur(Privilege.UTILISATEUR);
 		utilisateur.setDateInscriptionUtilisateur(new Timestamp(System.currentTimeMillis()));
 		utilisateurRepository.save(utilisateur);
