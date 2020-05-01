@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="container">
-	<form:form action="traitement_formualire_inscription" cssClass="form form-expand-lg form-dark bg-dark form-margin-padding form-border" method="post" modelAttribute="formInscription">
+	<form:form action="traitement_formulaire_inscription" cssClass="form form-expand-lg form-dark bg-dark form-margin-padding form-border" method="post" modelAttribute="formInscription">
 		<h1 class="font-weight-bold text-light">INSCRIPTION</h1>
 
 		<div class="form-group">
