@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence     http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+<persistence-unit name="JetCarBd" transaction-type="RESOURCE_LOCAL">
+<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+	<class>lade.beans.BN_Commentaire</class>
+	<class>lade.beans.BN_CommentaireInnerJoin</class>
+	<class>lade.beans.BN_Longueur</class>
+	<class>lade.beans.BN_LongueurInnerJoin</class>
+	<class>lade.beans.BN_ReservationTopo</class>
+	<class>lade.beans.BN_ReservationTopoInnerJoin</class>
+	<class>lade.beans.BN_Secteur</class>
+	<class>lade.beans.BN_SecteurInnerJoin</class>
+	<class>lade.beans.BN_Site</class>
+	<class>lade.beans.BN_SiteInnerJoin</class>
+	<class>lade.beans.BN_Topo</class>
+	<class>lade.beans.BN_TopoInnerJoin</class>
+	<class>lade.beans.BN_Utilisateur</class>
+	<class>lade.beans.BN_Voie</class>
+	<class>lade.beans.BN_VoieInnerJoin</class>
+<exclude-unlisted-classes>false</exclude-unlisted-classes>
+<properties>
+  <property name="javax.persistence.jdbc.url"  value="jdbc:mysql://localhost:3306/db_lade"/>
+  <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+  <property name="javax.persistence.jdbc.user" value="adm_lade"/>
+  <property name="javax.persistence.jdbc.password" value="LAde33."/>
+ </properties>
+  </persistence-unit>
+</persistence>

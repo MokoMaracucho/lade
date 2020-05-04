@@ -192,6 +192,7 @@ public class FORM_TraitementFormulaireInscription {
 			
 			validationMotDePasse(motDePasseUtilisateur, confirmationMotDePasseUtilisateur);
 		
+			
 		} catch(FORM_Exception e) {
 			
 			setErreursInscription(CHAMP_MOT_DE_PASSE_UTILISATEUR, e.getMessage());
