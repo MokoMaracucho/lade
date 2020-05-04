@@ -54,8 +54,7 @@
 						<td>
 							<button href="${lienCommentaires}" class="btn btn-success">Afficher commentaires</button>
 						</td>
-						<td>${site.privilegeUtilisateur}</td>
-						<td>${site.dateInscriptionUtilisateur}</td>
+						<td>{...}</td>
 						<td>
 							<button href="${lienMaj}" class="btn btn-success">Mettre-à-jour</button>
 						</td>

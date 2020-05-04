@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -28,9 +29,9 @@ public class Site {
 	@Column(name="region_site")
 	private String regionSite;
 	
-//	@NotBlank
-//	@ManyToOne
-//	private Utilisateur utilisateur;
+//	@NotEmpty
+	@ManyToOne
+	private Utilisateur utilisateur;
 	
 //	@OneToMany(mappedBy="Secteur")
 //	private List<Secteur> listeSecteurs;

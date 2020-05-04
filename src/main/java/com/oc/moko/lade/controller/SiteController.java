@@ -50,13 +50,14 @@ public class SiteController {
     	if(bindingResult.hasErrors()) {
 	        return "/ajout_site";
 		} else {
+			siteService.enregistrerUtilisateur(formAjoutSite);
 	        return "redirect:/site/liste_sites";
 		}
     }
 
     @GetMapping("/liste_sites")
     public String listeSites(Model model) {
-        List<Site> listeSites = null;
+        List<Site> listeSites = siteService.listeSites();
         model.addAttribute(ATT_LISTE_SITES, listeSites);
         return "liste_sites";
     }

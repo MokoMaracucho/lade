@@ -22,13 +22,13 @@ public class Commentaire {
 	@Column(name="commentaire")
 	private String commentaire;
 	
-	@NotEmpty
-	@ManyToOne
-	private Utilisateur utilisateur;
+//	@NotEmpty
+//	@ManyToOne
+//	private Utilisateur utilisateur;
 	
-	@NotEmpty
-	@ManyToOne
-	private Site site;
+//	@NotEmpty
+//	@ManyToOne
+//	private Site site;
 	
 	public Long getIdCommentaire() {
 		return idCommentaire;

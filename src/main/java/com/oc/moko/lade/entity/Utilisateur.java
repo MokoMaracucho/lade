@@ -9,7 +9,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -41,6 +43,14 @@ public class Utilisateur {
 	
 	@Column(name="date_inscription_utilisateur")
 	private Timestamp dateInscriptionUtilisateur;
+
+//	@NotEmpty
+//	@OneToMany
+//	private Site site;
+	
+//	@NotEmpty
+//	@OneToMany
+//	private Commentaire commentaire;
 	
 	public Utilisateur() {
 		

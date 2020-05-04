@@ -1,12 +1,13 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <div class="container">
 	<form:form action="traitement_formulaire_inscription" cssClass="form form-expand-lg form-dark bg-dark form-margin-padding form-border" method="post" modelAttribute="formInscription">
 		<h1 class="font-weight-bold text-light">INSCRIPTION</h1>
 
 		<div class="form-group">
-	    	<label for="prenomFormInscription" class="form-label-color">Prénom</label>
+	    	<label for="prenomFormInscription" class="form-label-color">PrÃ©nom</label>
 			<form:errors path="prenomFormInscription" cssClass="small text-warning form-error" />
 			<form:input path="prenomFormInscription" cssClass="form-control" />
 		</div>
@@ -18,7 +19,7 @@
 		</div>
 
 		<div class="form-group">
-			<label for="emailFormInscription" class="text-light">Émail</label>
+			<label for="emailFormInscription" class="text-light">Ã‰mail</label>
 			<form:errors path="emailFormInscription" cssClass="small text-warning form-error" />
 			<form:input path="emailFormInscription" cssClass="form-control" />
 		</div>

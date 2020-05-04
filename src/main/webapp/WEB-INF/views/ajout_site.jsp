@@ -23,7 +23,6 @@
 			<div class="row">
 				<div class="col-md-6 offset-md-3">
 					<c:import url="include/forms/formulaire_ajout_site.jsp" ></c:import>
-<%-- 					<c:import url="include/forms/formulaire_ajout_site.jsp" ></c:import> --%>
 				</div>
   			</div>
 	    </div>
