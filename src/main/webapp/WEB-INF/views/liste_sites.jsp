@@ -10,7 +10,7 @@
 	<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	
-	<title>Liste des utilisateurs | Les amis de l'escalade</title>
+	<title>Liste des sites | Les amis de l'escalade</title>
 </head>
 
 <body>
@@ -22,39 +22,45 @@
 		<div class="col-md-10 offset-md-1">
 			<br>
 			
-			<h1 class="font-weight-bold text-light">LISTE DES UTILISATEURS</h1>
+			<h1 class="font-weight-bold text-light">LISTE DES SITES</h1>
 
 			<table class="table table-striped table-bordered table-dark">
 				<tr class="small">
-					<th>PRÉNOM</th>
 					<th>NOM</th>
-					<th>EMAIL</th>
-					<th>PRIVILÈGE</th>
-					<th>DATE D'INSCRIPTION</th>
+					<th>REGION</th>
+					<th>COMMENTAIRES</th>
+					<th>CRÉATEUR SITE</th>
 					<th>MISE-À-JOUR</th>
 					<th>SUPRESSION</th>
 				</tr>
 
-				<c:forEach var="utilisateur" items="${listeUtilisateurs}">
+				<c:forEach var="site" items="${listeSites}">
 
-					<c:url var="LienDeMaj" value="/utilisateur/maj_utilisateur">
-						<c:param name="idUtilisateur" value="${utilisateur.idUtilisateur}" />
-					</c:url>
-					<c:url var="lienDeSuppression" value="/utilisateur/supprimer_utilisateur">
-						<c:param name="idUtilisateur" value="${utilisateur.idUtilisateur}" />
-					</c:url>
+*				    <c:url var="lienCommentaires" value="/commentaire/liste_commentaires">
+				        <c:param name="idSite" value="${site.idSite}" />
+				    </c:url>
+			
+					<c:url var="lienMaj" value="/utilisateur/maj_site">
+		       			<c:param name="idSite" value="${site.idSite}" />
+		      		</c:url>
+		
+				    <c:url var="lienSuppression" value="/site/supprimer_site">
+				        <c:param name="idSite" value="${site.idSite}" />
+				    </c:url>
 
 					<tr class="small">
-						<td>${utilisateur.prenomUtilisateur}</td>
-						<td>${utilisateur.nomUtilisateur}</td>
-						<td>${utilisateur.emailUtilisateur}</td>
-						<td>${utilisateur.privilegeUtilisateur}</td>
-						<td>${utilisateur.dateInscriptionUtilisateur}</td>
+						<td>${site.nomSite}</td>
+						<td>${site.regionSite}</td>
 						<td>
-							<button href="${lienDeMaj}" class="btn btn-success">Mettre-à-jour</button>
+							<button href="${lienCommentaires}" class="btn btn-success">Afficher commentaires</button>
+						</td>
+						<td>${site.privilegeUtilisateur}</td>
+						<td>${site.dateInscriptionUtilisateur}</td>
+						<td>
+							<button href="${lienMaj}" class="btn btn-success">Mettre-à-jour</button>
 						</td>
 						<td>
-							<button href="${lienDeSuppression}" onclick="if (!(confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?'))) return false" class="btn btn-danger">Supprimer</button>
+							<button href="${lienSuppression}" onclick="if (!(confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?'))) return false" class="btn btn-danger">Supprimer</button>
 						</td>
 					</tr>
 				</c:forEach>

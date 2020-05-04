@@ -30,15 +30,15 @@
 	        		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ajouts </a>
 	       			
 	       			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	         			<a class="dropdown-item" href="AjoutSite">Ajout d'un site</a>
+	         			<a class="dropdown-item" href="/lade/site/ajout_site">Ajout d'un site</a>
 	         				
-	         			<a class="dropdown-item" href="AjoutSecteur">Ajout d'un secteur</a>
+<!-- 	         			<a class="dropdown-item" href="/lade/secteur/ajout_secteur">Ajout d'un secteur</a> -->
 	         
-	         			<a class="dropdown-item" href="AjoutVoie">Ajout d'une voie</a>
+<!-- 	         			<a class="dropdown-item" href="/lade/utilisateur/ajout_voie">Ajout d'une voie</a> -->
 	         
-	         			<a class="dropdown-item" href="AjoutLongueur">Ajout d'une longueur</a>
+<!-- 	         			<a class="dropdown-item" href="/lade/utilisateur/ajout_longueur">Ajout d'une longueur</a> -->
 	         
-	         			<a class="dropdown-item" href="AjoutTopo">Ajout d'un topo</a>
+<!-- 	         			<a class="dropdown-item" href="/lade/utilisateur/ajout_topo">Ajout d'un topo</a> -->
 	       			</div>
 	      		</li>
 	      	</c:if>
@@ -47,21 +47,21 @@
         		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listes </a>
        			
        			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-         			<a class="dropdown-item" href="ListeUtilisateurs">Liste des utilisateurs</a>
+         			<a class="dropdown-item" href="/lade/utilisateur/liste_utilisateurs">Liste des utilisateurs</a>
          				
-         			<a class="dropdown-item" href="#">Liste des membres</a>
+<!--          			<a class="dropdown-item" href="#">Liste des membres</a> -->
          			
          			<div class="dropdown-divider"></div>
          
-         			<a class="dropdown-item" href="ListeSites">Liste des sites</a>
+         			<a class="dropdown-item" href="/lade/site/liste_sites">Liste des sites</a>
          
-         			<a class="dropdown-item" href="ListeSecteurs">Liste des secteurs</a>
+<!--          			<a class="dropdown-item" href="ListeSecteurs">Liste des secteurs</a> -->
          
-         			<a class="dropdown-item" href="ListeVoies">Liste des voies</a>
+<!--          			<a class="dropdown-item" href="ListeVoies">Liste des voies</a> -->
          
-         			<a class="dropdown-item" href="ListeLongueurs">Liste des longueurs</a>
+<!--          			<a class="dropdown-item" href="ListeLongueurs">Liste des longueurs</a> -->
          
-         			<a class="dropdown-item" href="ListeTopos">Liste des topos</a>
+<!--          			<a class="dropdown-item" href="ListeTopos">Liste des topos</a> -->
        			</div>
       		</li>
     	

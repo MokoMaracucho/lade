@@ -1,7 +1,5 @@
 package com.oc.moko.lade.entity;
 
-import java.util.UUID;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,34 +7,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="tb_commentaire")
 public class Commentaire {
 
     @Id
-	@NotBlank
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id_commentaire")
-	private UUID idCommentaire;
+	private Long idCommentaire;
 
-	@NotBlank
+	@NotEmpty()
 	@Column(name="commentaire")
 	private String commentaire;
 	
-	@NotBlank
+	@NotEmpty
 	@ManyToOne
 	private Utilisateur utilisateur;
-	@NotBlank
+	
+	@NotEmpty
 	@ManyToOne
 	private Site site;
 	
-	public UUID getIdCommentaire() {
+	public Long getIdCommentaire() {
 		return idCommentaire;
 	}
 	
-	public void setIdCommentaire(UUID idCommentaire) {
+	public void setIdCommentaire(Long idCommentaire) {
 		this.idCommentaire = idCommentaire;
 	}
 

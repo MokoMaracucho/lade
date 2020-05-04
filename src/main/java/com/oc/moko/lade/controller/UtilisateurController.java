@@ -1,7 +1,5 @@
 package com.oc.moko.lade.controller;
 
-import java.net.http.HttpRequest;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,74 +43,49 @@ public class UtilisateurController {
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
-    	
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
-        
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
     
     @GetMapping("/inscription_utilisateur")
     public String inscriptionUtilisateur(Model model) {
-    	
     	model.addAttribute(ATT_FORM_INSCRIPTION, new FormInscription());
-    	
         return "inscription_utilisateur";
     }
     
     @GetMapping("/connection_utilisateur")
     public String connectionUtilisateur(Model model) {
-    	
     	model.addAttribute(ATT_FORM_CONNECTION, new FormConnection());
-    	
         return "connection_utilisateur";
     }
 
     @PostMapping("/traitement_formulaire_inscription")
     public String traitementInscriptionUtilisateur(HttpServletRequest request, HttpSession session, @Valid @ModelAttribute("formInscription") FormInscription formInscription, BindingResult bindingResult, Model model) {
-    	
     	session = request.getSession();
-    	
     	if(bindingResult.hasErrors()) {
-    		
         	model.addAttribute(ATT_SESSION_UTILISATEUR, false);
-        	
 	        return "/inscription_utilisateur";
-	        
 		} else {
-			
 			utilisateurService.enregistrerUtilisateur(formInscription);
-			
 			Utilisateur utilisateur = utilisateurService.selectionUtilisateurParEmail(formInscription.getEmailFormInscription());
         	session.setAttribute(ATT_SESSION_UTILISATEUR, utilisateur);
-        	
         	model.addAttribute(ATT_SESSION_UTILISATEUR, true);
         	model.addAttribute(ATT_UTILISATEUR, utilisateur);
-        	
 	        return "redirect:/utilisateur/liste_utilisateurs";
 		}
     }
 
     @PostMapping("/traitement_formulaire_connection")
     public String traitementConnectionUtilisateur(HttpServletRequest request, HttpSession session, @Valid @ModelAttribute("formConnection") FormConnection formConnection, BindingResult bindingResult, Model model) {
-    	
     	session = request.getSession();
-    	
     	if(bindingResult.hasErrors()) {
-    		
         	model.addAttribute(ATT_SESSION_UTILISATEUR, false);
-        	
 	        return "connection_utilisateur";
-	        
 		} else {
-			
 			Utilisateur utilisateur = utilisateurService.selectionUtilisateurParEmail(formConnection.getEmailFormConnection());
 			session.setAttribute(ATT_SESSION_UTILISATEUR, utilisateur);
-			
         	model.addAttribute(ATT_SESSION_UTILISATEUR, true);
         	model.addAttribute(ATT_UTILISATEUR, utilisateur);
-        	
-        	System.out.println("---------------------------------------------> =(/$·=%&/=(·/=%=&%=&%=( :" + utilisateur.getEmailUtilisateur());
-        	
 	        return "redirect:/utilisateur/liste_utilisateurs";
 		}	
     }

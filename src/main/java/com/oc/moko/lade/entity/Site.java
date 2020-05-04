@@ -1,48 +1,48 @@
 package com.oc.moko.lade.entity;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="tb_site")
 public class Site {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotBlank
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id_site")
-	private UUID idSite;
+	private Long idSite;
 	
+    @NotEmpty(message="Veuillez renseigner un nom pour le site.")
 	@Column(name="nom_site")
 	private String nomSite;
-	@NotBlank
+	
+	@NotEmpty(message="Veuillez sélectionner une région.")
 	@Column(name="region_site")
 	private String regionSite;
-
-	@NotBlank
-	@ManyToOne
-	private Utilisateur utilisateur;
 	
-	@OneToMany(mappedBy="Secteur")
-	private List<Secteur> listeSecteurs;
-	@OneToMany(mappedBy="Commentaire")
-	private List<Commentaire> listeCommentaires;
+//	@NotBlank
+//	@ManyToOne
+//	private Utilisateur utilisateur;
+	
+//	@OneToMany(mappedBy="Secteur")
+//	private List<Secteur> listeSecteurs;
+	
+//	@OneToMany(mappedBy="Commentaire")
+//	private List<Commentaire> listeCommentaires;
 
-	public UUID getIdSite() {
+	public Long getIdSite() {
 		return idSite;
 	}
 	
-	public void setIdSite(UUID idSite) {
+	public void setIdSite(Long idSite) {
 		this.idSite = idSite;
 	}
 	

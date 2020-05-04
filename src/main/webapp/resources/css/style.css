@@ -7,6 +7,15 @@ html {
 	background-color: grey;
 }
 
+body {
+	width: auto;
+	background-color: grey;
+}
+
+container {
+	width: 100%;
+}
+
 .div-container {
 	width: 100%;
 	background-color: grey;
