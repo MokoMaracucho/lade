@@ -1,14 +1,12 @@
 package com.oc.moko.lade.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -29,8 +27,8 @@ public class Site {
 	@Column(name="region_site")
 	private String regionSite;
 	
-//	@NotEmpty
 	@ManyToOne
+	@JoinColumn(name="id_utilisateur")
 	private Utilisateur utilisateur;
 	
 //	@OneToMany(mappedBy="Secteur")
@@ -61,5 +59,13 @@ public class Site {
 	
 	public void setRegionSite(String regionSite) {
 		this.regionSite = regionSite;
+	}
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 }

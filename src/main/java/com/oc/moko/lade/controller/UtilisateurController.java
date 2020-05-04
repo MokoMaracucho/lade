@@ -32,7 +32,7 @@ public class UtilisateurController {
 	public static final String ATT_FORM_INSCRIPTION 						= "formInscription";
 	public static final String ATT_FORM_CONNECTION 							= "formConnection";
 	
-	public static final String ATT_SESSION_UTILISATEUR						= "sessionUtilisateur";
+	public static final String ATT_SESSION_STATUT							= "sessionStatut";
 	public static final String ATT_UTILISATEUR				 				= "utilisateur";
 
 	public static final String ATT_LISTE_UTILISATEURS				 		= "listeUtilisateurs";
@@ -63,13 +63,15 @@ public class UtilisateurController {
     public String traitementInscriptionUtilisateur(HttpServletRequest request, HttpSession session, @Valid @ModelAttribute("formInscription") FormInscription formInscription, BindingResult bindingResult, Model model) {
     	session = request.getSession();
     	if(bindingResult.hasErrors()) {
-        	model.addAttribute(ATT_SESSION_UTILISATEUR, false);
+        	session.setAttribute(ATT_SESSION_STATUT, false);
+        	model.addAttribute(ATT_SESSION_STATUT, false);
 	        return "/inscription_utilisateur";
 		} else {
 			utilisateurService.enregistrerUtilisateur(formInscription);
 			Utilisateur utilisateur = utilisateurService.selectionUtilisateurParEmail(formInscription.getEmailFormInscription());
-        	session.setAttribute(ATT_SESSION_UTILISATEUR, utilisateur);
-        	model.addAttribute(ATT_SESSION_UTILISATEUR, true);
+        	session.setAttribute(ATT_SESSION_STATUT, true);
+        	session.setAttribute(ATT_UTILISATEUR, utilisateur);
+        	model.addAttribute(ATT_SESSION_STATUT, true);
         	model.addAttribute(ATT_UTILISATEUR, utilisateur);
 	        return "redirect:/utilisateur/liste_utilisateurs";
 		}
@@ -79,12 +81,14 @@ public class UtilisateurController {
     public String traitementConnectionUtilisateur(HttpServletRequest request, HttpSession session, @Valid @ModelAttribute("formConnection") FormConnection formConnection, BindingResult bindingResult, Model model) {
     	session = request.getSession();
     	if(bindingResult.hasErrors()) {
-        	model.addAttribute(ATT_SESSION_UTILISATEUR, false);
+        	session.setAttribute(ATT_SESSION_STATUT, false);
+        	model.addAttribute(ATT_SESSION_STATUT, false);
 	        return "connection_utilisateur";
 		} else {
 			Utilisateur utilisateur = utilisateurService.selectionUtilisateurParEmail(formConnection.getEmailFormConnection());
-			session.setAttribute(ATT_SESSION_UTILISATEUR, utilisateur);
-        	model.addAttribute(ATT_SESSION_UTILISATEUR, true);
+        	session.setAttribute(ATT_SESSION_STATUT, true);
+			session.setAttribute(ATT_UTILISATEUR, utilisateur);
+        	model.addAttribute(ATT_SESSION_STATUT, true);
         	model.addAttribute(ATT_UTILISATEUR, utilisateur);
 	        return "redirect:/utilisateur/liste_utilisateurs";
 		}	
@@ -116,7 +120,7 @@ public class UtilisateurController {
 	    HttpSession session = request.getSession();
 	    session.invalidate();
 	    
-    	model.addAttribute(ATT_SESSION_UTILISATEUR, false);
+    	model.addAttribute(ATT_SESSION_STATUT, false);
     	
         return "redirect:/utilisateur/liste_utilisateurs";
     }

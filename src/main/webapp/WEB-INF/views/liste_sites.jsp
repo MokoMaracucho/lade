@@ -54,7 +54,7 @@
 						<td>
 							<button href="${lienCommentaires}" class="btn btn-success">Afficher commentaires</button>
 						</td>
-						<td>{...}</td>
+						<td>${site.utilisateur.prenomUtilisateur} ${site.utilisateur.nomUtilisateur}</td>
 						<td>
 							<button href="${lienMaj}" class="btn btn-success">Mettre-à-jour</button>
 						</td>

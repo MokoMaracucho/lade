@@ -1,29 +1,29 @@
 package com.oc.moko.lade.entity;
 
 import java.sql.Timestamp;
-import java.util.UUID;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="tb_utilisateur")
 public class Utilisateur {
 	
 	@Id
-	@GeneratedValue(generator="UUID")
-	@GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name= "id_utilisateur", updatable=false)
-	private UUID idUtilisateur;
+	private Long idUtilisateur;
 
 	@Column(name="prenom_utilisateur")
 	private String prenomUtilisateur;
@@ -44,9 +44,9 @@ public class Utilisateur {
 	@Column(name="date_inscription_utilisateur")
 	private Timestamp dateInscriptionUtilisateur;
 
-//	@NotEmpty
-//	@OneToMany
-//	private Site site;
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="tb_site", joinColumns=@JoinColumn(name="id_utilisateur"), inverseJoinColumns=@JoinColumn(name="id_site"))
+	private List<Site> site;
 	
 //	@NotEmpty
 //	@OneToMany
@@ -56,11 +56,11 @@ public class Utilisateur {
 		
 	}
 
-	public UUID getIdUtilisateur() {
+	public Long getIdUtilisateur() {
 		return idUtilisateur;
 	}
 
-	public void setIdUtilisateur(UUID idUtilisateur) {
+	public void setIdUtilisateur(Long idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
 	}
 
@@ -110,5 +110,13 @@ public class Utilisateur {
 
 	public void setDateInscriptionUtilisateur(Timestamp dateInscriptionUtilisateur) {
 		this.dateInscriptionUtilisateur = dateInscriptionUtilisateur;
+	}
+
+	public List<Site> getSite() {
+		return site;
+	}
+
+	public void setSite(List<Site> site) {
+		this.site = site;
 	}
 }

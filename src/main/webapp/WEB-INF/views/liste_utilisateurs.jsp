@@ -26,6 +26,7 @@
 
 			<table class="table table-striped table-bordered table-dark">
 				<tr class="small">
+					<th>ID</th>
 					<th>PRÉNOM</th>
 					<th>NOM</th>
 					<th>EMAIL</th>
@@ -34,7 +35,7 @@
 					<th>MISE-À-JOUR</th>
 					<th>SUPRESSION</th>
 				</tr>
-
+				
 				<c:forEach var="utilisateur" items="${listeUtilisateurs}">
 
 					<c:url var="LienDeMaj" value="/utilisateur/maj_utilisateur">
@@ -45,6 +46,7 @@
 					</c:url>
 
 					<tr class="small">
+						<td>${utilisateur.idUtilisateur}</td>
 						<td>${utilisateur.prenomUtilisateur}</td>
 						<td>${utilisateur.nomUtilisateur}</td>
 						<td>${utilisateur.emailUtilisateur}</td>

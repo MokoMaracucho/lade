@@ -2,6 +2,8 @@ package com.oc.moko.lade.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,6 @@ import com.oc.moko.lade.entity.Site;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.form.FormAjoutSite;
 import com.oc.moko.lade.service.SiteService;
-import com.oc.moko.lade.service.UtilisateurService;
 
 @Controller
 @RequestMapping("/site")
@@ -29,6 +30,7 @@ public class SiteController {
 	public static final String ATT_FORM_AJOUT_SITE							= "formAjoutSite";
 
 	public static final String ATT_LISTE_SITES				 				= "listeSites";
+	public static final String ATT_UTILISATEUR								= "utilisateur";
 	
     @Autowired
     private SiteService siteService;
@@ -46,11 +48,14 @@ public class SiteController {
     }
 
     @PostMapping("/traitement_formulaire_ajout_site")
-    public String traitementInscriptionUtilisateur(@Valid @ModelAttribute("formAjoutSite") FormAjoutSite formAjoutSite, BindingResult bindingResult, Model model) {
+    public String traitementInscriptionUtilisateur(HttpServletRequest request, @Valid @ModelAttribute("formAjoutSite") FormAjoutSite formAjoutSite, BindingResult bindingResult, Model model) {
+    	HttpSession session = request.getSession();
     	if(bindingResult.hasErrors()) {
 	        return "/ajout_site";
 		} else {
-			siteService.enregistrerUtilisateur(formAjoutSite);
+			Utilisateur utilisateur = (Utilisateur) session.getAttribute(ATT_UTILISATEUR);
+//			System.out.println("--------------------------------------------------> ID Utilisateur : " + utilisateur.getIdUtilisateur());
+			siteService.enregistrerSite(formAjoutSite, utilisateur);
 	        return "redirect:/site/liste_sites";
 		}
     }

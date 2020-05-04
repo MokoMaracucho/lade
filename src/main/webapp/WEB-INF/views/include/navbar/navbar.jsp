@@ -11,7 +11,7 @@
 	        	<a class="nav-link" href="/lade/Accueil">Accueil<span class="sr-only">(current)</span></a>
 	      	</li>
 	      	
-	      	<c:if test="${sessionUtilisateur eq false}">
+	      	<c:if test="${sessionStatut eq false}">
 	    		<li class="nav-item">
 	        		<a class="nav-link" href="/lade/utilisateur/inscription_utilisateur">Inscription <span class="sr-only">(current)</span></a>
 	      		</li>
@@ -21,7 +21,7 @@
 	      		</li>
 	      	</c:if>
 	      	
-	      	<c:if test="${sessionUtilisateur eq true}">
+	      	<c:if test="${sessionStatut eq true}">
 	    		<li class="nav-item">
 	        		<a class="nav-link" href="/lade/utilisateur/deconnection_utilisateur">Déconnection <span class="sr-only">(current)</span></a>
 	      		</li>
@@ -77,6 +77,6 @@
   	</div>
 </nav>
 
-<c:if test="${sessionUtilisateur eq true}">
+<c:if test="${sessionStatut eq true}">
 	<div class="succes small p-vous-etes-connecte text-secondary">Vous êtes connecté(e) avec l'adresse : ${utilisateur.emailUtilisateur}</div>
 </c:if>
