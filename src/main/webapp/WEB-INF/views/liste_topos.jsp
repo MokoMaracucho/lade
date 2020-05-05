@@ -32,17 +32,22 @@
 					<th>DESCRIPTION</th>
 					<th>PROPRIÉTAIRE</th>
 					<th>DATE PARUTION</th>
+					<th>DISPONIBILITÉ</th>
 					<th>MISE-À-JOUR</th>
 					<th>SUPRESSION</th>
 				</tr>
 
 				<c:forEach var="topo" items="${listeTopos}">
 			
-					<c:url var="lienMaj" value="/topò/maj_topo">
+					<c:url var="lienDemandeReservationTopo" value="/topo/reservation_topo">
+		       			<c:param name="idTopo" value="${topo.idTopo}" />
+		      		</c:url>
+			
+					<c:url var="lienMaj" value="/topo/maj_topo">
 		       			<c:param name="idTopo" value="${topo.idTopo}" />
 		      		</c:url>
 		
-				    <c:url var="lienSuppression" value="/site/supprimer_site">
+				    <c:url var="lienSuppression" value="/topo/supprimer_topo">
 				        <c:param name="idTopo" value="${topo.idTopo}" />
 				    </c:url>
 
@@ -53,6 +58,11 @@
 						<td>${topo.descriptionTopo}</td>
 						<td>${topo.utilisateur.prenomUtilisateur} ${topo.utilisateur.nomUtilisateur}</td>
 						<td>${topo.dateParutionTopo}</td>
+						<td>
+							<c:if test="${topo.disponibiliteTopo}">
+								<button href="${lienDemandeReservationTopo}" class="btn btn-success">Réserver le topo</button>
+							</c:if>
+						</td>
 						<td>
 							<button href="${lienMaj}" class="btn btn-success">Mettre-à-jour</button>
 						</td>
