@@ -36,7 +36,7 @@
 	         
 	         			<a class="dropdown-item" href="/lade/voie/ajout_voie">Ajout d'une voie</a>
 	         
-<!-- 	         			<a class="dropdown-item" href="/lade/utilisateur/ajout_longueur">Ajout d'une longueur</a> -->
+	         			<a class="dropdown-item" href="/lade/longueur/ajout_longueur">Ajout d'une longueur</a>
 	         
 <!-- 	         			<a class="dropdown-item" href="/lade/utilisateur/ajout_topo">Ajout d'un topo</a> -->
 	       			</div>
@@ -59,7 +59,7 @@
          
          			<a class="dropdown-item" href="/lade/voie/liste_voies">Liste des voies</a>
          
-<!--          			<a class="dropdown-item" href="ListeLongueurs">Liste des longueurs</a> -->
+         			<a class="dropdown-item" href="/lade/longueur/liste_longueurs">Liste des longueurs</a>
          
 <!--          			<a class="dropdown-item" href="ListeTopos">Liste des topos</a> -->
        			</div>

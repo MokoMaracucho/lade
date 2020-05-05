@@ -8,7 +8,7 @@ import com.oc.moko.lade.form.FormAjoutVoie;
 
 public interface VoieService {
     
-    public void enregistrerVoie(FormAjoutVoie formAjoutvoie, Utilisateur utilisateur);
+    public void enregistrerVoie(FormAjoutVoie formAjoutVoie, Utilisateur utilisateur);
 
     public List<Voie> listeVoies();
 }

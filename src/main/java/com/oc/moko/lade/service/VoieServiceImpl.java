@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oc.moko.lade.entity.Secteur;
-import com.oc.moko.lade.entity.Site;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.entity.Voie;
 import com.oc.moko.lade.form.FormAjoutVoie;
@@ -38,5 +37,4 @@ public class VoieServiceImpl implements VoieService {
 	public List<Voie> listeVoies() {
 		return voieRepository.findAll();
 	}
-
 }
