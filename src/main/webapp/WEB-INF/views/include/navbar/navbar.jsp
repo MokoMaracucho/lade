@@ -32,7 +32,7 @@
 	       			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 	         			<a class="dropdown-item" href="/lade/site/ajout_site">Ajout d'un site</a>
 	         				
-<!-- 	         			<a class="dropdown-item" href="/lade/secteur/ajout_secteur">Ajout d'un secteur</a> -->
+	         			<a class="dropdown-item" href="/lade/secteur/ajout_secteur">Ajout d'un secteur</a>
 	         
 <!-- 	         			<a class="dropdown-item" href="/lade/utilisateur/ajout_voie">Ajout d'une voie</a> -->
 	         

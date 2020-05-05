@@ -11,40 +11,44 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="tb_commentaire")
-public class Commentaire {
+@Table(name="tb_secteur")
+public class Secteur {
 
     @Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_commentaire")
-	private Long idCommentaire;
-
-	@NotEmpty()
-	@Column(name="commentaire")
-	private String commentaire;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_secteur")
+	private Long idSecteur;
 	
+    @NotEmpty
+	@Column(name="nom_secteur")
+	private String nomSecteur;
+
 	@ManyToOne
 	@JoinColumn(name="id_utilisateur")
 	private Utilisateur utilisateur;
-	
+
 	@ManyToOne
 	@JoinColumn(name="id_site")
 	private Site site;
-	
-	public Long getIdCommentaire() {
-		return idCommentaire;
-	}
-	
-	public void setIdCommentaire(Long idCommentaire) {
-		this.idCommentaire = idCommentaire;
-	}
 
-	public String getCommentaire() {
-		return commentaire;
+//	@OneToMany(cascade=CascadeType.ALL)
+//	@JoinTable(name="tb_voie", joinColumns=@JoinColumn(name="id_secteur"), inverseJoinColumns=@JoinColumn(name="id_voie"))
+//	private List<Voie> voie;
+
+	public Long getIdSecteur() {
+		return idSecteur;
 	}
 	
-	public void setCommentaire(String commentaire) {
-		this.commentaire = commentaire;
+	public void setIdSecteur(Long idSecteur) {
+		this.idSecteur = idSecteur;
+	}
+	
+	public String getNomSecteur() {
+		return nomSecteur;
+	}
+	
+	public void setNomSecteur(String nomSecteur) {
+		this.nomSecteur = nomSecteur;
 	}
 
 	public Utilisateur getUtilisateur() {

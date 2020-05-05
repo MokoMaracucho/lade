@@ -2,7 +2,6 @@ package com.oc.moko.lade.service;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.UUID;
 
 import org.jasypt.util.password.ConfigurablePasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +42,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
     @Transactional
-	public Utilisateur selectionnerUtilisateurParId(UUID idUtilisateur) throws ResourceNotFoundException {
+	public Utilisateur selectionnerUtilisateurParId(Long idUtilisateur) throws ResourceNotFoundException {
         return utilisateurRepository.findById(idUtilisateur).orElseThrow(() -> new ResourceNotFoundException(idUtilisateur));
 	}
 

@@ -34,7 +34,6 @@
 				<form:option value="Provence-Alpes-Cote d'Azur" />
 				<form:option value="La Réunion" />
 			</form:select>
-
 		</div>
 
 		<div class="form-group">
@@ -42,6 +41,6 @@
         	<form:textarea path="commentaireSite" class="form-control" />
 		</div>
 
-		<button type="submit" class="btn btn-success">Enregistrer le site</button>
+		<button type="submit" class="btn btn-success">Ajouter le site</button>
 	</form:form>
 </div>

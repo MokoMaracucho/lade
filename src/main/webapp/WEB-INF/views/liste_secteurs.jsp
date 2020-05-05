@@ -10,7 +10,7 @@
 	<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	
-	<title>Liste des sites | Les amis de l'escalade</title>
+	<title>Liste des secteurs | Les amis de l'escalade</title>
 </head>
 
 <body>
@@ -22,46 +22,38 @@
 		<div class="col-md-10 offset-md-1">
 			<br>
 			
-			<h1 class="font-weight-bold text-light">LISTE DES SITES</h1>
+			<h1 class="font-weight-bold text-light">LISTE DES SECTEURS</h1>
 
 			<table class="table table-striped table-bordered table-dark">
 				<tr class="small">
 					<th>ID</th>
 					<th>NOM</th>
-					<th>REGION</th>
-					<th>COMMENTAIRES</th>
-					<th>CRÉATEUR SITE</th>
+					<th>SITE</th>
+					<th>CRÉATEUR SECTEUR</th>
 					<th>MISE-À-JOUR</th>
 					<th>SUPRESSION</th>
 				</tr>
 
-				<c:forEach var="site" items="${listeSites}">
-
-*				    <c:url var="lienCommentaires" value="/commentaire/liste_commentaires">
-				        <c:param name="idSite" value="${site.idSite}" />
-				    </c:url>
+				<c:forEach var="secteur" items="${listeSecteurs}">
 			
-					<c:url var="lienMaj" value="/site/maj_site">
-		       			<c:param name="idSite" value="${site.idSite}" />
+					<c:url var="lienMaj" value="/secteur/maj_secteur">
+		       			<c:param name="idSecteur" value="${secteur.idSecteur}" />
 		      		</c:url>
 		
-				    <c:url var="lienSuppression" value="/site/supprimer_site">
-				        <c:param name="idSite" value="${site.idSite}" />
+				    <c:url var="lienSuppression" value="/secteur/supprimer_secteur">
+				        <c:param name="idSite" value="${secteur.idSecteur}" />
 				    </c:url>
 
 					<tr class="small">
-						<td>${site.idSite}</td>
-						<td>${site.nomSite}</td>
-						<td>${site.regionSite}</td>
-						<td>
-							<button href="${lienCommentaires}" class="btn btn-success">Afficher commentaires</button>
-						</td>
-						<td>${site.utilisateur.prenomUtilisateur} ${site.utilisateur.nomUtilisateur}</td>
+						<td>${secteur.idSecteur}</td>
+						<td>${secteur.nomSecteur}</td>
+						<td>${secteur.site.nomSite}</td>
+						<td>${secteur.utilisateur.prenomUtilisateur} ${secteur.utilisateur.nomUtilisateur}</td>
 						<td>
 							<button href="${lienMaj}" class="btn btn-success">Mettre-à-jour</button>
 						</td>
 						<td>
-							<button href="${lienSuppression}" onclick="if (!(confirm('Êtes-vous sûr de vouloir supprimer ce site ?'))) return false" class="btn btn-danger">Supprimer</button>
+							<button href="${lienSuppression}" onclick="if (!(confirm('Êtes-vous sûr de vouloir supprimer ce secteur ?'))) return false" class="btn btn-danger">Supprimer</button>
 						</td>
 					</tr>
 				</c:forEach>

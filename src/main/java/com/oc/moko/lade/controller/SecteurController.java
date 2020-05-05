@@ -18,22 +18,28 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.oc.moko.lade.entity.Secteur;
 import com.oc.moko.lade.entity.Site;
 import com.oc.moko.lade.entity.Utilisateur;
-import com.oc.moko.lade.form.FormAjoutSite;
+import com.oc.moko.lade.form.FormAjoutSecteur;
+import com.oc.moko.lade.service.SecteurService;
 import com.oc.moko.lade.service.SiteService;
 
 @Controller
-@RequestMapping("/site")
-public class SiteController {
+@RequestMapping("/secteur")
+public class SecteurController {
 	
-	public static final String ATT_FORM_AJOUT_SITE							= "formAjoutSite";
+	public static final String ATT_FORM_AJOUT_SECTEUR						= "formAjoutSecteur";
 
-	public static final String ATT_LISTE_SITES				 				= "listeSites";
+	public static final String ATT_LISTE_SITES								= "listeSites";
+	public static final String ATT_LISTE_SECTEURS				 			= "listeSecteurs";
 	public static final String ATT_UTILISATEUR								= "utilisateur";
 	
     @Autowired
     private SiteService siteService;
+	
+    @Autowired
+    private SecteurService secteurService;
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
@@ -41,28 +47,30 @@ public class SiteController {
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
     
-    @GetMapping("/ajout_site")
-    public String ajoutSite(Model model) {
-    	model.addAttribute(ATT_FORM_AJOUT_SITE, new FormAjoutSite());
-        return "ajout_site";
+    @GetMapping("/ajout_secteur")
+    public String ajoutSecteur(Model model) {
+    	model.addAttribute(ATT_FORM_AJOUT_SECTEUR, new FormAjoutSecteur());
+    	List<Site> listeSites = siteService.listeSites();
+    	model.addAttribute(ATT_LISTE_SITES, listeSites);
+        return "ajout_secteur";
     }
 
-    @PostMapping("/traitement_formulaire_ajout_site")
-    public String traitementAjoutSite(HttpServletRequest request, @Valid @ModelAttribute("formAjoutSite") FormAjoutSite formAjoutSite, BindingResult bindingResult, Model model) {
+    @PostMapping("/traitement_formulaire_ajout_secteur")
+    public String traitementAjoutSecteur(HttpServletRequest request, @Valid @ModelAttribute("formAjoutSecteur") FormAjoutSecteur formAjoutSecteur, BindingResult bindingResult, Model model) {
     	HttpSession session = request.getSession();
     	if(bindingResult.hasErrors()) {
-	        return "/ajout_site";
+	        return "/ajout_secteur";
 		} else {
 			Utilisateur utilisateur = (Utilisateur) session.getAttribute(ATT_UTILISATEUR);
-			siteService.enregistrerSite(formAjoutSite, utilisateur);
-	        return "redirect:/site/liste_sites";
+			secteurService.enregistrerSecteur(formAjoutSecteur, utilisateur);
+	        return "redirect:/secteur/liste_secteurs";
 		}
     }
 
-    @GetMapping("/liste_sites")
-    public String listeSites(Model model) {
-        List<Site> listeSites = siteService.listeSites();
-        model.addAttribute(ATT_LISTE_SITES, listeSites);
-        return "liste_sites";
+    @GetMapping("/liste_secteurs")
+    public String listeSecteurs(Model model) {
+        List<Secteur> listeSecteurs = secteurService.listeSecteurs();
+        model.addAttribute(ATT_LISTE_SECTEURS, listeSecteurs);
+        return "liste_secteurs";
     }
 }

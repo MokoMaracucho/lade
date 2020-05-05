@@ -1,7 +1,6 @@
 package com.oc.moko.lade.service;
 
 import java.util.List;
-import java.util.UUID;
 
 import com.oc.moko.lade.form.FormInscription;
 import com.oc.moko.lade.entity.Utilisateur;
@@ -11,7 +10,7 @@ public interface UtilisateurService {
     
     public void enregistrerUtilisateur(FormInscription formInscription);
 
-    public Utilisateur selectionnerUtilisateurParId(UUID idUtilisateur) throws ResourceNotFoundException;
+    public Utilisateur selectionnerUtilisateurParId(Long idUtilisateur) throws ResourceNotFoundException;
     
     public Utilisateur selectionUtilisateurParEmail(String emailUtilisateur);
     

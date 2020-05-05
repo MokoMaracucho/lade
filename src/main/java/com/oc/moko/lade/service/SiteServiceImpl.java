@@ -1,25 +1,20 @@
 package com.oc.moko.lade.service;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-//import com.oc.moko.lade.entity.Commentaire;
+import com.oc.moko.lade.entity.Commentaire;
 import com.oc.moko.lade.entity.Site;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.form.FormAjoutSite;
 import com.oc.moko.lade.repository.CommentaireRepository;
 import com.oc.moko.lade.repository.SiteRepository;
-import com.oc.moko.lade.repository.UtilisateurRepository;
 
 @Service
 public class SiteServiceImpl implements SiteService {
-	
-	@Autowired
-    private UtilisateurRepository utilisateurRepository;
 	
 	@Autowired
     private SiteRepository siteRepository;
@@ -36,11 +31,14 @@ public class SiteServiceImpl implements SiteService {
 		site.setUtilisateur(utilisateur);
 		siteRepository.save(site);
 		
-//		if(formAjoutSite.getCommentaireSite() != null) {
-//			Commentaire commentaire = new Commentaire();
-//			commentaire.setCommentaire(formAjoutSite.getCommentaireSite());
-//			commentaireRepository.save(commentaire);
-//		}
+		if(formAjoutSite.getCommentaireSite() != null) {
+			Commentaire commentaire = new Commentaire();
+			commentaire.setCommentaire(formAjoutSite.getCommentaireSite());
+			commentaire.setUtilisateur(utilisateur);
+			Site siteCree = siteRepository.getOne(site.getIdSite());
+			commentaire.setSite(siteCree);
+			commentaireRepository.save(commentaire);
+		}
 	}
 
 	@Override
@@ -48,5 +46,4 @@ public class SiteServiceImpl implements SiteService {
 	public List<Site> listeSites() {
 		return siteRepository.findAll();
 	}
-
 }

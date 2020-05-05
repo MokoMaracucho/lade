@@ -21,7 +21,7 @@ import javax.persistence.Table;
 public class Utilisateur {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id_utilisateur", updatable=false)
 	private Long idUtilisateur;
 
@@ -48,9 +48,13 @@ public class Utilisateur {
 	@JoinTable(name="tb_site", joinColumns=@JoinColumn(name="id_utilisateur"), inverseJoinColumns=@JoinColumn(name="id_site"))
 	private List<Site> site;
 	
-//	@NotEmpty
-//	@OneToMany
-//	private Commentaire commentaire;
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="tb_commentaire", joinColumns=@JoinColumn(name="id_utilisateur"), inverseJoinColumns=@JoinColumn(name="id_commentaire"))
+	private List<Commentaire> commentaire;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="tb_secteur", joinColumns=@JoinColumn(name="id_utilisateur"), inverseJoinColumns=@JoinColumn(name="id_secteur"))
+	private List<Secteur> secteur;
 	
 	public Utilisateur() {
 		
