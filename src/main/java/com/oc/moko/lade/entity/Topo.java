@@ -33,11 +33,9 @@ public class Topo {
 	@Column(name="description_topo")
 	private String descriptionTopo;
 
-	@NotEmpty
 	@Column(name="date_parution_topo")
 	private Timestamp dateParutionTopo;
 
-	@NotEmpty
 	@Column(name="disponibilite_topo")
 	private Boolean disponibiliteTopo;
 	
