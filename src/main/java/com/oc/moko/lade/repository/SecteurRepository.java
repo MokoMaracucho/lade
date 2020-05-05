@@ -7,5 +7,6 @@ import com.oc.moko.lade.entity.Secteur;
 
 @Repository("secteurRepository")
 public interface SecteurRepository extends JpaRepository<Secteur, Long> {
-
+    
+    Secteur getByNomSecteur(String nomSecteur);
 }
