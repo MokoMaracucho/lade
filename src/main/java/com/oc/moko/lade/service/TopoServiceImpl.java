@@ -12,7 +12,7 @@ import com.oc.moko.lade.entity.StatutReservationTopo;
 import com.oc.moko.lade.entity.Topo;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.form.FormAjoutTopo;
-import com.oc.moko.lade.repository.DemandeReservationTopoRepository;
+import com.oc.moko.lade.repository.reservationTopoRepository;
 import com.oc.moko.lade.repository.TopoRepository;
 
 @Service
@@ -22,7 +22,7 @@ public class TopoServiceImpl implements TopoService {
     private TopoRepository topoRepository;
 	
 	@Autowired
-    private DemandeReservationTopoRepository demandeReservationTopoRepository;
+    private reservationTopoRepository reservationTopoRepository;
 
 	@Override
     @Transactional
@@ -39,19 +39,39 @@ public class TopoServiceImpl implements TopoService {
 
 	@Override
     @Transactional
-	public void enregistrerDemandeReservationTopo(Long idTopo, Utilisateur utilisateur) {
+	public void enregistrerReservationTopo(Long idTopo, Utilisateur utilisateur) {
 		Topo topo = topoRepository.getOne(idTopo);
 		topo.setDisponibiliteTopo(false);
 		topoRepository.save(topo);
-		ReservationTopo demandeReservationTopo = new ReservationTopo();
-		demandeReservationTopo.setStatutReservationTopo(StatutReservationTopo.EN_ATTENTE);
-		demandeReservationTopo.setDemandeurReservationTopo(utilisateur);
-		demandeReservationTopoRepository.save(demandeReservationTopo);
+		ReservationTopo reservationTopo = new ReservationTopo();
+		reservationTopo.setStatutReservationTopo(StatutReservationTopo.EN_ATTENTE);
+		reservationTopo.setTopo(topo);
+		reservationTopo.setDemandeurReservationTopo(utilisateur);
+		reservationTopoRepository.save(reservationTopo);
 	}
 
 	@Override
     @Transactional
 	public List<Topo> listeTopos() {
 		return topoRepository.findAll();
+	}
+
+	@Override
+    @Transactional
+	public List<ReservationTopo> listeReservationsTopo() {
+		return reservationTopoRepository.findAll();
+	}
+
+	@Override
+    @Transactional
+	public void majReservationTopo(Long idReservationTopo, Utilisateur utilisateur, StatutReservationTopo reponseDemandeReservationTopo) {
+		ReservationTopo reservationTopo = reservationTopoRepository.getOne(idReservationTopo);
+		if(reponseDemandeReservationTopo == StatutReservationTopo.ACCEPTEE) {
+			reservationTopo.setStatutReservationTopo(StatutReservationTopo.ACCEPTEE);
+			reservationTopoRepository.save(reservationTopo);
+		} else {
+			reservationTopo.setStatutReservationTopo(StatutReservationTopo.REFUSEE);
+			reservationTopoRepository.save(reservationTopo);
+		}
 	}
 }

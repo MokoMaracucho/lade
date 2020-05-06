@@ -22,51 +22,44 @@
 		<div class="col-md-10 offset-md-1">
 			<br>
 			
-			<h1 class="font-weight-bold text-light">LISTE DES TOPOS</h1>
+			<h1 class="font-weight-bold text-light">LISTE DES RÉSERVATIONS DE TOPOS</h1>
+
+			<h3 class="font-weight-bold text-light">Topos dont vous êtes propriétaire</h3>
 
 			<table class="table table-striped table-bordered table-dark">
 				<tr class="small">
 					<th>ID</th>
 					<th>NOM</th>
-					<th>REGION</th>
-					<th>DESCRIPTION</th>
-					<th>PROPRIÉTAIRE</th>
-					<th>DATE PARUTION</th>
-					<th>DISPONIBILITÉ</th>
-					<th>MISE-À-JOUR</th>
-					<th>SUPRESSION</th>
+					<th>DEMANDEUR</th>
+					<th>STATUT</th>
+					<th>ACCEPTER</th>
+					<th>REFUSER</th>
 				</tr>
 
-				<c:forEach var="topo" items="${listeTopos}">
-			
-					<c:url var="lienMaj" value="/topo/maj_topo">
-		       			<c:param name="idTopo" value="${topo.idTopo}" />
-		      		</c:url>
-		
-				    <c:url var="lienSuppression" value="/topo/supprimer_topo">
-				        <c:param name="idTopo" value="${topo.idTopo}" />
-				    </c:url>
+				<c:forEach var="reservationTopo" items="${listeReservationsTopo}">
 
 					<tr class="small">
-						<td>${topo.idTopo}</td>
-						<td>${topo.nomTopo}</td>
-						<td>${topo.regionTopo}</td>
-						<td>${topo.descriptionTopo}</td>
-						<td>${topo.utilisateur.prenomUtilisateur} ${topo.utilisateur.nomUtilisateur}</td>
-						<td>${topo.dateParutionTopo}</td>
+						<td>${reservationTopo.idReservationTopo}</td>
+						<td>${reservationTopo.topo.nomTopo}</td>
+						<td>${reservationTopo.demandeurReservationTopo.prenomUtilisateur} ${reservationTopo.demandeurReservationTopo.nomUtilisateur}</td>
+						<td>${reservationTopo.statutReservationTopo}</td>
 						<td>
-							<c:if test="${topo.disponibiliteTopo}">
-								<form action="traitement_demande_reservation_topo" method="post">
-									<input type="hidden" name="idTopo" value="${topo.idTopo}" />
-									<input type="submit" class="btn btn-success" value="Demande de réservation" />  
+							<c:if test="${reservationTopo.statutReservationTopo == 'EN_ATTENTE'}">
+								<form action="traitement_reponse_demande_reservation_topo" method="post">
+									<input type="hidden" name="idReservationTopo" value="${reservationTopo.idReservationTopo}" />
+									<input type="hidden" name="reponseDemandeReservationTopo" value="ACCEPTEE" />
+									<input type="submit" class="btn btn-success" value="Accepter" />  
 								</form>
 							</c:if>
 						</td>
 						<td>
-							<button href="${lienMaj}" class="btn btn-success">Mettre-à-jour</button>
-						</td>
-						<td>
-							<button href="${lienSuppression}" onclick="if (!(confirm('Êtes-vous sûr de vouloir supprimer ce topo ?'))) return false" class="btn btn-danger">Supprimer</button>
+							<c:if test="${reservationTopo.statutReservationTopo == 'EN_ATTENTE'}">
+								<form action="traitement_reponse_demande_reservation_topo" method="post">
+									<input type="hidden" name="idReservationTopo" value="${reservationTopo.idReservationTopo}" />
+									<input type="hidden" name="reponseDemandeReservationTopo" value="REFUSEE" />
+									<input type="submit" class="btn btn-success" value="Refuser" />  
+								</form>
+							</c:if>
 						</td>
 					</tr>
 				</c:forEach>

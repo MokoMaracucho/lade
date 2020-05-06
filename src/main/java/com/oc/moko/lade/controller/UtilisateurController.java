@@ -17,13 +17,11 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.oc.moko.lade.form.FormConnection;
 import com.oc.moko.lade.form.FormInscription;
 import com.oc.moko.lade.entity.Utilisateur;
-import com.oc.moko.lade.exception.ResourceNotFoundException;
 import com.oc.moko.lade.service.UtilisateurService;
 
 @Controller
@@ -92,7 +90,7 @@ public class UtilisateurController {
 			session.setAttribute(ATT_UTILISATEUR, utilisateur);
         	model.addAttribute(ATT_SESSION_STATUT, true);
         	model.addAttribute(ATT_UTILISATEUR, utilisateur);
-	        return "redirect:/utilisateur/liste_utilisateurs";
+	        return "redirect:/topo/liste_reservations_topo";
 		}	
     }
 
@@ -103,12 +101,12 @@ public class UtilisateurController {
         return "liste_utilisateurs";
     }
 
-    @GetMapping("/maj_utilisateur")
-    public String majUtilisateur(@RequestParam("idUtilisateur") Long idUtilisateur, Model model) throws ResourceNotFoundException {
-    	Utilisateur utilisateurMaj = utilisateurService.selectionnerUtilisateurParId(idUtilisateur);
-        model.addAttribute("utilisateur", utilisateurMaj);
-        return "customer-form";
-    }
+//    @GetMapping("/maj_utilisateur")
+//    public String majUtilisateur(@RequestParam("idUtilisateur") Long idUtilisateur, Model model) throws ResourceNotFoundException {
+//    	Utilisateur utilisateurMaj = utilisateurService.selectionnerUtilisateurParId(idUtilisateur);
+//        model.addAttribute("utilisateur", utilisateurMaj);
+//        return "customer-form";
+//    }
 
 //    @GetMapping("/supprimer_utilisateur")
 //    public String supprimerUtilisateurParId(@RequestParam("idUtilisateur") UUID idUtilisateur) throws ResourceNotFoundException {
