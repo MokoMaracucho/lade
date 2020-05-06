@@ -24,7 +24,7 @@
 			
 			<h1 class="font-weight-bold text-light">LISTE DES RÉSERVATIONS DE TOPOS</h1>
 
-			<h3 class="font-weight-bold text-light">Topos dont vous êtes propriétaire</h3>
+			<h6 class="font-weight-bold text-light">TOPOS DONT VOUS ÊTES PROPRIETAIRE</h6>
 
 			<table class="table table-striped table-bordered table-dark">
 				<tr class="small">
@@ -58,6 +58,37 @@
 									<input type="hidden" name="idReservationTopo" value="${reservationTopo.idReservationTopo}" />
 									<input type="hidden" name="reponseDemandeReservationTopo" value="REFUSEE" />
 									<input type="submit" class="btn btn-success" value="Refuser" />  
+								</form>
+							</c:if>
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+			
+			<h6 class="font-weight-bold text-light">DEMANDES DE RESERVATIONS DE TOPO</h6>
+
+			<table class="table table-striped table-bordered table-dark">
+				<tr class="small">
+					<th>ID</th>
+					<th>NOM</th>
+					<th>PROPRIETAIRE</th>
+					<th>STATUT</th>
+					<th>TERMINER</th>
+				</tr>
+
+				<c:forEach var="demandeReservationTopo" items="${listeDemandesReservationTopo}">
+
+					<tr class="small">
+						<td>${demandeReservationTopo.idReservationTopo}</td>
+						<td>${demandeReservationTopo.topo.nomTopo}</td>
+						<td>${demandeReservationTopo.topo.utilisateur.prenomUtilisateur} ${reservationTopo.topo.utilisateur.nomUtilisateur}</td>
+						<td>${demandeReservationTopo.statutReservationTopo}</td>
+						<td>
+							<c:if test="${demandeReservationTopo.statutReservationTopo == 'ACCEPTEE'}">
+								<form action="traitement_reponse_demande_reservation_topo" method="post">
+									<input type="hidden" name="idReservationTopo" value="${demandeReservationTopo.idReservationTopo}" />
+									<input type="hidden" name="reservationTopoTerminee" value="TERMINEE" />
+									<input type="submit" class="btn btn-success" value="Accepter" />  
 								</form>
 							</c:if>
 						</td>

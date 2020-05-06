@@ -17,6 +17,10 @@ public interface TopoService {
     public List<Topo> listeTopos();
 
     public List<ReservationTopo> listeReservationsTopo();
+
+    public List<ReservationTopo> listeReservationsTopo(Long idUtilisateur);
+
+    public List<ReservationTopo> listeDemandesReservationTopo(Long idDemandeurReservationTopo);
     
     public void majReservationTopo(Long idReservationTopo, Utilisateur utilisateur, StatutReservationTopo reponseDemandeReservationTopo);
 }

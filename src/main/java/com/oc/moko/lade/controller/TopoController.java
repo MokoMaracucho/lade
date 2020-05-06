@@ -34,6 +34,7 @@ public class TopoController {
 
 	public static final String ATT_LISTE_TOPOS				 			= "listeTopos";
 	public static final String ATT_LISTE_RESERVATIONS_TOPO				= "listeReservationsTopo";
+	public static final String ATT_LISTE_DEMANDES_RESERVATION_TOPO		= "listeDemandesReservationTopo";
 	
 	public static final String ATT_UTILISATEUR							= "utilisateur";
 
@@ -72,9 +73,14 @@ public class TopoController {
     }
 
     @GetMapping("/liste_reservations_topo")
-    public String listeReservationsTopo(Model model) {
+    public String listeReservationsTopo(HttpServletRequest request, Model model) {
+    	HttpSession session = request.getSession();
+    	Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+    	Long idDemandeurReservationTopo = utilisateur.getIdUtilisateur();
     	List<ReservationTopo> listeReservationsTopo = topoService.listeReservationsTopo();
+    	List<ReservationTopo> listeDemandesReservationTopo = topoService.listeDemandesReservationTopo(idDemandeurReservationTopo);
     	model.addAttribute(ATT_LISTE_RESERVATIONS_TOPO, listeReservationsTopo);
+    	model.addAttribute(ATT_LISTE_DEMANDES_RESERVATION_TOPO, listeDemandesReservationTopo);
     	return "liste_reservations_topo";
     }
     
@@ -93,7 +99,7 @@ public class TopoController {
     	HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute(ATT_UTILISATEUR);
 		topoService.majReservationTopo(idReservationTopo, utilisateur, reponseDemandeReservationTopo);
-    	List<ReservationTopo> listeReservationsTopo = topoService.listeReservationsTopo();
+    	List<ReservationTopo> listeReservationsTopo = topoService.listeReservationsTopo(utilisateur.getIdUtilisateur());
     	model.addAttribute(ATT_LISTE_RESERVATIONS_TOPO, listeReservationsTopo);
     	return "liste_reservations_topo";
     }

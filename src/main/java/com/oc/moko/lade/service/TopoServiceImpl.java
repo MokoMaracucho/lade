@@ -12,7 +12,7 @@ import com.oc.moko.lade.entity.StatutReservationTopo;
 import com.oc.moko.lade.entity.Topo;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.form.FormAjoutTopo;
-import com.oc.moko.lade.repository.reservationTopoRepository;
+import com.oc.moko.lade.repository.ReservationTopoRepository;
 import com.oc.moko.lade.repository.TopoRepository;
 
 @Service
@@ -22,7 +22,7 @@ public class TopoServiceImpl implements TopoService {
     private TopoRepository topoRepository;
 	
 	@Autowired
-    private reservationTopoRepository reservationTopoRepository;
+    private ReservationTopoRepository reservationTopoRepository;
 
 	@Override
     @Transactional
@@ -60,6 +60,18 @@ public class TopoServiceImpl implements TopoService {
     @Transactional
 	public List<ReservationTopo> listeReservationsTopo() {
 		return reservationTopoRepository.findAll();
+	}
+
+	@Override
+    @Transactional
+	public List<ReservationTopo> listeReservationsTopo(Long id) {
+		return reservationTopoRepository.findAllByIdProprietaireTopo(id);
+	}
+
+	@Override
+    @Transactional
+	public List<ReservationTopo> listeDemandesReservationTopo(Long idDemandeurReservationTopo) {
+		return reservationTopoRepository.findAllByIdDemandeurReservationTopo(idDemandeurReservationTopo);
 	}
 
 	@Override
