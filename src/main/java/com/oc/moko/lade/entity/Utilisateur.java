@@ -55,10 +55,10 @@ public class Utilisateur {
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="tb_secteur", joinColumns=@JoinColumn(name="id_utilisateur"), inverseJoinColumns=@JoinColumn(name="id_secteur"))
 	private List<Secteur> secteur;
-	
-	public Utilisateur() {
-		
-	}
+
+	@OneToMany
+	@JoinTable(name="tb_reservation_topo", joinColumns=@JoinColumn(name="id_utilisateur"), inverseJoinColumns=@JoinColumn(name="id_reservation_topo"))
+	private List<ReservationTopo> listeReservationTopo;
 
 	public Long getIdUtilisateur() {
 		return idUtilisateur;
@@ -122,5 +122,29 @@ public class Utilisateur {
 
 	public void setSite(List<Site> site) {
 		this.site = site;
+	}
+
+	public List<Commentaire> getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(List<Commentaire> commentaire) {
+		this.commentaire = commentaire;
+	}
+
+	public List<Secteur> getSecteur() {
+		return secteur;
+	}
+
+	public void setSecteur(List<Secteur> secteur) {
+		this.secteur = secteur;
+	}
+
+	public List<ReservationTopo> getListeReservationTopo() {
+		return listeReservationTopo;
+	}
+
+	public void setListeReservationTopo(List<ReservationTopo> listeReservationTopo) {
+		this.listeReservationTopo = listeReservationTopo;
 	}
 }

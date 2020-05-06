@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.oc.moko.lade.entity.Site;
 import com.oc.moko.lade.entity.Topo;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.form.FormAjoutSite;
 import com.oc.moko.lade.form.FormAjoutTopo;
+import com.oc.moko.lade.form.FormInscription;
 import com.oc.moko.lade.service.TopoService;
 
 @Controller
@@ -67,4 +69,17 @@ public class TopoController {
         model.addAttribute(ATT_LISTE_TOPOS, listeTopos);
         return "liste_topos";
     }
+    
+    @PostMapping("traitement_demande_reservation_topo")
+    public String traitementDemandeReservationTopo(HttpServletRequest request, @RequestParam(name="idTopo") Long idTopo, Model model) {
+//    	Long idTopo = Long.parseLong(idTopoString);
+//    	Topo topo = (Topo) model.getAttribute("topo");
+    	HttpSession session = request.getSession();
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute(ATT_UTILISATEUR);
+		topoService.enregistrerDemandeReservationTopo(idTopo, utilisateur);
+        List<Topo> listeTopos = topoService.listeTopos();
+        model.addAttribute(ATT_LISTE_TOPOS, listeTopos);
+		return "liste_topos";
+    }
+    
 }

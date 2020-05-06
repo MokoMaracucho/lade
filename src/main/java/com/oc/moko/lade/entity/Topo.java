@@ -1,6 +1,7 @@
 package com.oc.moko.lade.entity;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -43,8 +46,9 @@ public class Topo {
 	@JoinColumn(name="id_utilisateur")
 	private Utilisateur utilisateur;
 
-//	@OneToMany
-//	private List<ReservationTopo> listeReservationTopo;
+	@OneToMany
+	@JoinTable(name="tb_reservation_topo", joinColumns=@JoinColumn(name="id_topo"), inverseJoinColumns=@JoinColumn(name="id_reservation_topo"))
+	private List<ReservationTopo> listeReservationTopo;
 
 	public Long getIdTopo() {
 		return idTopo;
@@ -100,5 +104,13 @@ public class Topo {
 
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
+	}
+
+	public List<ReservationTopo> getListeReservationTopo() {
+		return listeReservationTopo;
+	}
+
+	public void setListeReservationTopo(List<ReservationTopo> listeReservationTopo) {
+		this.listeReservationTopo = listeReservationTopo;
 	}
 }

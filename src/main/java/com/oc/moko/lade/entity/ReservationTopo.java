@@ -21,7 +21,6 @@ public class ReservationTopo {
 	@Column(name="id_reservation_topo")
 	private Long idReservationTopo;
 
-	@NotEmpty
 	@Enumerated(EnumType.STRING)
 	@Column(name="statut_reservation_topo")
 	private StatutReservationTopo statutReservationTopo;
@@ -33,4 +32,36 @@ public class ReservationTopo {
 	@ManyToOne
 	@JoinColumn(name="id_utilisateur")
 	private Utilisateur demandeurReservationTopo;
+
+	public Long getIdReservationTopo() {
+		return idReservationTopo;
+	}
+
+	public void setIdReservationTopo(Long idReservationTopo) {
+		this.idReservationTopo = idReservationTopo;
+	}
+
+	public StatutReservationTopo getStatutReservationTopo() {
+		return statutReservationTopo;
+	}
+
+	public void setStatutReservationTopo(StatutReservationTopo statutReservationTopo) {
+		this.statutReservationTopo = statutReservationTopo;
+	}
+
+	public Topo getTopo() {
+		return topo;
+	}
+
+	public void setTopo(Topo topo) {
+		this.topo = topo;
+	}
+
+	public Utilisateur getDemandeurReservationTopo() {
+		return demandeurReservationTopo;
+	}
+
+	public void setDemandeurReservationTopo(Utilisateur demandeurReservationTopo) {
+		this.demandeurReservationTopo = demandeurReservationTopo;
+	}
 }

@@ -10,5 +10,7 @@ public interface TopoService {
     
     public void enregistrerTopo(FormAjoutTopo formAjoutTopo, Utilisateur utilisateur);
 
+    public void enregistrerDemandeReservationTopo(Long idTopo, Utilisateur utilisateur);
+
     public List<Topo> listeTopos();
 }

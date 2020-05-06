@@ -39,8 +39,8 @@
 
 				<c:forEach var="topo" items="${listeTopos}">
 			
-					<c:url var="lienDemandeReservationTopo" value="/topo/reservation_topo">
-		       			<c:param name="idTopo" value="${topo.idTopo}" />
+					<c:url var="lienDemandeReservationTopo" value="/lade/topo/traitement_demande_reservation_topo">
+		       			<c:param name="topo" value="${topo}" />
 		      		</c:url>
 			
 					<c:url var="lienMaj" value="/topo/maj_topo">
@@ -60,7 +60,14 @@
 						<td>${topo.dateParutionTopo}</td>
 						<td>
 							<c:if test="${topo.disponibiliteTopo}">
-								<button href="${lienDemandeReservationTopo}" class="btn btn-success">Réserver le topo</button>
+								<form action="traitement_demande_reservation_topo" method="post">
+								
+<%-- 									<input type="hidden" name="topo" value="${topo}"/> --%>
+<!-- 									<a type="submit" class="btn btn-succes">Demande de réservation</a> -->
+									
+									<input type="hidden" name="idTopo" value="${topo.idTopo}" />
+									<input type="submit" class="btn btn-success" value="Demande de réservation" />  
+								</form>
 							</c:if>
 						</td>
 						<td>
@@ -78,3 +85,4 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
+</html>
