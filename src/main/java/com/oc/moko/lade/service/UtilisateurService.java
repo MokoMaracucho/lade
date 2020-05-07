@@ -18,5 +18,5 @@ public interface UtilisateurService {
 
     public List<Utilisateur> listeUtilisateurs();
 
-//    public void supprimerUtilisateurParId(UUID idUtilisateur) throws ResourceNotFoundException;
+    public void supprimerUtilisateurParId(Long idUtilisateur) throws ResourceNotFoundException;
 }

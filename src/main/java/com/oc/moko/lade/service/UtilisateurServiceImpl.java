@@ -64,9 +64,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         return utilisateurRepository.findAll();
 	}
 
-//	@Override
-//    @Transactional
-//	public void supprimerUtilisateurParId(UUID idUtilisateur) throws ResourceNotFoundException {
-//		utilisateurRepository.deleteById(idUtilisateur);
-//	}
+	@Override
+    @Transactional
+	public void supprimerUtilisateurParId(Long idUtilisateur) throws ResourceNotFoundException {
+		utilisateurRepository.deleteById(idUtilisateur);
+	}
 }

@@ -37,14 +37,7 @@
 				</tr>
 				
 				<c:forEach var="utilisateur" items="${listeUtilisateurs}">
-
-					<c:url var="LienDeMaj" value="/utilisateur/maj_utilisateur">
-						<c:param name="idUtilisateur" value="${utilisateur.idUtilisateur}" />
-					</c:url>
-					<c:url var="lienDeSuppression" value="/utilisateur/supprimer_utilisateur">
-						<c:param name="idUtilisateur" value="${utilisateur.idUtilisateur}" />
-					</c:url>
-
+				
 					<tr class="small">
 						<td>${utilisateur.idUtilisateur}</td>
 						<td>${utilisateur.prenomUtilisateur}</td>
@@ -52,6 +45,27 @@
 						<td>${utilisateur.emailUtilisateur}</td>
 						<td>${utilisateur.privilegeUtilisateur}</td>
 						<td>${utilisateur.dateInscriptionUtilisateur}</td>
+						<td>
+							<c:if test="${reservationTopo.statutReservationTopo == 'EN_ATTENTE'}">
+								<form action="maj_utilisateur" method="post">
+									<input type="hidden" name="idUtilisateur" value="${utilisateur.idUtilisateur}" />
+									<input type="submit" class="btn btn-success" value="Mettre-à-jour" />  
+								</form>
+							</c:if>
+						</td>
+						<td>
+							<c:if test="${reservationTopo.statutReservationTopo == 'EN_ATTENTE'}">
+								<form action="supprimer_utilisateur" method="post">
+									<input type="hidden" name="idUtilisateur" value="${utilisateur.idUtilisateur}" />
+									<input type="submit" class="btn btn-success" value="Mettre-à-jour" />  
+								</form>
+							</c:if>
+						</td>
+						
+						
+						
+						
+						
 						<td>
 							<button href="${lienDeMaj}" class="btn btn-success">Mettre-à-jour</button>
 						</td>
