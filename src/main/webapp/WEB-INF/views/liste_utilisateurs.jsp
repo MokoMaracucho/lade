@@ -46,31 +46,16 @@
 						<td>${utilisateur.privilegeUtilisateur}</td>
 						<td>${utilisateur.dateInscriptionUtilisateur}</td>
 						<td>
-							<c:if test="${reservationTopo.statutReservationTopo == 'EN_ATTENTE'}">
-								<form action="maj_utilisateur" method="post">
-									<input type="hidden" name="idUtilisateur" value="${utilisateur.idUtilisateur}" />
-									<input type="submit" class="btn btn-success" value="Mettre-à-jour" />  
-								</form>
-							</c:if>
+							<form action="maj_utilisateur" method="post">
+								<input type="hidden" name="idUtilisateur" value="${utilisateur.idUtilisateur}" />
+								<button class="btn btn-success">Mettre-à-jour</button>
+							</form>
 						</td>
 						<td>
-							<c:if test="${reservationTopo.statutReservationTopo == 'EN_ATTENTE'}">
-								<form action="supprimer_utilisateur" method="post">
-									<input type="hidden" name="idUtilisateur" value="${utilisateur.idUtilisateur}" />
-									<input type="submit" class="btn btn-success" value="Mettre-à-jour" />  
-								</form>
-							</c:if>
-						</td>
-						
-						
-						
-						
-						
-						<td>
-							<button href="${lienDeMaj}" class="btn btn-success">Mettre-à-jour</button>
-						</td>
-						<td>
-							<button href="${lienDeSuppression}" onclick="if (!(confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?'))) return false" class="btn btn-danger">Supprimer</button>
+							<form action="supprimer_utilisateur" method="post">
+								<input type="hidden" name="idUtilisateur" value="${utilisateur.idUtilisateur}" />
+								<button class="btn btn-danger">Supprimer</button>
+							</form>
 						</td>
 					</tr>
 				</c:forEach>

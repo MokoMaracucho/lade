@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.oc.moko.lade.form.FormConnection;
 import com.oc.moko.lade.form.FormInscription;
+import com.oc.moko.lade.form.FormMajUtilisateur;
+import com.oc.moko.lade.entity.Privilege;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.exception.ResourceNotFoundException;
 import com.oc.moko.lade.service.UtilisateurService;
@@ -31,6 +33,7 @@ public class UtilisateurController {
 	
 	public static final String ATT_FORM_INSCRIPTION 						= "formInscription";
 	public static final String ATT_FORM_CONNECTION 							= "formConnection";
+	public static final String ATT_FORM_MAJ_UTILISATEUR						= "formMajUtilisateur";
 	
 	public static final String ATT_SESSION_STATUT							= "sessionStatut";
 	
@@ -94,12 +97,9 @@ public class UtilisateurController {
     
     @GetMapping("/deconnection_utilisateur")
     public String deconnectionUtilisateur(HttpServletRequest request, Model model) {
-    	
 	    HttpSession session = request.getSession();
 	    session.invalidate();
-	    
     	model.addAttribute(ATT_SESSION_STATUT, false);
-    	
         return "redirect:/utilisateur/liste_utilisateurs";
     }
 
@@ -110,14 +110,19 @@ public class UtilisateurController {
         return "liste_utilisateurs";
     }
 
-    @GetMapping("/maj_utilisateur")
+    @PostMapping("/maj_utilisateur")
     public String majUtilisateur(@RequestParam(name="idUtilisateur") Long idUtilisateur, Model model) throws ResourceNotFoundException {
-    	Utilisateur utilisateurMaj = utilisateurService.selectionnerUtilisateurParId(idUtilisateur);
-        model.addAttribute("utilisateur", utilisateurMaj);
-        return "customer-form";
+    	Utilisateur utilisateur = utilisateurService.selectionnerUtilisateurParId(idUtilisateur);
+    	FormMajUtilisateur formMajUtilisateur = new FormMajUtilisateur();
+    	formMajUtilisateur.setPrenomFormMajUtilisateur(utilisateur.getPrenomUtilisateur());
+    	formMajUtilisateur.setNomFormMajUtilisateur(utilisateur.getNomUtilisateur());
+    	formMajUtilisateur.setEmailFormMajUtilisateur(utilisateur.getEmailUtilisateur());
+    	formMajUtilisateur.setPrivilegeFormMajUtilisateur(utilisateur.getPrivilegeUtilisateur());
+        model.addAttribute(ATT_FORM_MAJ_UTILISATEUR, formMajUtilisateur);
+        return "maj_utilisateur";
     }
 
-    @GetMapping("/supprimer_utilisateur")
+    @PostMapping("/supprimer_utilisateur")
     public String supprimerUtilisateurParId(@RequestParam(name="idUtilisateur") Long idUtilisateur) throws ResourceNotFoundException {
     	utilisateurService.supprimerUtilisateurParId(idUtilisateur);
         return "redirect:/utilisateur/liste_utilisateurs";
