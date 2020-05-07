@@ -46,19 +46,19 @@ public class Utilisateur {
 
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="tb_site", joinColumns=@JoinColumn(name="id_utilisateur"), inverseJoinColumns=@JoinColumn(name="id_site"))
-	private List<Site> site;
+	private List<Site> listeSites;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="tb_commentaire", joinColumns=@JoinColumn(name="id_utilisateur"), inverseJoinColumns=@JoinColumn(name="id_commentaire"))
-	private List<Commentaire> commentaire;
+	private List<Commentaire> listeCommentaires;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="tb_secteur", joinColumns=@JoinColumn(name="id_utilisateur"), inverseJoinColumns=@JoinColumn(name="id_secteur"))
-	private List<Secteur> secteur;
+	private List<Secteur> listeSecteurs;
 
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="tb_reservation_topo", joinColumns=@JoinColumn(name="id_utilisateur"), inverseJoinColumns=@JoinColumn(name="id_reservation_topo"))
-	private List<ReservationTopo> listeReservationTopo;
+	private List<ReservationTopo> listeReservationsTopo;
 
 	public Long getIdUtilisateur() {
 		return idUtilisateur;
@@ -116,35 +116,35 @@ public class Utilisateur {
 		this.dateInscriptionUtilisateur = dateInscriptionUtilisateur;
 	}
 
-	public List<Site> getSite() {
-		return site;
+	public List<Site> getListeSites() {
+		return listeSites;
 	}
 
-	public void setSite(List<Site> site) {
-		this.site = site;
+	public void setListeSites(List<Site> listeSites) {
+		this.listeSites = listeSites;
 	}
 
-	public List<Commentaire> getCommentaire() {
-		return commentaire;
+	public List<Commentaire> getListeCommentaires() {
+		return listeCommentaires;
 	}
 
-	public void setCommentaire(List<Commentaire> commentaire) {
-		this.commentaire = commentaire;
+	public void setListeCommentaires(List<Commentaire> listeCommentaires) {
+		this.listeCommentaires = listeCommentaires;
 	}
 
-	public List<Secteur> getSecteur() {
-		return secteur;
+	public List<Secteur> getListeSecteurs() {
+		return listeSecteurs;
 	}
 
-	public void setSecteur(List<Secteur> secteur) {
-		this.secteur = secteur;
+	public void setListeSecteurs(List<Secteur> listeSecteurs) {
+		this.listeSecteurs = listeSecteurs;
 	}
 
-	public List<ReservationTopo> getListeReservationTopo() {
-		return listeReservationTopo;
+	public List<ReservationTopo> getListeReservationsTopo() {
+		return listeReservationsTopo;
 	}
 
-	public void setListeReservationTopo(List<ReservationTopo> listeReservationTopo) {
-		this.listeReservationTopo = listeReservationTopo;
+	public void setListeReservationsTopo(List<ReservationTopo> listeReservationsTopo) {
+		this.listeReservationsTopo = listeReservationsTopo;
 	}
 }

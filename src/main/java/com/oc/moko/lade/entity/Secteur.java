@@ -38,7 +38,7 @@ public class Secteur {
 
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="tb_voie", joinColumns=@JoinColumn(name="id_secteur"), inverseJoinColumns=@JoinColumn(name="id_voie"))
-	private List<Voie> voie;
+	private List<Voie> listeVoies;
 
 	public Long getIdSecteur() {
 		return idSecteur;
@@ -70,5 +70,13 @@ public class Secteur {
 
 	public void setSite(Site site) {
 		this.site = site;
+	}
+
+	public List<Voie> getListeVoies() {
+		return listeVoies;
+	}
+
+	public void setListeVoies(List<Voie> listeVoies) {
+		this.listeVoies = listeVoies;
 	}
 }

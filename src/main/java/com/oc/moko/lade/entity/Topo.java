@@ -48,7 +48,7 @@ public class Topo {
 
 	@OneToMany
 	@JoinTable(name="tb_reservation_topo", joinColumns=@JoinColumn(name="id_topo"), inverseJoinColumns=@JoinColumn(name="id_reservation_topo"))
-	private List<ReservationTopo> listeReservationTopo;
+	private List<ReservationTopo> listeReservationsTopo;
 
 	public Long getIdTopo() {
 		return idTopo;
@@ -106,11 +106,11 @@ public class Topo {
 		this.utilisateur = utilisateur;
 	}
 
-	public List<ReservationTopo> getListeReservationTopo() {
-		return listeReservationTopo;
+	public List<ReservationTopo> getListeReservationsTopo() {
+		return listeReservationsTopo;
 	}
 
-	public void setListeReservationTopo(List<ReservationTopo> listeReservationTopo) {
-		this.listeReservationTopo = listeReservationTopo;
+	public void setListeReservationTopo(List<ReservationTopo> listeReservationsTopo) {
+		this.listeReservationsTopo = listeReservationsTopo;
 	}
 }

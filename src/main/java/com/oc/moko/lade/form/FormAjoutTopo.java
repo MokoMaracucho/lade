@@ -11,7 +11,8 @@ public class FormAjoutTopo {
 	
 	@NotEmpty(message="Veuillez sélectionner une région.")
 	private String regionTopo;
-
+	
+	@NotEmpty(message="Veuillez décrire le topo.")
     @Size(min=2, max=300, message="La description n'a pas la longueur appropriée.")
 	private String descriptionTopo;
 

@@ -1,10 +1,12 @@
 package com.oc.moko.lade.form;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class FormAjoutLongueur {
 
 	@NotEmpty(message="Veuillez renseigner un nom pour la longueur.")
+    @Size(min=2, max=30, message="Le nom de la longueur n'a pas la longueur appropriée.")
 	private String nomLongueur;
 	
 	@NotEmpty(message="Veuillez sélectionner une voie.")

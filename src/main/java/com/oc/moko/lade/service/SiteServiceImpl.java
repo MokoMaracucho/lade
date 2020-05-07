@@ -30,7 +30,6 @@ public class SiteServiceImpl implements SiteService {
 		site.setRegionSite(formAjoutSite.getRegionSite());
 		site.setUtilisateur(utilisateur);
 		siteRepository.save(site);
-		
 		if(formAjoutSite.getCommentaireSite() != null) {
 			Commentaire commentaire = new Commentaire();
 			commentaire.setCommentaire(formAjoutSite.getCommentaireSite());

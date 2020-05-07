@@ -45,17 +45,13 @@ public class ValidConnectionValidator implements ConstraintValidator<ValidConnec
 					valid = false;
 				}
             }
-        } catch (final Exception ignore) {
-
-        }
-
+        } catch (final Exception ignore) { }
         if(!valid) {
             context.buildConstraintViolationWithTemplate(message)
             	.addPropertyNode("echec_connection")
                 .addConstraintViolation()
                 .disableDefaultConstraintViolation();
         }
-
         return valid;
     }
 }

@@ -30,6 +30,7 @@ public class SiteController {
 	public static final String ATT_FORM_AJOUT_SITE							= "formAjoutSite";
 
 	public static final String ATT_LISTE_SITES				 				= "listeSites";
+	
 	public static final String ATT_UTILISATEUR								= "utilisateur";
 	
     @Autowired

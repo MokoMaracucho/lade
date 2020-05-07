@@ -41,11 +41,9 @@ public class PersistenceJpaConfig {
         entityManagerFactoryBean.setPackagesToScan(new String[] {
             "com.oc.moko.lade.entity"
         });
-
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
         entityManagerFactoryBean.setJpaProperties(additionalProperties());
-
         return entityManagerFactoryBean;
     }
 

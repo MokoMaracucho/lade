@@ -33,6 +33,7 @@ public class SecteurController {
 
 	public static final String ATT_LISTE_SITES								= "listeSites";
 	public static final String ATT_LISTE_SECTEURS				 			= "listeSecteurs";
+	
 	public static final String ATT_UTILISATEUR								= "utilisateur";
 	
     @Autowired

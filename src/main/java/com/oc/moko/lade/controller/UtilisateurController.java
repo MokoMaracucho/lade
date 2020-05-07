@@ -31,9 +31,11 @@ public class UtilisateurController {
 	public static final String ATT_FORM_CONNECTION 							= "formConnection";
 	
 	public static final String ATT_SESSION_STATUT							= "sessionStatut";
+	
 	public static final String ATT_UTILISATEUR				 				= "utilisateur";
 
 	public static final String ATT_LISTE_UTILISATEURS				 		= "listeUtilisateurs";
+	
 	public static final String ATT_UTILISATEUR_MAJ				 			= "utilisateurMaj";
 	
     @Autowired
