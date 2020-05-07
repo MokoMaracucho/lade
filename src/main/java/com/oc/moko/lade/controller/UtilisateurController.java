@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.oc.moko.lade.form.FormConnection;
 import com.oc.moko.lade.form.FormInscription;
@@ -25,7 +24,6 @@ import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.service.UtilisateurService;
 
 @Controller
-@SessionAttributes("sessionUtilisateur")
 @RequestMapping("/utilisateur")
 public class UtilisateurController {
 	
@@ -71,8 +69,6 @@ public class UtilisateurController {
 			Utilisateur utilisateur = utilisateurService.selectionUtilisateurParEmail(formInscription.getEmailFormInscription());
         	session.setAttribute(ATT_SESSION_STATUT, true);
         	session.setAttribute(ATT_UTILISATEUR, utilisateur);
-        	model.addAttribute(ATT_SESSION_STATUT, true);
-        	model.addAttribute(ATT_UTILISATEUR, utilisateur);
 	        return "redirect:/utilisateur/liste_utilisateurs";
 		}
     }
@@ -88,8 +84,6 @@ public class UtilisateurController {
 			Utilisateur utilisateur = utilisateurService.selectionUtilisateurParEmail(formConnection.getEmailFormConnection());
         	session.setAttribute(ATT_SESSION_STATUT, true);
 			session.setAttribute(ATT_UTILISATEUR, utilisateur);
-        	model.addAttribute(ATT_SESSION_STATUT, true);
-        	model.addAttribute(ATT_UTILISATEUR, utilisateur);
 	        return "redirect:/topo/liste_reservations_topo";
 		}	
     }

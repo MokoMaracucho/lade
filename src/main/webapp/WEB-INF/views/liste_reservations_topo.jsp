@@ -81,14 +81,14 @@
 					<tr class="small">
 						<td>${demandeReservationTopo.idReservationTopo}</td>
 						<td>${demandeReservationTopo.topo.nomTopo}</td>
-						<td>${demandeReservationTopo.topo.utilisateur.prenomUtilisateur} ${reservationTopo.topo.utilisateur.nomUtilisateur}</td>
+						<td>${demandeReservationTopo.topo.utilisateur.prenomUtilisateur} ${demandeReservationTopo.topo.utilisateur.nomUtilisateur}</td>
 						<td>${demandeReservationTopo.statutReservationTopo}</td>
 						<td>
 							<c:if test="${demandeReservationTopo.statutReservationTopo == 'ACCEPTEE'}">
-								<form action="traitement_reponse_demande_reservation_topo" method="post">
+								<form action="traitement_fin_reservation_topo" method="post">
 									<input type="hidden" name="idReservationTopo" value="${demandeReservationTopo.idReservationTopo}" />
-									<input type="hidden" name="reservationTopoTerminee" value="TERMINEE" />
-									<input type="submit" class="btn btn-success" value="Accepter" />  
+									<input type="hidden" name="reponseDemandeReservationTopo" value="TERMINEE" />
+									<input type="submit" class="btn btn-success" value="Terminer" />  
 								</form>
 							</c:if>
 						</td>

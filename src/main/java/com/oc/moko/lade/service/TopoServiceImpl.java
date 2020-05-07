@@ -76,14 +76,23 @@ public class TopoServiceImpl implements TopoService {
 
 	@Override
     @Transactional
-	public void majReservationTopo(Long idReservationTopo, Utilisateur utilisateur, StatutReservationTopo reponseDemandeReservationTopo) {
+	public void majReservationTopo(Long idReservationTopo, Utilisateur utilisateur, StatutReservationTopo reponseReservationTopo) {
 		ReservationTopo reservationTopo = reservationTopoRepository.getOne(idReservationTopo);
-		if(reponseDemandeReservationTopo == StatutReservationTopo.ACCEPTEE) {
-			reservationTopo.setStatutReservationTopo(StatutReservationTopo.ACCEPTEE);
-			reservationTopoRepository.save(reservationTopo);
-		} else {
-			reservationTopo.setStatutReservationTopo(StatutReservationTopo.REFUSEE);
-			reservationTopoRepository.save(reservationTopo);
+		switch(reponseReservationTopo) {
+			case ACCEPTEE:
+				reservationTopo.setStatutReservationTopo(StatutReservationTopo.ACCEPTEE);
+				reservationTopoRepository.save(reservationTopo);
+				break;
+			case REFUSEE:
+				reservationTopo.setStatutReservationTopo(StatutReservationTopo.REFUSEE);
+				reservationTopoRepository.save(reservationTopo);
+				break;
+			case TERMINEE:
+				reservationTopo.setStatutReservationTopo(StatutReservationTopo.TERMINEE);
+				reservationTopoRepository.save(reservationTopo);
+				break;
+			default:
+				break;
 		}
 	}
 }

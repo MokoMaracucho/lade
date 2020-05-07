@@ -76,11 +76,14 @@ public class TopoController {
     public String listeReservationsTopo(HttpServletRequest request, Model model) {
     	HttpSession session = request.getSession();
     	Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-    	Long idDemandeurReservationTopo = utilisateur.getIdUtilisateur();
-    	List<ReservationTopo> listeReservationsTopo = topoService.listeReservationsTopo();
-    	List<ReservationTopo> listeDemandesReservationTopo = topoService.listeDemandesReservationTopo(idDemandeurReservationTopo);
+    	Long idUtilisateur = utilisateur.getIdUtilisateur();
+
+    	List<ReservationTopo> listeReservationsTopo = topoService.listeReservationsTopo(idUtilisateur);
     	model.addAttribute(ATT_LISTE_RESERVATIONS_TOPO, listeReservationsTopo);
+    	
+    	List<ReservationTopo> listeDemandesReservationTopo = topoService.listeDemandesReservationTopo(idUtilisateur);
     	model.addAttribute(ATT_LISTE_DEMANDES_RESERVATION_TOPO, listeDemandesReservationTopo);
+
     	return "liste_reservations_topo";
     }
     
@@ -88,14 +91,25 @@ public class TopoController {
     public String traitementDemandeReservationTopo(HttpServletRequest request, @RequestParam(name="idTopo") Long idTopo, Model model) {
     	HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute(ATT_UTILISATEUR);
+		
 		topoService.enregistrerReservationTopo(idTopo, utilisateur);
         List<Topo> listeTopos = topoService.listeTopos();
         model.addAttribute(ATT_LISTE_TOPOS, listeTopos);
 		return "liste_topos";
     }
-    
+
     @PostMapping("traitement_reponse_demande_reservation_topo")
     public String traitementReponseDemandeReservationTopo(HttpServletRequest request, @RequestParam(name="reponseDemandeReservationTopo") StatutReservationTopo reponseDemandeReservationTopo, @RequestParam(name="idReservationTopo") Long idReservationTopo, Model model) {
+    	HttpSession session = request.getSession();
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute(ATT_UTILISATEUR);
+		topoService.majReservationTopo(idReservationTopo, utilisateur, reponseDemandeReservationTopo);
+    	List<ReservationTopo> listeReservationsTopo = topoService.listeReservationsTopo(utilisateur.getIdUtilisateur());
+    	model.addAttribute(ATT_LISTE_RESERVATIONS_TOPO, listeReservationsTopo);
+    	return "liste_reservations_topo";
+    }
+    
+    @PostMapping("traitement_fin_reservation_topo")
+    public String traitementFinReservationTopo(HttpServletRequest request, @RequestParam(name="reponseDemandeReservationTopo") StatutReservationTopo reponseDemandeReservationTopo, @RequestParam(name="idReservationTopo") Long idReservationTopo, Model model) {
     	HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute(ATT_UTILISATEUR);
 		topoService.majReservationTopo(idReservationTopo, utilisateur, reponseDemandeReservationTopo);
