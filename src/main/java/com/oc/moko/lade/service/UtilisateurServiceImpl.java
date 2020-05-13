@@ -60,7 +60,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
     @Transactional
-	public boolean existanceEmail(String emailUtilisateur) {
+	public boolean existanceEmailUtilisateur(String emailUtilisateur) {
 		return utilisateurRepository.existsByEmailUtilisateur(emailUtilisateur);
 	}
 
@@ -68,6 +68,20 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     @Transactional
 	public List<Utilisateur> listeUtilisateurs() {
         return utilisateurRepository.findAll();
+	}
+
+	@Override
+	public FormMajUtilisateur formulaireMajUtilisateur(Utilisateur utilisateur) {
+		FormMajUtilisateur formMajUtilisateur = new FormMajUtilisateur();
+		formMajUtilisateur.setPrenomFormMajUtilisateur(utilisateur.getPrenomUtilisateur());
+		formMajUtilisateur.setNomFormMajUtilisateur(utilisateur.getNomUtilisateur());
+//		forMajUtilisateur.setEmailFormMajUtilisateur(utilisateur.getEmailUtilisateur());
+    	if(utilisateur.getPrivilegeUtilisateur() == Privilege.UTILISATEUR) {
+    		formMajUtilisateur.setMembreFormMajUtilisateur(false);
+    	} else {
+    		formMajUtilisateur.setMembreFormMajUtilisateur(true);
+    	}
+		return formMajUtilisateur;
 	}
 
 	@Override

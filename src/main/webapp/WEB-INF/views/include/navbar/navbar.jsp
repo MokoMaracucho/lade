@@ -11,7 +11,7 @@
 	        	<a class="nav-link" href="/lade/Accueil">Accueil<span class="sr-only">(current)</span></a>
 	      	</li>
 	      	
-	      	<c:if test="${sessionStatut eq false}">
+	      	<c:if test="${empty sessionStatut}">
 	    		<li class="nav-item">
 	        		<a class="nav-link" href="/lade/utilisateur/inscription_utilisateur">Inscription <span class="sr-only">(current)</span></a>
 	      		</li>

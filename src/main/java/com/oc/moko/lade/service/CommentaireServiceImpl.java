@@ -7,13 +7,30 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.oc.moko.lade.entity.Commentaire;
+import com.oc.moko.lade.entity.Site;
+import com.oc.moko.lade.entity.Utilisateur;
+import com.oc.moko.lade.form.FormCommentaire;
 import com.oc.moko.lade.repository.CommentaireRepository;
+import com.oc.moko.lade.repository.SiteRepository;
 
 @Service
 public class CommentaireServiceImpl implements CommentaireService {
 	
 	@Autowired
     private CommentaireRepository commentaireRepository;
+	
+	@Autowired
+    private SiteRepository siteRepository;
+
+	@Override
+	public void enregistrerCommentaire(FormCommentaire formCommentaire, Utilisateur utilisateur, Long idSite) {
+		Commentaire commentaire = new Commentaire();
+		commentaire.setCommentaire(formCommentaire.getCommentaire());
+		commentaire.setUtilisateur(utilisateur);
+		Site site = siteRepository.getOne(idSite);
+		commentaire.setSite(site);
+		commentaireRepository.save(commentaire);
+	}
 
 	@Override
     @Transactional

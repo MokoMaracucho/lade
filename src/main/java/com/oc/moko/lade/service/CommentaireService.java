@@ -3,8 +3,12 @@ package com.oc.moko.lade.service;
 import java.util.List;
 
 import com.oc.moko.lade.entity.Commentaire;
+import com.oc.moko.lade.entity.Utilisateur;
+import com.oc.moko.lade.form.FormCommentaire;
 
 public interface CommentaireService {
+	
+	public void enregistrerCommentaire(FormCommentaire formCommentaire, Utilisateur utilisateur, Long idSite);
 
 	public List<Commentaire> listeCommentaires();
 

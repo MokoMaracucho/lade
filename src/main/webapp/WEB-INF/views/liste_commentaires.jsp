@@ -5,6 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <style>
+	html { background-color: grey; }
+  </style>
 	<%@ page isELIgnored="false" %>
 	<meta charset="UTF-8">
 	<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
@@ -54,7 +57,37 @@
 				</c:forEach>
 			</table>
 		</div>
+		<div class="div-container">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 offset-md-3">	
+						<div class="container">
+							<form:form action="traitement_commentaire" cssClass="form form-expand-lg form-dark bg-dark form-margin-padding form-border" method="post" modelAttribute="formCommentaire">
+								<h1 class="font-weight-bold text-light">COMMENTER LE SITE</h1>
+						
+								<div class="form-group">
+									<label for="commentaire" class="form-label-color">Commentaire</label>
+									<form:errors path="commentaire" cssClass="small text-warning form-error" />
+						        	<form:textarea path="commentaire" class="form-control" />
+								</div>
+						
+								<div class="form-group">
+						        	<form:hidden path="idSite" class="form-control" value="${site.idSite}"/>
+								</div>
+						
+								<button type="submit" class="btn btn-success">Commenter le site</button>
+							</form:form>
+						</div>
+					</div>
+	  			</div>
+		    </div>
+		</div>
 	</div>
+	
+	
+	
+	
+	
 	
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

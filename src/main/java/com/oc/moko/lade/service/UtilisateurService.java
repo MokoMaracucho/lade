@@ -15,9 +15,11 @@ public interface UtilisateurService {
     
     public Utilisateur selectionUtilisateurParEmail(String emailUtilisateur);
     
-    public boolean existanceEmail(String emailUtilisateur);
+    public boolean existanceEmailUtilisateur(String emailUtilisateur);
 
     public List<Utilisateur> listeUtilisateurs();
+    
+    public FormMajUtilisateur formulaireMajUtilisateur(Utilisateur utilisateur);
     
     public void traitementMajUtilisateur(FormMajUtilisateur formMajUtilisateur);
 

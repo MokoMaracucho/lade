@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.oc.moko.lade.form.FormConnection;
 import com.oc.moko.lade.form.FormInscription;
 import com.oc.moko.lade.form.FormMajUtilisateur;
-import com.oc.moko.lade.entity.Privilege;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.exception.ResourceNotFoundException;
 import com.oc.moko.lade.service.UtilisateurService;
@@ -38,10 +37,9 @@ public class UtilisateurController {
 	public static final String ATT_SESSION_STATUT							= "sessionStatut";
 	
 	public static final String ATT_UTILISATEUR				 				= "utilisateur";
+	public static final String ATT_UTILISATEUR_MAJ				 			= "utilisateurMaj";
 
 	public static final String ATT_LISTE_UTILISATEURS				 		= "listeUtilisateurs";
-	
-	public static final String ATT_UTILISATEUR_MAJ				 			= "utilisateurMaj";
 	
     @Autowired
     private UtilisateurService utilisateurService;
@@ -57,19 +55,12 @@ public class UtilisateurController {
     	model.addAttribute(ATT_FORM_INSCRIPTION, new FormInscription());
         return "inscription_utilisateur";
     }
-    
-    @GetMapping("/connection_utilisateur")
-    public String connectionUtilisateur(Model model) {
-    	model.addAttribute(ATT_FORM_CONNECTION, new FormConnection());
-        return "connection_utilisateur";
-    }
 
     @PostMapping("/traitement_formulaire_inscription")
     public String traitementInscriptionUtilisateur(HttpServletRequest request, HttpSession session, @Valid @ModelAttribute("formInscription") FormInscription formInscription, BindingResult bindingResult, Model model) {
     	session = request.getSession();
     	if(bindingResult.hasErrors()) {
         	session.setAttribute(ATT_SESSION_STATUT, false);
-        	model.addAttribute(ATT_SESSION_STATUT, false);
 	        return "/inscription_utilisateur";
 		} else {
 			utilisateurService.enregistrerUtilisateur(formInscription);
@@ -79,13 +70,18 @@ public class UtilisateurController {
 	        return "redirect:/utilisateur/liste_utilisateurs";
 		}
     }
+    
+    @GetMapping("/connection_utilisateur")
+    public String connectionUtilisateur(Model model) {
+    	model.addAttribute(ATT_FORM_CONNECTION, new FormConnection());
+        return "connection_utilisateur";
+    }
 
     @PostMapping("/traitement_formulaire_connection")
     public String traitementConnectionUtilisateur(HttpServletRequest request, HttpSession session, @Valid @ModelAttribute("formConnection") FormConnection formConnection, BindingResult bindingResult, Model model) {
     	session = request.getSession();
     	if(bindingResult.hasErrors()) {
         	session.setAttribute(ATT_SESSION_STATUT, false);
-        	model.addAttribute(ATT_SESSION_STATUT, false);
 	        return "connection_utilisateur";
 		} else {
 			Utilisateur utilisateur = utilisateurService.selectionUtilisateurParEmail(formConnection.getEmailFormConnection());
@@ -113,17 +109,7 @@ public class UtilisateurController {
     @PostMapping("/maj_utilisateur")
     public String majUtilisateur(@RequestParam(name="idUtilisateur") Long idUtilisateur, Model model) throws ResourceNotFoundException {
     	Utilisateur utilisateur = utilisateurService.selectionnerUtilisateurParId(idUtilisateur);
-    	FormMajUtilisateur formMajUtilisateur = new FormMajUtilisateur();
-    	formMajUtilisateur.setIdFormMajUtilisateur(utilisateur.getIdUtilisateur());
-    	formMajUtilisateur.setPrenomFormMajUtilisateur(utilisateur.getPrenomUtilisateur());
-    	formMajUtilisateur.setNomFormMajUtilisateur(utilisateur.getNomUtilisateur());
-    	formMajUtilisateur.setEmailFormMajUtilisateur(utilisateur.getEmailUtilisateur());
-		System.out.println("--------------------------------------------------> privilegeUtilisateur : " + utilisateur.getPrivilegeUtilisateur());
-    	if(utilisateur.getPrivilegeUtilisateur() == Privilege.UTILISATEUR) {
-    		formMajUtilisateur.setMembreFormMajUtilisateur(false);
-    	} else {
-    		formMajUtilisateur.setMembreFormMajUtilisateur(true);
-    	}
+    	FormMajUtilisateur formMajUtilisateur = utilisateurService.formulaireMajUtilisateur(utilisateur);
         model.addAttribute(ATT_FORM_MAJ_UTILISATEUR, formMajUtilisateur);
         return "maj_utilisateur";
     }

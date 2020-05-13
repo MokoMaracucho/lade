@@ -23,8 +23,7 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
     @Override
     public boolean isValid(final Object value, final ConstraintValidatorContext context) {
         boolean valid = true;
-        try
-        {
+        try {
             final Object motDePasseFormInscriptionObj 				= BeanUtils.getProperty(value, motDePasseFormInscription);
             final Object confirmationMotDePasseFormInscriptionObj 	= BeanUtils.getProperty(value, confirmationMotDePasseFormInscription);
             valid = motDePasseFormInscriptionObj == null && confirmationMotDePasseFormInscriptionObj == null || motDePasseFormInscriptionObj != null && motDePasseFormInscriptionObj.equals(confirmationMotDePasseFormInscriptionObj);

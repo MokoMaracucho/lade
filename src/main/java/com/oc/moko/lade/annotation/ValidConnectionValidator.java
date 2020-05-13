@@ -31,9 +31,8 @@ public class ValidConnectionValidator implements ConstraintValidator<ValidConnec
     public boolean isValid(final Object value, final ConstraintValidatorContext context) {
         boolean valid = true;
         Utilisateur utilisateur = new Utilisateur();
-        try
-        {
-            if(utilisateurService.existanceEmail(emailFormConnection)) {
+        try {
+            if(utilisateurService.existanceEmailUtilisateur(emailFormConnection)) {
             	utilisateur = utilisateurService.selectionUtilisateurParEmail(emailFormConnection);
 				ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
 		        passwordEncryptor.setAlgorithm(ALGORYTHME_CHIFFREMENT);

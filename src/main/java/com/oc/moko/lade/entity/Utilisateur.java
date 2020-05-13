@@ -16,8 +16,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.DynamicUpdate;
-
 @Entity
 @Table(name="tb_utilisateur")
 public class Utilisateur {
