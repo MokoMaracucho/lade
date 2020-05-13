@@ -45,6 +45,7 @@ public class CommentaireServiceImpl implements CommentaireService {
 	}
 
 	@Override
+    @Transactional
 	public void supprimerCommentaireById(Long idCommentaire) {
 		commentaireRepository.deleteById(idCommentaire);
 	}

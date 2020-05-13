@@ -89,8 +89,8 @@ public class CommentaireController {
     }
     
     @PostMapping("/suppression_commentaire_par_id")
-    public String supprimerCommentaireById(@RequestParam(name="idCommentaire") Long idCommentaire, Model model) {
+    public String supprimerCommentaireById(@RequestParam(name="idCommentaire") Long idCommentaire, @RequestParam(name="idSite") Long idSite, Model model) {
     	commentaireService.supprimerCommentaireById(idCommentaire);
-    	return "liste_commentaires";
+        return "redirect:/commentaire/liste_commentaires_par_id_site?idSite=" + idSite;
     }
 }

@@ -49,6 +49,7 @@
 							<c:if test="${utilisateur.privilegeUtilisateur eq 'MEMBRE'}">
 								<form action="suppression_commentaire_par_id" method="post">
 									<input type="hidden" name="idCommentaire" value="${commentaire.idCommentaire}" />
+									<input type="hidden" name="idSite" value="${site.idSite}" />
 									<input type="submit" class="btn btn-danger" value="Supprimer le commentaire" />  
 								</form>
 							</c:if>
