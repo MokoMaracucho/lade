@@ -20,7 +20,7 @@ import javax.validation.constraints.NotEmpty;
 public class Site {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_site")
 	private Long idSite;
 	

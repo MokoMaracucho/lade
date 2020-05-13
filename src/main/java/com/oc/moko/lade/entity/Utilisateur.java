@@ -19,12 +19,11 @@ import javax.persistence.Table;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
-@DynamicUpdate
 @Table(name="tb_utilisateur")
 public class Utilisateur {
 	
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name= "id_utilisateur", updatable=false)
 	private Long idUtilisateur;
 

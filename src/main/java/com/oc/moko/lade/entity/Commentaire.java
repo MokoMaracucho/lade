@@ -15,7 +15,7 @@ import javax.validation.constraints.NotEmpty;
 public class Commentaire {
 
     @Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_commentaire")
 	private Long idCommentaire;
 

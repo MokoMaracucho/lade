@@ -10,7 +10,7 @@
 	<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	
-	<title>Liste des sites | Les amis de l'escalade</title>
+	<title>Liste des commentaires | Les amis de l'escalade</title>
 </head>
 
 <body>
@@ -22,43 +22,33 @@
 		<div class="col-md-10 offset-md-1">
 			<br>
 			
-			<h1 class="font-weight-bold text-light">LISTE DES SITES</h1>
+			<h1 class="font-weight-bold text-light">LISTE DES COMMENTAIRES</h1>
+
+			<h6 class="font-weight-bold text-light">Site : ${site.nomSite}</h6>
 
 			<table class="table table-striped table-bordered table-dark">
 				<tr class="small">
 					<th>ID</th>
-					<th>NOM</th>
-					<th>REGION</th>
-					<th>COMMENTAIRES</th>
-					<th>CRÉATEUR SITE</th>
-					<th>MISE-À-JOUR</th>
-					<th>SUPRESSION</th>
+					<th>COMMENTAIRE</th>
+					<th>AUTEUR</th>
+					<c:if test="${utilisateur.privilegeUtilisateur eq 'MEMBRE'}">
+						<th>SUPPRIMER</th>
+					</c:if>
 				</tr>
 
-				<c:forEach var="site" items="${listeSites}">
+				<c:forEach var="commentaire" items="${listeCommentairesByIdSite}">
+
 					<tr class="small">
-						<td>${site.idSite}</td>
-						<td>${site.nomSite}</td>
-						<td>${site.regionSite}</td>
+						<td>${commentaire.idCommentaire}</td>
+						<td>${commentaire.commentaire}</td>
+						<td>${commentaire.utilisateur.prenomUtilisateur} ${commentaire.utilisateur.nomUtilisateur}</td>
 						<td>
-							<c:forEach var="commentaire" items="${listeCommentaires}">
-							    <c:if test="${commentaire.site.idSite == site.idSite}">
-							        <c:set var="found" value="true" scope="request" />
-							    </c:if>
-							</c:forEach>
-							<c:if test="${found}">
-								<form action="../commentaire/liste_commentaires_par_id_site" method="get">
-									<input type="hidden" name="idSite" value="${site.idSite}" />
-									<input type="submit" class="btn btn-success" value="Afficher les commentaires" />  
+							<c:if test="${utilisateur.privilegeUtilisateur eq 'MEMBRE'}">
+								<form action="suppression_commentaire_par_id" method="post">
+									<input type="hidden" name="idCommentaire" value="${commentaire.idCommentaire}" />
+									<input type="submit" class="btn btn-danger" value="Supprimer le commentaire" />  
 								</form>
 							</c:if>
-						</td>
-						<td>${site.utilisateur.prenomUtilisateur} ${site.utilisateur.nomUtilisateur}</td>
-						<td>
-							<button href="${lienMaj}" class="btn btn-success">Mettre-à-jour</button>
-						</td>
-						<td>
-							<button href="${lienSuppression}" onclick="if (!(confirm('Êtes-vous sûr de vouloir supprimer ce site ?'))) return false" class="btn btn-danger">Supprimer</button>
 						</td>
 					</tr>
 				</c:forEach>

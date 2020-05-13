@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.oc.moko.lade.entity.Commentaire;
 import com.oc.moko.lade.entity.Site;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.form.FormAjoutSite;
+import com.oc.moko.lade.service.CommentaireService;
 import com.oc.moko.lade.service.SiteService;
 
 @Controller
@@ -30,11 +32,15 @@ public class SiteController {
 	public static final String ATT_FORM_AJOUT_SITE							= "formAjoutSite";
 
 	public static final String ATT_LISTE_SITES				 				= "listeSites";
+	public static final String ATT_LISTE_COMMENTAIRES						= "listeCommentaires";
 	
 	public static final String ATT_UTILISATEUR								= "utilisateur";
 	
     @Autowired
     private SiteService siteService;
+	
+    @Autowired
+    private CommentaireService commentaireService;
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
@@ -62,7 +68,9 @@ public class SiteController {
 
     @GetMapping("/liste_sites")
     public String listeSites(Model model) {
-        List<Site> listeSites = siteService.listeSites();
+    	List<Commentaire> listeCommentaires = commentaireService.listeCommentaires();
+        model.addAttribute(ATT_LISTE_COMMENTAIRES, listeCommentaires);
+    	List<Site> listeSites = siteService.listeSites();
         model.addAttribute(ATT_LISTE_SITES, listeSites);
         return "liste_sites";
     }

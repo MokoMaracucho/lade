@@ -90,7 +90,6 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 //			String emailMaj = formMajUtilisateur.getEmailFormMajUtilisateur();
 //			utilisateurRepository.majEmailUtilisateur(idUtilisateur, emailMaj);
 //		}
-		Privilege majPrivilegeUtilisateur;
 		if(formMajUtilisateur.getMembreFormMajUtilisateur() == true) {
 			utilisateur.setPrivilegeUtilisateur(Privilege.MEMBRE);
 //			utilisateurRepository.majPrivilegeUtilisateur(idUtilisateur, Privilege.MEMBRE);

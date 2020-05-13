@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.oc.moko.lade.entity.Commentaire;
 import com.oc.moko.lade.entity.Site;
 import com.oc.moko.lade.entity.Utilisateur;
+import com.oc.moko.lade.exception.ResourceNotFoundException;
 import com.oc.moko.lade.form.FormAjoutSite;
 import com.oc.moko.lade.repository.CommentaireRepository;
 import com.oc.moko.lade.repository.SiteRepository;
@@ -44,5 +45,10 @@ public class SiteServiceImpl implements SiteService {
     @Transactional
 	public List<Site> listeSites() {
 		return siteRepository.findAll();
+	}
+
+	@Override
+	public Site selectionnerSiteParId(Long idSite) throws ResourceNotFoundException {
+		return siteRepository.findById(idSite).orElseThrow(() -> new ResourceNotFoundException(idSite));
 	}
 }
