@@ -57,8 +57,8 @@ public class UtilisateurController {
     }
 
     @PostMapping("/traitement_formulaire_inscription")
-    public String traitementInscriptionUtilisateur(HttpServletRequest request, HttpSession session, @Valid @ModelAttribute("formInscription") FormInscription formInscription, BindingResult bindingResult, Model model) {
-    	session = request.getSession();
+    public String traitementInscriptionUtilisateur(HttpServletRequest request, @Valid @ModelAttribute("formInscription") FormInscription formInscription, BindingResult bindingResult, Model model) {
+    	HttpSession session = request.getSession();
     	if(bindingResult.hasErrors()) {
         	session.setAttribute(ATT_SESSION_STATUT, false);
 	        return "/inscription_utilisateur";
@@ -78,8 +78,8 @@ public class UtilisateurController {
     }
 
     @PostMapping("/traitement_formulaire_connection")
-    public String traitementConnectionUtilisateur(HttpServletRequest request, HttpSession session, @Valid @ModelAttribute("formConnection") FormConnection formConnection, BindingResult bindingResult, Model model) {
-    	session = request.getSession();
+    public String traitementConnectionUtilisateur(HttpServletRequest request, @Valid @ModelAttribute("formConnection") FormConnection formConnection, BindingResult bindingResult, Model model) {
+    	HttpSession session = request.getSession();
     	if(bindingResult.hasErrors()) {
         	session.setAttribute(ATT_SESSION_STATUT, false);
 	        return "connection_utilisateur";
@@ -121,8 +121,8 @@ public class UtilisateurController {
     }
 
     @PostMapping("/supprimer_utilisateur")
-    public String supprimerUtilisateurParId(@RequestParam(name="idUtilisateur") Long idUtilisateur) throws ResourceNotFoundException {
-    	utilisateurService.supprimerUtilisateurParId(idUtilisateur);
+    public String suppressionUtilisateurParId(@RequestParam(name="idUtilisateur") Long idUtilisateur) throws ResourceNotFoundException {
+    	utilisateurService.suppressionUtilisateurParId(idUtilisateur);
         return "redirect:/utilisateur/liste_utilisateurs";
     }
 }

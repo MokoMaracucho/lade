@@ -14,4 +14,6 @@ public interface SiteService {
     public List<Site> listeSites();
     
     public Site selectionnerSiteParId(Long idSite) throws ResourceNotFoundException;
+    
+    public void suppressionSiteParId(Long idSite) throws ResourceNotFoundException;
 }

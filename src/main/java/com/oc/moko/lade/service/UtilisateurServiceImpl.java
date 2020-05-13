@@ -91,13 +91,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		Utilisateur utilisateur = utilisateurRepository.getOne(idUtilisateur);
 		if(utilisateur.getPrenomUtilisateur() != formMajUtilisateur.getPrenomFormMajUtilisateur()) {
 			utilisateur.setPrenomUtilisateur(formMajUtilisateur.getPrenomFormMajUtilisateur());
-//			String prenomMaj = formMajUtilisateur.getPrenomFormMajUtilisateur();
-//			utilisateurRepository.majPrenomUtilisateur(idUtilisateur, prenomMaj);
 		}
 		if(utilisateur.getNomUtilisateur() != formMajUtilisateur.getNomFormMajUtilisateur()) {
 			utilisateur.setNomUtilisateur(formMajUtilisateur.getNomFormMajUtilisateur());
-//			String nomMaj = formMajUtilisateur.getNomFormMajUtilisateur();
-//			utilisateurRepository.majNomUtilisateur(idUtilisateur, nomMaj);
 		}
 //		if(utilisateur.getEmailUtilisateur() != formMajUtilisateur.getEmailFormMajUtilisateur()) {
 //			utilisateur.setEmailUtilisateur(formMajUtilisateur.getEmailFormMajUtilisateur());
@@ -106,17 +102,15 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 //		}
 		if(formMajUtilisateur.getMembreFormMajUtilisateur() == true) {
 			utilisateur.setPrivilegeUtilisateur(Privilege.MEMBRE);
-//			utilisateurRepository.majPrivilegeUtilisateur(idUtilisateur, Privilege.MEMBRE);
 		} else {
 			utilisateur.setPrivilegeUtilisateur(Privilege.UTILISATEUR);
-//			utilisateurRepository.majPrivilegeUtilisateur(idUtilisateur, Privilege.UTILISATEUR);
 		}
 		utilisateurRepository.save(utilisateur);
 	}
 
 	@Override
     @Transactional
-	public void supprimerUtilisateurParId(Long idUtilisateur) throws ResourceNotFoundException {
+	public void suppressionUtilisateurParId(Long idUtilisateur) throws ResourceNotFoundException {
 		utilisateurRepository.deleteById(idUtilisateur);
 	}
 }

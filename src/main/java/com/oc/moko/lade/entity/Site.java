@@ -2,7 +2,6 @@ package com.oc.moko.lade.entity;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,11 +35,11 @@ public class Site {
 	@JoinColumn(name="id_utilisateur")
 	private Utilisateur utilisateur;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany
 	@JoinTable(name="tb_secteur", joinColumns=@JoinColumn(name="id_site"), inverseJoinColumns=@JoinColumn(name="id_secteur"))
 	private List<Secteur> listeSecteurs;
 
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany
 	@JoinTable(name="tb_commentaire", joinColumns=@JoinColumn(name="id_site"), inverseJoinColumns=@JoinColumn(name="id_commentaire"))
 	private List<Commentaire> listeCommentaires;
 

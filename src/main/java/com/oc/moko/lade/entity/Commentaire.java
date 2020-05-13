@@ -10,6 +10,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 @Table(name="tb_commentaire")
 public class Commentaire {
@@ -28,6 +31,7 @@ public class Commentaire {
 	private Utilisateur utilisateur;
 	
 	@ManyToOne
+    @OnDelete(action=OnDeleteAction.CASCADE)
 	@JoinColumn(name="id_site")
 	private Site site;
 	

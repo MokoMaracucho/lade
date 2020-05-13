@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.oc.moko.lade.entity.Commentaire;
 import com.oc.moko.lade.entity.Site;
 import com.oc.moko.lade.entity.Utilisateur;
+import com.oc.moko.lade.exception.ResourceNotFoundException;
 import com.oc.moko.lade.form.FormAjoutSite;
 import com.oc.moko.lade.service.CommentaireService;
 import com.oc.moko.lade.service.SiteService;
@@ -30,11 +32,11 @@ import com.oc.moko.lade.service.SiteService;
 public class SiteController {
 	
 	public static final String ATT_FORM_AJOUT_SITE							= "formAjoutSite";
+	
+	public static final String ATT_UTILISATEUR								= "utilisateur";
 
 	public static final String ATT_LISTE_SITES				 				= "listeSites";
 	public static final String ATT_LISTE_COMMENTAIRES						= "listeCommentaires";
-	
-	public static final String ATT_UTILISATEUR								= "utilisateur";
 	
     @Autowired
     private SiteService siteService;
@@ -73,5 +75,11 @@ public class SiteController {
     	List<Site> listeSites = siteService.listeSites();
         model.addAttribute(ATT_LISTE_SITES, listeSites);
         return "liste_sites";
+    }
+    
+    @PostMapping("/supprimer_site")
+    public String suppressionSiteParId(@RequestParam(name="idSite") Long idSite) throws ResourceNotFoundException {
+    	siteService.suppressionSiteParId(idSite);
+        return "redirect:/site/liste_sites";
     }
 }

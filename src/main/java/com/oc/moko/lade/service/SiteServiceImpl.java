@@ -48,7 +48,14 @@ public class SiteServiceImpl implements SiteService {
 	}
 
 	@Override
+    @Transactional
 	public Site selectionnerSiteParId(Long idSite) throws ResourceNotFoundException {
 		return siteRepository.findById(idSite).orElseThrow(() -> new ResourceNotFoundException(idSite));
+	}
+
+	@Override
+    @Transactional
+	public void suppressionSiteParId(Long idSite) throws ResourceNotFoundException {
+		siteRepository.deleteById(idSite);
 	}
 }

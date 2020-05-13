@@ -31,7 +31,7 @@
 					<th>REGION</th>
 					<th>COMMENTAIRES</th>
 					<th>CRÉATEUR SITE</th>
-					<th>MISE-À-JOUR</th>
+<!-- 					<th>MISE-À-JOUR</th> -->
 					<th>SUPRESSION</th>
 				</tr>
 
@@ -54,11 +54,17 @@
 							</c:if>
 						</td>
 						<td>${site.utilisateur.prenomUtilisateur} ${site.utilisateur.nomUtilisateur}</td>
+<!-- 						<td> -->
+<%-- 							<form action="maj_site" method="post"> --%>
+<%-- 								<input type="hidden" name="idSite" value="${site.idSite}" /> --%>
+<!-- 								<button class="btn btn-success">Mettre-à-jour</button> -->
+<%-- 							</form> --%>
+<!-- 						</td> -->
 						<td>
-							<button href="${lienMaj}" class="btn btn-success">Mettre-à-jour</button>
-						</td>
-						<td>
-							<button href="${lienSuppression}" onclick="if (!(confirm('Êtes-vous sûr de vouloir supprimer ce site ?'))) return false" class="btn btn-danger">Supprimer</button>
+							<form action="supprimer_site" method="post">
+								<input type="hidden" name="idSite" value="${site.idSite}" />
+								<button class="btn btn-danger">Supprimer</button>
+							</form>
 						</td>
 					</tr>
 				</c:forEach>

@@ -23,5 +23,5 @@ public interface UtilisateurService {
     
     public void traitementMajUtilisateur(FormMajUtilisateur formMajUtilisateur);
 
-    public void supprimerUtilisateurParId(Long idUtilisateur) throws ResourceNotFoundException;
+    public void suppressionUtilisateurParId(Long idUtilisateur) throws ResourceNotFoundException;
 }
