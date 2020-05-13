@@ -16,7 +16,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 @Entity
+@DynamicUpdate
 @Table(name="tb_utilisateur")
 public class Utilisateur {
 	
@@ -38,7 +41,7 @@ public class Utilisateur {
 	private String motDePasseUtilisateur;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name="privilege_utilisateur", length=17)
+	@Column(name="privilege_utilisateur", length=300)
 	private Privilege privilegeUtilisateur;
 	
 	@Column(name="date_inscription_utilisateur")

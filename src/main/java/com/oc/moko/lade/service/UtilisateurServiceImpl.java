@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.oc.moko.lade.form.FormInscription;
+import com.oc.moko.lade.form.FormMajUtilisateur;
 import com.oc.moko.lade.entity.Privilege;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.exception.ResourceNotFoundException;
@@ -35,7 +36,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         passwordEncryptor.setPlainDigest(false);
         String motDePasseChiffre = passwordEncryptor.encryptPassword(motDePasseFormInscription);
 		utilisateur.setMotDePasseUtilisateur(motDePasseChiffre);
-		utilisateur.setPrivilegeUtilisateur(Privilege.UTILISATEUR);
+		List<Utilisateur> listeUtilisateurs = utilisateurRepository.findAll();
+		if(listeUtilisateurs.isEmpty()) {
+			utilisateur.setPrivilegeUtilisateur(Privilege.MEMBRE);
+		} else {
+			utilisateur.setPrivilegeUtilisateur(Privilege.UTILISATEUR);
+		}
 		utilisateur.setDateInscriptionUtilisateur(new Timestamp(System.currentTimeMillis()));
 		utilisateurRepository.save(utilisateur);
 	}
@@ -62,6 +68,37 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     @Transactional
 	public List<Utilisateur> listeUtilisateurs() {
         return utilisateurRepository.findAll();
+	}
+
+	@Override
+	@Transactional
+	public void traitementMajUtilisateur(FormMajUtilisateur formMajUtilisateur) {
+		Long idUtilisateur = formMajUtilisateur.getIdFormMajUtilisateur();
+		Utilisateur utilisateur = utilisateurRepository.getOne(idUtilisateur);
+		if(utilisateur.getPrenomUtilisateur() != formMajUtilisateur.getPrenomFormMajUtilisateur()) {
+			utilisateur.setPrenomUtilisateur(formMajUtilisateur.getPrenomFormMajUtilisateur());
+//			String prenomMaj = formMajUtilisateur.getPrenomFormMajUtilisateur();
+//			utilisateurRepository.majPrenomUtilisateur(idUtilisateur, prenomMaj);
+		}
+		if(utilisateur.getNomUtilisateur() != formMajUtilisateur.getNomFormMajUtilisateur()) {
+			utilisateur.setNomUtilisateur(formMajUtilisateur.getNomFormMajUtilisateur());
+//			String nomMaj = formMajUtilisateur.getNomFormMajUtilisateur();
+//			utilisateurRepository.majNomUtilisateur(idUtilisateur, nomMaj);
+		}
+//		if(utilisateur.getEmailUtilisateur() != formMajUtilisateur.getEmailFormMajUtilisateur()) {
+//			utilisateur.setEmailUtilisateur(formMajUtilisateur.getEmailFormMajUtilisateur());
+//			String emailMaj = formMajUtilisateur.getEmailFormMajUtilisateur();
+//			utilisateurRepository.majEmailUtilisateur(idUtilisateur, emailMaj);
+//		}
+		Privilege majPrivilegeUtilisateur;
+		if(formMajUtilisateur.getMembreFormMajUtilisateur() == true) {
+			utilisateur.setPrivilegeUtilisateur(Privilege.MEMBRE);
+//			utilisateurRepository.majPrivilegeUtilisateur(idUtilisateur, Privilege.MEMBRE);
+		} else {
+			utilisateur.setPrivilegeUtilisateur(Privilege.UTILISATEUR);
+//			utilisateurRepository.majPrivilegeUtilisateur(idUtilisateur, Privilege.UTILISATEUR);
+		}
+		utilisateurRepository.save(utilisateur);
 	}
 
 	@Override

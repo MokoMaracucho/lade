@@ -92,7 +92,7 @@ public class UtilisateurController {
         	session.setAttribute(ATT_SESSION_STATUT, true);
 			session.setAttribute(ATT_UTILISATEUR, utilisateur);
 	        return "redirect:/topo/liste_reservations_topo";
-		}	
+		}
     }
     
     @GetMapping("/deconnection_utilisateur")
@@ -114,12 +114,24 @@ public class UtilisateurController {
     public String majUtilisateur(@RequestParam(name="idUtilisateur") Long idUtilisateur, Model model) throws ResourceNotFoundException {
     	Utilisateur utilisateur = utilisateurService.selectionnerUtilisateurParId(idUtilisateur);
     	FormMajUtilisateur formMajUtilisateur = new FormMajUtilisateur();
+    	formMajUtilisateur.setIdFormMajUtilisateur(utilisateur.getIdUtilisateur());
     	formMajUtilisateur.setPrenomFormMajUtilisateur(utilisateur.getPrenomUtilisateur());
     	formMajUtilisateur.setNomFormMajUtilisateur(utilisateur.getNomUtilisateur());
     	formMajUtilisateur.setEmailFormMajUtilisateur(utilisateur.getEmailUtilisateur());
-    	formMajUtilisateur.setPrivilegeFormMajUtilisateur(utilisateur.getPrivilegeUtilisateur());
+		System.out.println("--------------------------------------------------> privilegeUtilisateur : " + utilisateur.getPrivilegeUtilisateur());
+    	if(utilisateur.getPrivilegeUtilisateur() == Privilege.UTILISATEUR) {
+    		formMajUtilisateur.setMembreFormMajUtilisateur(false);
+    	} else {
+    		formMajUtilisateur.setMembreFormMajUtilisateur(true);
+    	}
         model.addAttribute(ATT_FORM_MAJ_UTILISATEUR, formMajUtilisateur);
         return "maj_utilisateur";
+    }
+    
+    @PostMapping("/traitement_maj_utilisateur")
+    public String traitementMajUtilisateur(@Valid @ModelAttribute("formMajUtilisateur") FormMajUtilisateur formMajUtilisateur, BindingResult bindingResult, Model model) throws ResourceNotFoundException {
+    	utilisateurService.traitementMajUtilisateur(formMajUtilisateur);
+    	return "redirect:/utilisateur/liste_utilisateurs";
     }
 
     @PostMapping("/supprimer_utilisateur")

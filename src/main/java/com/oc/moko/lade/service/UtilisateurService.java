@@ -3,6 +3,7 @@ package com.oc.moko.lade.service;
 import java.util.List;
 
 import com.oc.moko.lade.form.FormInscription;
+import com.oc.moko.lade.form.FormMajUtilisateur;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.exception.ResourceNotFoundException;
 
@@ -17,6 +18,8 @@ public interface UtilisateurService {
     public boolean existanceEmail(String emailUtilisateur);
 
     public List<Utilisateur> listeUtilisateurs();
+    
+    public void traitementMajUtilisateur(FormMajUtilisateur formMajUtilisateur);
 
     public void supprimerUtilisateurParId(Long idUtilisateur) throws ResourceNotFoundException;
 }
