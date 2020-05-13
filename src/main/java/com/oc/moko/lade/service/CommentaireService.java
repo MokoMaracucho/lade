@@ -4,11 +4,11 @@ import java.util.List;
 
 import com.oc.moko.lade.entity.Commentaire;
 import com.oc.moko.lade.entity.Utilisateur;
-import com.oc.moko.lade.form.FormCommentaire;
+import com.oc.moko.lade.form.FormAjoutCommentaire;
 
 public interface CommentaireService {
 	
-	public void enregistrerCommentaire(FormCommentaire formCommentaire, Utilisateur utilisateur, Long idSite);
+	public void enregistrerCommentaire(FormAjoutCommentaire formCommentaire, Utilisateur utilisateur, Long idSite);
 
 	public List<Commentaire> listeCommentaires();
 

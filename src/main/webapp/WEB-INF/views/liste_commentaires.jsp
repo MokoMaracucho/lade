@@ -62,7 +62,7 @@
 				<div class="row">
 					<div class="col-md-6 offset-md-3">	
 						<div class="container">
-							<form:form action="traitement_commentaire" cssClass="form form-expand-lg form-dark bg-dark form-margin-padding form-border" method="post" modelAttribute="formCommentaire">
+							<form:form action="traitement_formulaire_ajout_commentaire" cssClass="form form-expand-lg form-dark bg-dark form-margin-padding form-border" method="post" modelAttribute="formAjoutCommentaire">
 								<h1 class="font-weight-bold text-light">COMMENTER LE SITE</h1>
 						
 								<div class="form-group">
@@ -70,10 +70,8 @@
 									<form:errors path="commentaire" cssClass="small text-warning form-error" />
 						        	<form:textarea path="commentaire" class="form-control" />
 								</div>
-						
-								<div class="form-group">
-						        	<form:hidden path="idSite" class="form-control" value="${site.idSite}"/>
-								</div>
+								
+								<input type="hidden" name="idSite" value="${site.idSite}" />
 						
 								<button type="submit" class="btn btn-success">Commenter le site</button>
 							</form:form>

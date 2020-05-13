@@ -3,7 +3,7 @@ package com.oc.moko.lade.form;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-public class FormCommentaire {
+public class FormAjoutCommentaire {
 
 	@NotEmpty(message="Veuillez écrire un commentaire.")
     @Size(min=2, max=300, message="Le commentaire n'a pas la longueur appropriée.")

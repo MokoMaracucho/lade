@@ -3,7 +3,6 @@ package com.oc.moko.lade.entity;
 import java.sql.Timestamp;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -44,19 +43,19 @@ public class Utilisateur {
 	@Column(name="date_inscription_utilisateur")
 	private Timestamp dateInscriptionUtilisateur;
 
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany
 	@JoinTable(name="tb_site", joinColumns=@JoinColumn(name="id_utilisateur"), inverseJoinColumns=@JoinColumn(name="id_site"))
 	private List<Site> listeSites;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany
 	@JoinTable(name="tb_commentaire", joinColumns=@JoinColumn(name="id_utilisateur"), inverseJoinColumns=@JoinColumn(name="id_commentaire"))
 	private List<Commentaire> listeCommentaires;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany
 	@JoinTable(name="tb_secteur", joinColumns=@JoinColumn(name="id_utilisateur"), inverseJoinColumns=@JoinColumn(name="id_secteur"))
 	private List<Secteur> listeSecteurs;
 
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany
 	@JoinTable(name="tb_reservation_topo", joinColumns=@JoinColumn(name="id_utilisateur"), inverseJoinColumns=@JoinColumn(name="id_reservation_topo"))
 	private List<ReservationTopo> listeReservationsTopo;
 

@@ -23,7 +23,7 @@ import com.oc.moko.lade.entity.Commentaire;
 import com.oc.moko.lade.entity.Site;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.exception.ResourceNotFoundException;
-import com.oc.moko.lade.form.FormCommentaire;
+import com.oc.moko.lade.form.FormAjoutCommentaire;
 import com.oc.moko.lade.service.CommentaireService;
 import com.oc.moko.lade.service.SiteService;
 
@@ -31,7 +31,8 @@ import com.oc.moko.lade.service.SiteService;
 @RequestMapping("/commentaire")
 public class CommentaireController {
 
-	public static final String ATT_COMMENTAIRE								= "formCommentaire";
+	public static final String ATT_FORM_AJOUT_COMMENTAIRE					= "formAjoutCommentaire";
+	
 	public static final String ATT_SITE										= "site";
 	public static final String ATT_UTILISATEUR								= "utilisateur";
 	
@@ -50,37 +51,40 @@ public class CommentaireController {
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
-    @PostMapping("/traitement_commentaire")
-    public String traitementCommentaire(HttpServletRequest request, @Valid @ModelAttribute("formCommentaire") FormCommentaire formCommentaire, BindingResult bindingResult, Model model) {
+    @PostMapping("/traitement_formulaire_ajout_commentaire")
+    public String traitementFormulaireAjoutCommentaire(HttpServletRequest request, @Valid @ModelAttribute("formAjoutCommentaire") FormAjoutCommentaire formAjoutCommentaire, @RequestParam(name="idSite") Long idSite, BindingResult bindingResult, Model model) {
     	HttpSession session = request.getSession();
     	if(bindingResult.hasErrors()) {
-	        return "/liste_commentaires";
+	        return "/liste_commentaires_par_id_site";
 		} else {
 			Utilisateur utilisateur = (Utilisateur) session.getAttribute(ATT_UTILISATEUR);
-			Long idSite = formCommentaire.getIdSite();
 	        List<Commentaire> listeCommentairesByIdSite = commentaireService.listeCommentairesByIdSite(idSite);
 	        model.addAttribute(ATT_LISTE_COMMENTAIRES_BY_ID_SITE, listeCommentairesByIdSite);
-			commentaireService.enregistrerCommentaire(formCommentaire, utilisateur, idSite);
-	        return "redirect:/commentaire/liste_commentaires_par_id_site";
+			commentaireService.enregistrerCommentaire(formAjoutCommentaire, utilisateur, idSite);
+	        FormAjoutCommentaire newFormAjoutCommentaire = new FormAjoutCommentaire();
+	        newFormAjoutCommentaire.setIdSite(idSite);
+	    	model.addAttribute(ATT_FORM_AJOUT_COMMENTAIRE, newFormAjoutCommentaire);
+	        return "redirect:/commentaire/liste_commentaires_par_id_site?idSite=" + idSite;
 		}
     }
     
-    @GetMapping("/liste_commentaires")
-    public String listeCommentaires(Model model) {
-        List<Commentaire> listeCommentaires = commentaireService.listeCommentaires();
-        model.addAttribute(ATT_LISTE_COMMENTAIRES, listeCommentaires);
-    	model.addAttribute(ATT_COMMENTAIRE, new FormCommentaire());
-        return "liste_commentaires";
-    }
+//    @GetMapping("/liste_commentaires")
+//    public String listeCommentaires(Model model) {
+//        List<Commentaire> listeCommentaires = commentaireService.listeCommentaires();
+//        model.addAttribute(ATT_LISTE_COMMENTAIRES, listeCommentaires);
+//    	model.addAttribute(ATT_COMMENTAIRE, new FormCommentaire());
+//        return "liste_commentaires";
+//    }
 
     @GetMapping("/liste_commentaires_par_id_site")
-    public String listeCommentairesByIdSite(HttpServletRequest request, @Valid @ModelAttribute("formCommentaire") FormCommentaire formCommentaire, BindingResult bindingResult, Model model) throws ResourceNotFoundException {
-    	Long idSite = formCommentaire.getIdSite();
+    public String listeCommentairesByIdSite(HttpServletRequest request, @RequestParam(name="idSite") Long idSite, Model model) throws ResourceNotFoundException {
     	Site site = siteService.selectionnerSiteParId(idSite);
         model.addAttribute(ATT_SITE, site);
         List<Commentaire> listeCommentairesByIdSite = commentaireService.listeCommentairesByIdSite(idSite);
         model.addAttribute(ATT_LISTE_COMMENTAIRES_BY_ID_SITE, listeCommentairesByIdSite);
-    	model.addAttribute(ATT_COMMENTAIRE, new FormCommentaire());
+        FormAjoutCommentaire formAjoutCommentaire = new FormAjoutCommentaire();
+        formAjoutCommentaire.setIdSite(idSite);
+    	model.addAttribute(ATT_FORM_AJOUT_COMMENTAIRE, formAjoutCommentaire);
         return "liste_commentaires";
     }
     

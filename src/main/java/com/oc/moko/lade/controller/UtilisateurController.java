@@ -67,6 +67,7 @@ public class UtilisateurController {
 			Utilisateur utilisateur = utilisateurService.selectionUtilisateurParEmail(formInscription.getEmailFormInscription());
         	session.setAttribute(ATT_SESSION_STATUT, true);
         	session.setAttribute(ATT_UTILISATEUR, utilisateur);
+			model.addAttribute(ATT_UTILISATEUR, utilisateur);
 	        return "redirect:/utilisateur/liste_utilisateurs";
 		}
     }
@@ -87,6 +88,7 @@ public class UtilisateurController {
 			Utilisateur utilisateur = utilisateurService.selectionUtilisateurParEmail(formConnection.getEmailFormConnection());
         	session.setAttribute(ATT_SESSION_STATUT, true);
 			session.setAttribute(ATT_UTILISATEUR, utilisateur);
+			model.addAttribute(ATT_UTILISATEUR, utilisateur);
 	        return "redirect:/topo/liste_reservations_topo";
 		}
     }
