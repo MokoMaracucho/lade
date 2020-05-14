@@ -138,13 +138,13 @@
 						</span>
 					</div>
 				</div>
+
+				<button type="submit" class="btn btn-success">Ajouter la voie</button>
 			</c:when>
 			
 			<c:otherwise>
 				<p class="form-label-color">Il n'existe aucun secteur.</p>
 			</c:otherwise>
 		</c:choose>
-
-		<button type="submit" class="btn btn-success">Ajouter la voie</button>
 	</form:form>
 </div>

@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.oc.moko.lade.entity.Longueur;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.entity.Voie;
+import com.oc.moko.lade.exception.ResourceNotFoundException;
 import com.oc.moko.lade.form.FormAjoutLongueur;
 import com.oc.moko.lade.service.LongueurService;
 import com.oc.moko.lade.service.VoieService;
@@ -73,5 +75,11 @@ public class LongueurController {
         List<Longueur> listeLongueurs = longueurService.listeLongueurs();
         model.addAttribute(ATT_LISTE_LONGUEURS, listeLongueurs);
         return "liste_longueurs";
+    }
+    
+    @PostMapping("/supprimer_longueur")
+    public String suppressionLongueurParId(@RequestParam(name="idLongueur") Long idLongueur) throws ResourceNotFoundException {
+    	longueurService.suppressionLongueurParId(idLongueur);
+        return "redirect:/longueur/liste_longueurs";
     }
 }

@@ -51,11 +51,17 @@
 						<td>${longueur.voie.nomVoie}</td>
 						<td>${longueur.cotationLongueur}</td>
 						<td>${longueur.utilisateur.prenomUtilisateur} ${longueur.utilisateur.nomUtilisateur}</td>
+<!-- 						<td> -->
+<%-- 							<form action="maj_voie" method="post"> --%>
+<%-- 								<input type="hidden" name="idLongueur" value="${longueur.idLongueur}" /> --%>
+<!-- 								<button class="btn btn-success">Mettre-à-jour</button> -->
+<%-- 							</form> --%>
+<!-- 						</td> -->
 						<td>
-							<button href="${lienMaj}" class="btn btn-success">Mettre-à-jour</button>
-						</td>
-						<td>
-							<button href="${lienSuppression}" onclick="if (!(confirm('Êtes-vous sûr de vouloir supprimer cette voie ?'))) return false" class="btn btn-danger">Supprimer</button>
+							<form action="supprimer_longueur" method="post">
+								<input type="hidden" name="idLongueur" value="${longueur.idLongueur}" />
+								<button class="btn btn-danger">Supprimer</button>
+							</form>
 						</td>
 					</tr>
 				</c:forEach>
