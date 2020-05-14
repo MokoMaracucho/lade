@@ -44,11 +44,17 @@
 						<td>${voie.equipeVoie ? "Oui" : "Non"}</td>
 						<td>${voie.cotationVoie}</td>
 						<td>${voie.utilisateur.prenomUtilisateur} ${voie.utilisateur.nomUtilisateur}</td>
+<!-- 						<td> -->
+<%-- 							<form action="maj_voie" method="post"> --%>
+<%-- 								<input type="hidden" name="idVoie" value="${voie.idVoie}" /> --%>
+<!-- 								<button class="btn btn-success">Mettre-à-jour</button> -->
+<%-- 							</form> --%>
+<!-- 						</td> -->
 						<td>
-							<button href="${lienMaj}" class="btn btn-success">Mettre-à-jour</button>
-						</td>
-						<td>
-							<button href="${lienSuppression}" onclick="if (!(confirm('Êtes-vous sûr de vouloir supprimer cette voie ?'))) return false" class="btn btn-danger">Supprimer</button>
+							<form action="supprimer_voie" method="post">
+								<input type="hidden" name="idVoie" value="${voie.idVoie}" />
+								<button class="btn btn-danger">Supprimer</button>
+							</form>
 						</td>
 					</tr>
 				</c:forEach>

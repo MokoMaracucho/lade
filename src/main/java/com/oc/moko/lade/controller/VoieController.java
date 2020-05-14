@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.oc.moko.lade.entity.Secteur;
 import com.oc.moko.lade.entity.Utilisateur;
 import com.oc.moko.lade.entity.Voie;
+import com.oc.moko.lade.exception.ResourceNotFoundException;
 import com.oc.moko.lade.form.FormAjoutVoie;
 import com.oc.moko.lade.service.SecteurService;
 import com.oc.moko.lade.service.VoieService;
@@ -73,5 +75,11 @@ public class VoieController {
         List<Voie> listeVoies = voieService.listeVoies();
         model.addAttribute(ATT_LISTE_VOIES, listeVoies);
         return "liste_voies";
+    }
+    
+    @PostMapping("/supprimer_voie")
+    public String suppressionSecteurParId(@RequestParam(name="idVoie") Long idVoie) throws ResourceNotFoundException {
+    	voieService.suppressionVoieParId(idVoie);
+        return "redirect:/voie/liste_voies";
     }
 }
