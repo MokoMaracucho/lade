@@ -15,6 +15,9 @@ public interface TopoRepository extends JpaRepository<Topo, Long> {
 	@Query(value="SELECT * FROM db_lade.tb_topo WHERE nom_topo = :nomRecherche", nativeQuery=true)
     List<Topo> rechercheNomTopo(@Param("nomRecherche") String nomRecherche);
     
-	@Query(value="SELECT * FROM db_lade.tb_region WHERE nom_topo = :regionRecherche", nativeQuery=true)
+	@Query(value="SELECT * FROM db_lade.tb_topo WHERE nom_topo = :regionRecherche", nativeQuery=true)
     List<Topo> rechercheRegionTopo(@Param("regionRecherche") String regionRecherche);
+    
+	@Query(value="SELECT * FROM db_lade.tb_topo WHERE nom_topo = :nomRecherche AND WHERE region_topo = :regionRecherche", nativeQuery=true)
+    List<Topo> rechercheNomRegionTopo(@Param("nomRecherche") String nomRecherche, @Param("regionRecherche") String regionRecherche);
 }

@@ -3,6 +3,7 @@ package com.oc.moko.lade.service;
 import java.util.List;
 
 import com.oc.moko.lade.entity.ReservationTopo;
+import com.oc.moko.lade.entity.Site;
 import com.oc.moko.lade.entity.StatutReservationTopo;
 import com.oc.moko.lade.entity.Topo;
 import com.oc.moko.lade.entity.Utilisateur;
@@ -28,4 +29,6 @@ public interface TopoService {
     public List<Topo> rechercheNomTopo(String nomRecherche) throws ResourceNotFoundException;
 
     public List<Topo> rechercheRegionTopo(String regionRecherche) throws ResourceNotFoundException;
+    
+    public List<Topo> rechercheNomRegionTopo(String nomRecherche, String regionRecherche) throws ResourceNotFoundException;
 }

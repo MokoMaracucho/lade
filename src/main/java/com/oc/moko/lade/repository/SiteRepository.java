@@ -18,5 +18,8 @@ public interface SiteRepository extends JpaRepository<Site, Long> {
     List<Site> rechercheNomSite(@Param("nomRecherche") String nomRecherche);
     
 	@Query(value="SELECT * FROM db_lade.tb_site WHERE region_site = :regionRecherche", nativeQuery=true)
-    List<Site> rechercheRegionSite(@Param("regionRecherche") String nomRecherche);
+    List<Site> rechercheRegionSite(@Param("regionRecherche") String regionRecherche);
+    
+	@Query(value="SELECT * FROM db_lade.tb_site WHERE nom_site = :nomRecherche AND WHERE region_site = :regionRecherche", nativeQuery=true)
+    List<Site> rechercheNomRegionSite(@Param("nomRecherche") String nomRecherche, @Param("regionRecherche") String regionRecherche);
 }

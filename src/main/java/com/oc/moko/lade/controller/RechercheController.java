@@ -53,7 +53,7 @@ public class RechercheController {
     
     @PostMapping("/traitement_formulaire_recherche_avancee")
     public String traitementFormulaireRechercheAvancee(HttpServletRequest request, FormRechercheAvancee formRechercheAvancee, Model model) throws ResourceNotFoundException {
-    	if(!formRechercheAvancee.getNomRecherche().isEmpty()) {
+    	if(!formRechercheAvancee.getNomRecherche().isEmpty() && formRechercheAvancee.getRegionRecherche().isEmpty()) {
     		siteService.rechercheNomSite(formRechercheAvancee.getNomRecherche());
     		secteurService.rechercheNomSecteur(formRechercheAvancee.getNomRecherche());
     		voieService.rechercheNomVoie(formRechercheAvancee.getNomRecherche());
@@ -61,9 +61,14 @@ public class RechercheController {
     		topoService.rechercheNomTopo(formRechercheAvancee.getNomRecherche());
     	}
     	
-    	if(!formRechercheAvancee.getRegionRecherche().isEmpty()) {
+    	if(!formRechercheAvancee.getRegionRecherche().isEmpty() && formRechercheAvancee.getNomRecherche().isEmpty()) {
     		siteService.rechercheRegionSite(formRechercheAvancee.getRegionRecherche());
     		topoService.rechercheRegionTopo(formRechercheAvancee.getRegionRecherche());
+    	}
+    	
+    	if(!formRechercheAvancee.getRegionRecherche().isEmpty() && !formRechercheAvancee.getNomRecherche().isEmpty()) {
+    		siteService.rechercheNomRegionSite(formRechercheAvancee.getNomRecherche(), formRechercheAvancee.getRegionRecherche());
+    		topoService.rechercheNomRegionTopo(formRechercheAvancee.getNomRecherche(), formRechercheAvancee.getRegionRecherche());
     	}
     	
     	return "resulat_recherche";

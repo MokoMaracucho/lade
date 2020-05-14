@@ -20,4 +20,6 @@ public interface SiteService {
     public List<Site> rechercheNomSite(String nomRecherche) throws ResourceNotFoundException;
     
     public List<Site> rechercheRegionSite(String regionRecherche) throws ResourceNotFoundException;
+    
+    public List<Site> rechercheNomRegionSite(String nomRecherche, String regionRecherche) throws ResourceNotFoundException;
 }

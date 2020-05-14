@@ -107,4 +107,9 @@ public class TopoServiceImpl implements TopoService {
 	public List<Topo> rechercheRegionTopo(String regionRecherche) throws ResourceNotFoundException {
 		return topoRepository.rechercheRegionTopo(regionRecherche);
 	}
+
+	@Override
+	public List<Topo> rechercheNomRegionTopo(String nomRecherche, String regionRecherche) throws ResourceNotFoundException {
+		return topoRepository.rechercheNomRegionTopo(nomRecherche, regionRecherche);
+	}
 }

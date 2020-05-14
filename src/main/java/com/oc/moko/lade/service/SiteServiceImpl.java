@@ -60,12 +60,19 @@ public class SiteServiceImpl implements SiteService {
 	}
 
 	@Override
+    @Transactional
 	public List<Site> rechercheNomSite(String nomRecherche) throws ResourceNotFoundException {
 		return siteRepository.rechercheNomSite(nomRecherche);
 	}
 
 	@Override
+    @Transactional
 	public List<Site> rechercheRegionSite(String regionRecherche) throws ResourceNotFoundException {
 		return siteRepository.rechercheRegionSite(regionRecherche);
+	}
+
+	@Override
+	public List<Site> rechercheNomRegionSite(String nomRecherche, String regionRecherche) throws ResourceNotFoundException {
+		return siteRepository.rechercheNomRegionSite(nomRecherche, regionRecherche);
 	}
 }
