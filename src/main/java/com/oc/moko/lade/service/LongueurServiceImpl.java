@@ -46,4 +46,9 @@ public class LongueurServiceImpl implements LongueurService {
 	public void suppressionLongueurParId(Long idLongueur) throws ResourceNotFoundException {
 		longueurRepository.deleteById(idLongueur);
 	}
+
+	@Override
+	public List<Longueur> rechercheNomLongueur(String nomRecherche) throws ResourceNotFoundException {
+		return longueurRepository.rechercheNomLongueur(nomRecherche);
+	}
 }

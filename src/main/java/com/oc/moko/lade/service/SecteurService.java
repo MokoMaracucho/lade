@@ -14,4 +14,6 @@ public interface SecteurService {
     public List<Secteur> listeSecteurs();
     
     public void suppressionSecteurParId(Long idSecteur) throws ResourceNotFoundException;
+    
+    public List<Secteur> rechercheNomSecteur(String nomRecherche) throws ResourceNotFoundException;
 }

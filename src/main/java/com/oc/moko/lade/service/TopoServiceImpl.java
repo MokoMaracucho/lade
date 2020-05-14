@@ -11,6 +11,7 @@ import com.oc.moko.lade.entity.ReservationTopo;
 import com.oc.moko.lade.entity.StatutReservationTopo;
 import com.oc.moko.lade.entity.Topo;
 import com.oc.moko.lade.entity.Utilisateur;
+import com.oc.moko.lade.exception.ResourceNotFoundException;
 import com.oc.moko.lade.form.FormAjoutTopo;
 import com.oc.moko.lade.repository.ReservationTopoRepository;
 import com.oc.moko.lade.repository.TopoRepository;
@@ -94,5 +95,16 @@ public class TopoServiceImpl implements TopoService {
 			default:
 				break;
 		}
+	}
+
+	@Override
+    @Transactional
+	public List<Topo> rechercheNomTopo(String nomRecherche) throws ResourceNotFoundException {
+		return topoRepository.rechercheNomTopo(nomRecherche);
+	}
+
+	@Override
+	public List<Topo> rechercheRegionTopo(String regionRecherche) throws ResourceNotFoundException {
+		return topoRepository.rechercheRegionTopo(regionRecherche);
 	}
 }

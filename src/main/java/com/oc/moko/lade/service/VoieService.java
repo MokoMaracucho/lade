@@ -14,4 +14,6 @@ public interface VoieService {
     public List<Voie> listeVoies();
     
     public void suppressionVoieParId(Long idVoie) throws ResourceNotFoundException;
+    
+    public List<Voie> rechercheNomVoie(String nomRecherche) throws ResourceNotFoundException;
 }

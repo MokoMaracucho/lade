@@ -14,4 +14,6 @@ public interface LongueurService {
     public List<Longueur> listeLongueurs();
     
     public void suppressionLongueurParId(Long idLongueur) throws ResourceNotFoundException;
+    
+    public List<Longueur> rechercheNomLongueur(String nomRecherche) throws ResourceNotFoundException;
 }

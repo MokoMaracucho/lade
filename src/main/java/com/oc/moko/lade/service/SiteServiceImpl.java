@@ -58,4 +58,14 @@ public class SiteServiceImpl implements SiteService {
 	public void suppressionSiteParId(Long idSite) throws ResourceNotFoundException {
 		siteRepository.deleteById(idSite);
 	}
+
+	@Override
+	public List<Site> rechercheNomSite(String nomRecherche) throws ResourceNotFoundException {
+		return siteRepository.rechercheNomSite(nomRecherche);
+	}
+
+	@Override
+	public List<Site> rechercheRegionSite(String regionRecherche) throws ResourceNotFoundException {
+		return siteRepository.rechercheRegionSite(regionRecherche);
+	}
 }

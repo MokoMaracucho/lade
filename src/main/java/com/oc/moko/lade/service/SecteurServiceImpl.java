@@ -45,4 +45,9 @@ public class SecteurServiceImpl implements SecteurService {
 	public void suppressionSecteurParId(Long idSecteur) throws ResourceNotFoundException {
 		secteurRepository.deleteById(idSecteur);
 	}
+
+	@Override
+	public List<Secteur> rechercheNomSecteur(String nomRecherche) throws ResourceNotFoundException {
+		return secteurRepository.rechercheNomSecteur(nomRecherche);
+	}
 }

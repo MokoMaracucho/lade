@@ -16,4 +16,8 @@ public interface SiteService {
     public Site selectionnerSiteParId(Long idSite) throws ResourceNotFoundException;
     
     public void suppressionSiteParId(Long idSite) throws ResourceNotFoundException;
+    
+    public List<Site> rechercheNomSite(String nomRecherche) throws ResourceNotFoundException;
+    
+    public List<Site> rechercheRegionSite(String regionRecherche) throws ResourceNotFoundException;
 }

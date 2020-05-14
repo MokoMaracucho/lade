@@ -6,6 +6,7 @@ import com.oc.moko.lade.entity.ReservationTopo;
 import com.oc.moko.lade.entity.StatutReservationTopo;
 import com.oc.moko.lade.entity.Topo;
 import com.oc.moko.lade.entity.Utilisateur;
+import com.oc.moko.lade.exception.ResourceNotFoundException;
 import com.oc.moko.lade.form.FormAjoutTopo;
 
 public interface TopoService {
@@ -23,4 +24,8 @@ public interface TopoService {
     public List<ReservationTopo> listeDemandesReservationTopo(Long idDemandeurReservationTopo);
     
     public void majReservationTopo(Long idReservationTopo, Utilisateur utilisateur, StatutReservationTopo reponseDemandeReservationTopo);
+    
+    public List<Topo> rechercheNomTopo(String nomRecherche) throws ResourceNotFoundException;
+
+    public List<Topo> rechercheRegionTopo(String regionRecherche) throws ResourceNotFoundException;
 }

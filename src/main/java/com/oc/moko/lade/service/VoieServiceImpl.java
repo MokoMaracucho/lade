@@ -47,4 +47,9 @@ public class VoieServiceImpl implements VoieService {
 	public void suppressionVoieParId(Long idVoie) throws ResourceNotFoundException {
 		voieRepository.deleteById(idVoie);
 	}
+
+	@Override
+	public List<Voie> rechercheNomVoie(String nomRecherche) throws ResourceNotFoundException {
+		return voieRepository.rechercheNomVoie(nomRecherche);
+	}
 }
