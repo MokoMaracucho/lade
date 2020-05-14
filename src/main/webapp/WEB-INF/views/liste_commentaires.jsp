@@ -45,15 +45,15 @@
 						<td>${commentaire.idCommentaire}</td>
 						<td>${commentaire.commentaire}</td>
 						<td>${commentaire.utilisateur.prenomUtilisateur} ${commentaire.utilisateur.nomUtilisateur}</td>
-						<td>
-							<c:if test="${utilisateur.privilegeUtilisateur eq 'MEMBRE'}">
+						<c:if test="${utilisateur.privilegeUtilisateur eq 'MEMBRE'}">
+							<td>
 								<form action="suppression_commentaire_par_id" method="post">
 									<input type="hidden" name="idCommentaire" value="${commentaire.idCommentaire}" />
 									<input type="hidden" name="idSite" value="${site.idSite}" />
 									<input type="submit" class="btn btn-danger" value="Supprimer le commentaire" />  
 								</form>
-							</c:if>
-						</td>
+							</td>
+						</c:if>
 					</tr>
 				</c:forEach>
 			</table>

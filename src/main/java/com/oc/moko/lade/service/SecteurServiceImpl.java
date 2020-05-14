@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.oc.moko.lade.entity.Secteur;
 import com.oc.moko.lade.entity.Site;
 import com.oc.moko.lade.entity.Utilisateur;
+import com.oc.moko.lade.exception.ResourceNotFoundException;
 import com.oc.moko.lade.form.FormAjoutSecteur;
 import com.oc.moko.lade.repository.SecteurRepository;
 import com.oc.moko.lade.repository.SiteRepository;
@@ -37,5 +38,11 @@ public class SecteurServiceImpl implements SecteurService {
     @Transactional
 	public List<Secteur> listeSecteurs() {
 		return secteurRepository.findAll();
+	}
+
+	@Override
+    @Transactional
+	public void suppressionSecteurParId(Long idSecteur) throws ResourceNotFoundException {
+		secteurRepository.deleteById(idSecteur);
 	}
 }

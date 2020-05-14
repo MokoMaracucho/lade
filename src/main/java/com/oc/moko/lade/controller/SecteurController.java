@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.oc.moko.lade.entity.Secteur;
 import com.oc.moko.lade.entity.Site;
 import com.oc.moko.lade.entity.Utilisateur;
+import com.oc.moko.lade.exception.ResourceNotFoundException;
 import com.oc.moko.lade.form.FormAjoutSecteur;
 import com.oc.moko.lade.service.SecteurService;
 import com.oc.moko.lade.service.SiteService;
@@ -75,5 +77,11 @@ public class SecteurController {
         List<Secteur> listeSecteurs = secteurService.listeSecteurs();
         model.addAttribute(ATT_LISTE_SECTEURS, listeSecteurs);
         return "liste_secteurs";
+    }
+    
+    @PostMapping("/supprimer_secteur")
+    public String suppressionSecteurParId(@RequestParam(name="idSecteur") Long idSecteur) throws ResourceNotFoundException {
+    	secteurService.suppressionSecteurParId(idSecteur);
+        return "redirect:/secteur/liste_secteurs";
     }
 }

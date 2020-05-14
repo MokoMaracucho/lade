@@ -40,11 +40,17 @@
 						<td>${secteur.nomSecteur}</td>
 						<td>${secteur.site.nomSite}</td>
 						<td>${secteur.utilisateur.prenomUtilisateur} ${secteur.utilisateur.nomUtilisateur}</td>
+<!-- 						<td> -->
+<%-- 							<form action="maj_secteur" method="post"> --%>
+<%-- 								<input type="hidden" name="idSecteur" value="${secteur.idSecteur}" /> --%>
+<!-- 								<button class="btn btn-success">Mettre-à-jour</button> -->
+<%-- 							</form> --%>
+<!-- 						</td> -->
 						<td>
-							<button href="${lienMaj}" class="btn btn-success">Mettre-à-jour</button>
-						</td>
-						<td>
-							<button href="${lienSuppression}" onclick="if (!(confirm('Êtes-vous sûr de vouloir supprimer ce secteur ?'))) return false" class="btn btn-danger">Supprimer</button>
+							<form action="supprimer_secteur" method="post">
+								<input type="hidden" name="idSecteur" value="${secteur.idSecteur}" />
+								<button class="btn btn-danger">Supprimer</button>
+							</form>
 						</td>
 					</tr>
 				</c:forEach>
