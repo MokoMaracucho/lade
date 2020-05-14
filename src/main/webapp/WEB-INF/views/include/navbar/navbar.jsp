@@ -66,7 +66,7 @@
       		</li>
     	
 		    <li class="nav-item">
-		        <a class="nav-link" href="/lade/RechercheAvancee">Recherche avancée <span class="sr-only">(current)</span></a>
+		        <a class="nav-link" href="/lade/recherche/recherche_avancee">Recherche avancée <span class="sr-only">(current)</span></a>
 		    </li>
     	</ul>
     	
