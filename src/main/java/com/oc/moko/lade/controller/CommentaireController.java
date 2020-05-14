@@ -67,14 +67,6 @@ public class CommentaireController {
 	        return "redirect:/commentaire/liste_commentaires_par_id_site?idSite=" + idSite;
 		}
     }
-    
-//    @GetMapping("/liste_commentaires")
-//    public String listeCommentaires(Model model) {
-//        List<Commentaire> listeCommentaires = commentaireService.listeCommentaires();
-//        model.addAttribute(ATT_LISTE_COMMENTAIRES, listeCommentaires);
-//    	model.addAttribute(ATT_COMMENTAIRE, new FormCommentaire());
-//        return "liste_commentaires";
-//    }
 
     @GetMapping("/liste_commentaires_par_id_site")
     public String listeCommentairesByIdSite(HttpServletRequest request, @RequestParam(name="idSite") Long idSite, Model model) throws ResourceNotFoundException {
