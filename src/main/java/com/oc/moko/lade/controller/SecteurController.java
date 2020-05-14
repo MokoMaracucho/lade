@@ -50,9 +50,11 @@ public class SecteurController {
     
     @GetMapping("/ajout_secteur")
     public String ajoutSecteur(Model model) {
-    	model.addAttribute(ATT_FORM_AJOUT_SECTEUR, new FormAjoutSecteur());
     	List<Site> listeSites = siteService.listeSites();
-    	model.addAttribute(ATT_LISTE_SITES, listeSites);
+    	if(!listeSites.isEmpty()) {
+    		model.addAttribute(ATT_LISTE_SITES, listeSites);
+    		model.addAttribute(ATT_FORM_AJOUT_SECTEUR, new FormAjoutSecteur());
+    	}
         return "ajout_secteur";
     }
 
