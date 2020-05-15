@@ -32,7 +32,7 @@
 					<th>VOIE ÉQUIPÉE</th>
 					<th>COTATION</th>
 					<th>CRÉATEUR VOIE</th>
-					<th>MISE-À-JOUR</th>
+<!-- 					<th>MISE-À-JOUR</th> -->
 					<th>SUPRESSION</th>
 				</tr>
 

@@ -30,7 +30,7 @@
 					<th>NOM</th>
 					<th>SITE</th>
 					<th>CRÉATEUR SECTEUR</th>
-					<th>MISE-À-JOUR</th>
+<!-- 					<th>MISE-À-JOUR</th> -->
 					<th>SUPRESSION</th>
 				</tr>
 

@@ -33,7 +33,7 @@
 					<th>PROPRIÉTAIRE</th>
 					<th>DATE PARUTION</th>
 					<th>DISPONIBILITÉ</th>
-					<th>MISE-À-JOUR</th>
+<!-- 					<th>MISE-sÀ-JOUR</th> -->
 					<th>SUPRESSION</th>
 				</tr>
 
@@ -45,19 +45,17 @@
 						<td>${topo.descriptionTopo}</td>
 						<td>${topo.utilisateur.prenomUtilisateur} ${topo.utilisateur.nomUtilisateur}</td>
 						<td>${topo.dateParutionTopo}</td>
+<!-- 						<td> -->
+<%-- 							<form action="maj_topo" method="post"> --%>
+<%-- 								<input type="hidden" name="idTopo" value="${topo.idTopo}" /> --%>
+<!-- 								<button class="btn btn-success">Mettre-à-jour</button> -->
+<%-- 							</form> --%>
+<!-- 						</td> -->
 						<td>
-							<c:if test="${topo.disponibiliteTopo}">
-								<form action="traitement_demande_reservation_topo" method="post">
-									<input type="hidden" name="idTopo" value="${topo.idTopo}" />
-									<input type="submit" class="btn btn-success" value="Demande de réservation" />  
-								</form>
-							</c:if>
-						</td>
-						<td>
-							<button href="${lienMaj}" class="btn btn-success">Mettre-à-jour</button>
-						</td>
-						<td>
-							<button href="${lienSuppression}" onclick="if (!(confirm('Êtes-vous sûr de vouloir supprimer ce topo ?'))) return false" class="btn btn-danger">Supprimer</button>
+							<form action="supprimer_topo" method="post">
+								<input type="hidden" name="idTopo" value="${topo.idTopo}" />
+								<button class="btn btn-danger">Supprimer</button>
+							</form>
 						</td>
 					</tr>
 				</c:forEach>
