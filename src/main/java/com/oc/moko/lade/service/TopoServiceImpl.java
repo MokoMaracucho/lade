@@ -79,6 +79,7 @@ public class TopoServiceImpl implements TopoService {
     @Transactional
 	public void majReservationTopo(Long idReservationTopo, Utilisateur utilisateur, StatutReservationTopo reponseReservationTopo) {
 		ReservationTopo reservationTopo = reservationTopoRepository.getOne(idReservationTopo);
+		Topo topo = reservationTopo.getTopo();
 		switch(reponseReservationTopo) {
 			case ACCEPTEE:
 				reservationTopo.setStatutReservationTopo(StatutReservationTopo.ACCEPTEE);
@@ -87,10 +88,12 @@ public class TopoServiceImpl implements TopoService {
 			case REFUSEE:
 				reservationTopo.setStatutReservationTopo(StatutReservationTopo.REFUSEE);
 				reservationTopoRepository.save(reservationTopo);
+				topoRepository.majDisponibilteTopo(topo.getIdTopo(), true);
 				break;
 			case TERMINEE:
 				reservationTopo.setStatutReservationTopo(StatutReservationTopo.TERMINEE);
 				reservationTopoRepository.save(reservationTopo);
+				topoRepository.majDisponibilteTopo(topo.getIdTopo(), true);
 				break;
 			default:
 				break;

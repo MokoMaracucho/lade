@@ -32,32 +32,35 @@
 					<th>DESCRIPTION</th>
 					<th>PROPRIÉTAIRE</th>
 					<th>DATE PARUTION</th>
-					<th>DISPONIBILITÉ</th>
-<!-- 					<th>MISE-sÀ-JOUR</th> -->
+					<c:if test="${topo.disponibiliteTopo && topo.utilisateur.idTopo != utilisateur.idUtilisateur}">
+						<th>DISPONIBILITÉ</th>
+					</c:if>
 					<th>SUPRESSION</th>
 				</tr>
 
 				<c:forEach var="topo" items="${listeTopos}">
-					<tr class="small">
-						<td>${topo.idTopo}</td>
-						<td>${topo.nomTopo}</td>
-						<td>${topo.regionTopo}</td>
-						<td>${topo.descriptionTopo}</td>
-						<td>${topo.utilisateur.prenomUtilisateur} ${topo.utilisateur.nomUtilisateur}</td>
-						<td>${topo.dateParutionTopo}</td>
-<!-- 						<td> -->
-<%-- 							<form action="maj_topo" method="post"> --%>
-<%-- 								<input type="hidden" name="idTopo" value="${topo.idTopo}" /> --%>
-<!-- 								<button class="btn btn-success">Mettre-à-jour</button> -->
-<%-- 							</form> --%>
-<!-- 						</td> -->
-						<td>
-							<form action="supprimer_topo" method="post">
-								<input type="hidden" name="idTopo" value="${topo.idTopo}" />
-								<button class="btn btn-danger">Supprimer</button>
-							</form>
-						</td>
-					</tr>
+						<tr class="small">
+							<td>${topo.idTopo}</td>
+							<td>${topo.nomTopo}</td>
+							<td>${topo.regionTopo}</td>
+							<td>${topo.descriptionTopo}</td>
+							<td>${topo.utilisateur.prenomUtilisateur} ${topo.utilisateur.nomUtilisateur}</td>
+							<td>${topo.dateParutionTopo}</td>
+							<c:if test="${topo.disponibiliteTopo}">
+								<td>
+									<form action="traitement_demande_reservation_topo" method="post">
+										<input type="hidden" name="idTopo" value="${topo.idTopo}" />
+										<button class="btn btn-success">Demande de réservation</button>
+									</form>
+								</td>
+							</c:if>
+							<td>
+								<form action="supprimer_topo" method="post">
+									<input type="hidden" name="idTopo" value="${topo.idTopo}" />
+									<button class="btn btn-danger">Supprimer</button>
+								</form>
+							</td>
+						</tr>
 				</c:forEach>
 			</table>
 		</div>

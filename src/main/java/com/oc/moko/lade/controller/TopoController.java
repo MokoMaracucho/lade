@@ -91,7 +91,6 @@ public class TopoController {
     public String traitementDemandeReservationTopo(HttpServletRequest request, @RequestParam(name="idTopo") Long idTopo, Model model) {
     	HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute(ATT_UTILISATEUR);
-		
 		topoService.enregistrerReservationTopo(idTopo, utilisateur);
         List<Topo> listeTopos = topoService.listeTopos();
         model.addAttribute(ATT_LISTE_TOPOS, listeTopos);
