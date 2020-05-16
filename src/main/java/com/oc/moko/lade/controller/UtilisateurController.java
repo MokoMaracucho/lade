@@ -102,22 +102,36 @@ public class UtilisateurController {
     }
 
     @GetMapping("/liste_utilisateurs")
-    public String listeUtilisateurs(Model model) {
-        List<Utilisateur> listeUtilisateurs = utilisateurService.listeUtilisateurs();
+    public String listeUtilisateurs(HttpServletRequest request, Model model) throws ResourceNotFoundException {
+        List<Utilisateur> listeUtilisateurs = utilisateurService.listeUtilisateurs();HttpSession session = request.getSession();
         model.addAttribute(ATT_LISTE_UTILISATEURS, listeUtilisateurs);
+    	Utilisateur utilisateur = (Utilisateur) session.getAttribute(ATT_UTILISATEUR);
+    	Long idUtilisateur = utilisateur.getIdUtilisateur();
+    	utilisateur = utilisateurService.selectionnerUtilisateurParId(idUtilisateur);
+    	session.setAttribute(ATT_UTILISATEUR, utilisateur);
+		model.addAttribute(ATT_UTILISATEUR, utilisateur);
         return "liste_utilisateurs";
     }
 
     @PostMapping("/maj_utilisateur")
-    public String majUtilisateur(@RequestParam(name="idUtilisateur") Long idUtilisateur, Model model) throws ResourceNotFoundException {
+    public String majUtilisateur(HttpServletRequest request, @RequestParam(name="idUtilisateur") Long idUtilisateur, Model model) throws ResourceNotFoundException {
     	Utilisateur utilisateur = utilisateurService.selectionnerUtilisateurParId(idUtilisateur);
     	FormMajUtilisateur formMajUtilisateur = utilisateurService.formulaireMajUtilisateur(utilisateur);
-        model.addAttribute(ATT_FORM_MAJ_UTILISATEUR, formMajUtilisateur);
+        model.addAttribute(ATT_FORM_MAJ_UTILISATEUR, formMajUtilisateur);HttpSession session = request.getSession();
+    	utilisateur = utilisateurService.selectionnerUtilisateurParId(idUtilisateur);
+    	session.setAttribute(ATT_UTILISATEUR, utilisateur);
+		model.addAttribute(ATT_UTILISATEUR, utilisateur);
         return "maj_utilisateur";
     }
     
     @PostMapping("/traitement_maj_utilisateur")
-    public String traitementMajUtilisateur(@Valid @ModelAttribute("formMajUtilisateur") FormMajUtilisateur formMajUtilisateur, BindingResult bindingResult, Model model) throws ResourceNotFoundException {
+    public String traitementMajUtilisateur(HttpServletRequest request, @Valid @ModelAttribute("formMajUtilisateur") FormMajUtilisateur formMajUtilisateur, BindingResult bindingResult, Model model) throws ResourceNotFoundException {
+    	HttpSession session = request.getSession();
+    	Utilisateur utilisateur = (Utilisateur) session.getAttribute(ATT_UTILISATEUR);
+    	Long idUtilisateur = utilisateur.getIdUtilisateur();
+    	utilisateur = utilisateurService.selectionnerUtilisateurParId(idUtilisateur);
+    	session.setAttribute(ATT_UTILISATEUR, utilisateur);
+		model.addAttribute(ATT_UTILISATEUR, utilisateur);
     	utilisateurService.traitementMajUtilisateur(formMajUtilisateur);
     	return "redirect:/utilisateur/liste_utilisateurs";
     }

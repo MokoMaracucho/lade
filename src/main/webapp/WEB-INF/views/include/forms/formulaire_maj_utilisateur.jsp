@@ -6,7 +6,7 @@
 	<form:form action="traitement_maj_utilisateur" cssClass="form form-expand-lg form-dark bg-dark form-margin-padding form-border" method="post" modelAttribute="formMajUtilisateur">
 		<h1 class="font-weight-bold text-light">MISE-À-JOUR</h1>
 
-		<form:hidden path="idFormMajUtilisateur" value="${formMajUtilisateur.idFormMajUtilisateur}" />
+		<form:hidden path="idFormMajUtilisateur" value="${utilisateur.idUtilisateur}" />
 
 		<div class="form-group">
 	    	<label for="prenomFormMajUtilisateur" class="form-label-color">Prénom</label>

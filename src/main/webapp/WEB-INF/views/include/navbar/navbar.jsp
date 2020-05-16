@@ -79,4 +79,5 @@
 
 <c:if test="${sessionStatut eq true}">
 	<div class="succes small p-vous-etes-connecte text-secondary">Vous êtes connecté(e) avec l'adresse : ${utilisateur.emailUtilisateur}</div>
+	<div class="succes small p-vous-etes-connecte text-secondary">Privilège : ${utilisateur.privilegeUtilisateur}</div>
 </c:if>
