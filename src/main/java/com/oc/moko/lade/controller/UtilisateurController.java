@@ -103,7 +103,8 @@ public class UtilisateurController {
 
     @GetMapping("/liste_utilisateurs")
     public String listeUtilisateurs(HttpServletRequest request, Model model) throws ResourceNotFoundException {
-        List<Utilisateur> listeUtilisateurs = utilisateurService.listeUtilisateurs();HttpSession session = request.getSession();
+        List<Utilisateur> listeUtilisateurs = utilisateurService.listeUtilisateurs();
+        HttpSession session = request.getSession();
         model.addAttribute(ATT_LISTE_UTILISATEURS, listeUtilisateurs);
     	Utilisateur utilisateur = (Utilisateur) session.getAttribute(ATT_UTILISATEUR);
     	Long idUtilisateur = utilisateur.getIdUtilisateur();
